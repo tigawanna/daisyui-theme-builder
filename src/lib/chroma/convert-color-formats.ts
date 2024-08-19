@@ -5,7 +5,7 @@ export function hexToOKLCH(hex: string) {
 }
 
 export function oklchToHex(oklch: chroma.Color) {
-  return chroma(oklch).hex();
+  return chroma(oklch).hex()
 }
 
 export function hexToHSL(hex: string) {

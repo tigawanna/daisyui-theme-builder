@@ -1,3 +1,5 @@
+import { ReactColorPicker } from "@/lib/react-color/ReactColorPicker";
+
 interface TestUwuVariableProps {}
 
 export function TestUwuVariable({}: TestUwuVariableProps) {
@@ -14,6 +16,7 @@ export function TestUwuVariable({}: TestUwuVariableProps) {
         <button className="btn " onClick={() => updateUwuCssvariable("70% 0.2042 314.07")}>
           purple uwu
         </button>
+        <ReactColorPicker initColor={{h: 44.87, l: 70, s: 0.1}} colorKey="--uwu"/>
       </div>
     </div>
   );

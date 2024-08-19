@@ -2,6 +2,11 @@
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    colors: {
+      uwu: "oklch(var(--uwu)/ <alpha-value>)",
+    },
+  },
   plugins: [require("daisyui"), require("tailwindcss-animate"), require("daisify-shadcn")],
   daisyui: {
     themes: [

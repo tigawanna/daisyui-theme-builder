@@ -8,6 +8,7 @@
 
 @layer base {
 
+
 [data-theme=custom-light] {
   color-scheme: light;
   --b2: 0 0% 93%;
@@ -74,6 +75,7 @@
   --btn-focus-scale: 1;
 }
   :root {
+    --uwu:70% 0.1 185.88;
     --popover: theme(colors.base-200);
     --popover-foreground: theme(colors.base-content);
 

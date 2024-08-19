@@ -5,9 +5,13 @@ import { useEffect } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
+import { daisyUIThemeSearchParamsSchema } from "./-routes-utils/daisy-ui-schema";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
+  validateSearch:(input)=>{
+    return daisyUIThemeSearchParamsSchema.parse(input)
+  }
 });
 
 export function RootComponent() {

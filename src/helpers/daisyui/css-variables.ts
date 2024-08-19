@@ -1,7 +1,24 @@
 
 import { oklch } from "culori";
-import { oklchColorObjectToString } from "./quolla";
 import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
+
+
+const cutNumber = (number: number) => {
+  try {
+    if (number) {
+      return +number.toFixed(6);
+    }
+    return 0;
+  } catch (e) {
+    // colorIsInvalid(number)
+    return 0
+  }
+};
+
+export function oklchColorObjectToString(input: { l: number; c: number; h: number }) {
+  const { l, c, h } = input;
+  return `${Number.parseFloat((cutNumber(l) * 100).toFixed(6))}% ${cutNumber(c)} ${cutNumber(h)}`;
+}
 
 
 export function updateCSSVariable({ key, value }: { key: string; value: string }) {

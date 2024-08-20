@@ -6,7 +6,7 @@ import { oklchToHSL } from "./color-utils";
 interface ReactColorPickerProps {
   oklchString:string; // oklch color string to be coverted into hsl from the editor
   colorKey: string;  // css variable key ;
-  saveColor: (color: string) => void; 
+  saveColor: (color_key:string,new_color: string) => void; 
 }
 
 export function ReactColorPicker({oklchString,colorKey,saveColor}: ReactColorPickerProps) {
@@ -18,7 +18,7 @@ console.log("============= oklch color  ================== ",color)
     const hsl_string = hslObjectToStringtinyColor(new_color.hsl);
     const oklch_string = hslToOKLCH(hsl_string).join(" ")
      document.documentElement.style.setProperty(colorKey, oklch_string);
-     saveColor(oklch_string)
+     saveColor(colorKey,oklch_string)
     }
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">

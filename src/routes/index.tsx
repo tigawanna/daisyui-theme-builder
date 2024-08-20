@@ -1,10 +1,10 @@
 
 import { TestUwuVariable } from "@/components/daisyui/TestUwuVariable";
-import { ThemesList } from "@/components/themes/ThemesList";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
+
 });
 
 interface HomePageProps {}

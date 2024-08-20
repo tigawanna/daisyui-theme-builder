@@ -8,7 +8,7 @@ interface MainNavBarProps {
 
 export function MainNavBar({}:MainNavBarProps){
   const searchParams = useSearch({
-    from:"/"
+    from:"__root__"
   })
   const defaultTheme = defaultThemes({theme:searchParams});
 return (

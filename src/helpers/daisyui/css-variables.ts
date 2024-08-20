@@ -182,33 +182,4 @@ export function loadCSSVariablesFromThemeObject({ theme }: { theme: DaisyUITheme
   }
 }
 
-// export function hexToOKlch(hex: string) {
-//   const ok_lch = useOklchConverter().hexToOklchString(hex);
-//   const only_values_oklch = ok_lch.split("oklch")[1].replace(/\(|\)/g, "");
-//   return only_values_oklch;
-// }
 
-
-// export function hexToOKlch(hex: string) {
-//   // exmaple input ff0000;
-//   const ok_lch = useOklchConverter().hexToOklchString(hex);
-//   // console.log(ok_lch) oklch(0.57 0.35 41.7)'
-//   const only_values_oklch = ok_lch.split("oklch")[1].replace(/\(|\)/g, "");
-//   // console.log(only_values_oklch);0.57 0.35 41.7
-//   return only_values_oklch;
-// }
-
-// export function changeColorValuesToObject(input: string): {
-//   l: number;
-//   c: number;
-//   h: number;
-//   a: number;
-// } {
-//   const match = input.match(/(\d+(?:\.\d+)?)%?/g);
-//   const [lStr, cStr, hStr] = match ? match.map(Number.parseFloat) : [0, 0, 0];
-//   return { l: lStr || 0, c: cStr || 0, h: hStr || 0, a: 1 };
-//   // ex: changeColorValuesToObject("oklch(0.57 0.35 41.7)") returns { l: 0.57, c: 0.35, h: 41.7, a: 1 }
-// }
-
-
-  // "--p: 15 79.3% 17.1%; --pf: 64 86% 44.9%; --pc: 0 87.8% 48%; --s: 314 100% 47.1%; --sf: 314 100% 37.1%; --sc: 0 0% 100%; --a: 174 60% 51%; --af: 174 58.9% 41%; --ac: 0 0% 100%; --n: 218 13.9% 26.9%; --nf: 222 13.4% 19%; --nc: 0 0% 100%; --b1: 0 0% 100%; --b2: 210 20% 98%; --b3: 213 12.6% 82.9%; --bc: 215 26.8% 16.1%; --in: 207 89.2% 52.9%; --su: 174 100% 29%; --wa: 36 100% 50%; --er: 14 100% 57.1%; --border-color: 216 12.2% 83.9%; --rounded-box: 1rem; --rounded-btn: .5rem; --rounded-badge: 1.9rem; --animation-btn: .25s; --animation-input: .2s; --btn-text-case: uppercase; --btn-focus-scale: .95; --navbar-padding: .5rem; --border-btn: 1px; --tab-border: 1px; --tab-radius: .5rem;";

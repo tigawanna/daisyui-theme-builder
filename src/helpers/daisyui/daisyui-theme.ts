@@ -189,6 +189,9 @@ export const getTailwindBg = (
   }
 };
 
+
+export type DaisyUIDefaulltColors = typeof daisyUiColors[number];
+
 export const base_daisyui_theme_names = [
   "primary",
   "secondary",

@@ -7,6 +7,7 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { daisyUIThemeSearchParamsSchema } from "./-routes-utils/daisy-ui-schema";
 import { defaultThemes } from "@/helpers/daisyui/default-values";
+import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -28,7 +29,7 @@ export function RootComponent() {
     // 👆 false parameter is required for react project
   }, []);
   useEffect(() => {
-    // loadCSSVariablesFromThemeObject({theme:searchParams})
+    loadCSSVariablesFromThemeObject({theme:searchParams})
     const mutationObserver = new MutationObserver(() => {
       startTransition(() => {
       });

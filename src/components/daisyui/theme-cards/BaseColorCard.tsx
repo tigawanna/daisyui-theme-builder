@@ -12,6 +12,8 @@ export function BaseColorCard({ theme }: BaseColorCardProps) {
       <div className="w-full  h-full gap-2 flex flex-wrap items-center justify-center ">
         {theme?.["base-100"] && (
           <ColorpickerModal
+            theme={theme["base-100"] as any}
+            theme_key="base-100"
             className="sm:w-1/2 md:w-1/3"
             bg_color="bg-base-100"
             colorKey={theme?.["base-100"].variable}
@@ -27,6 +29,8 @@ export function BaseColorCard({ theme }: BaseColorCardProps) {
         )}
         {theme?.["base-200"] && (
           <ColorpickerModal
+            theme={theme["base-200"] as any}
+            theme_key="base-200"
             className="sm:w-1/2 md:w-1/3"
             bg_color="bg-base-200"
             colorKey={theme?.["base-200"].variable}
@@ -42,6 +46,8 @@ export function BaseColorCard({ theme }: BaseColorCardProps) {
         )}
         {theme?.["base-300"] && (
           <ColorpickerModal
+            theme={theme["base-300"] as any}
+            theme_key="base-300"
             className="sm:w-1/2 md:w-1/3"
             bg_color="bg-base-300"
             colorKey={theme?.["base-300"].variable}
@@ -57,6 +63,8 @@ export function BaseColorCard({ theme }: BaseColorCardProps) {
         )}
         {theme?.["base-content"] && (
           <ColorpickerModal
+            theme={theme["base-content"] as any}
+            theme_key="base-content"
             className="sm:w-1/2 md:w-1/3"
             bg_color="bg-base-content"
             colorKey={theme?.["base-content"].variable}

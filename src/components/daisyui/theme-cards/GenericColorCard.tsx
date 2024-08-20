@@ -1,14 +1,9 @@
 import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
 import { ColorpickerModal } from "../ColorpickerModal";
-import { BaseDaisyUiThemeKeys, DaisyUIDefaulltColors, getTailwindBg } from "@/helpers/daisyui/daisyui-theme";
+import { BaseDaisyUiThemeKeys, getTailwindBg } from "@/helpers/daisyui/daisyui-theme";
 import { twMerge } from "tailwind-merge";
+import {GenericThemeOptions} from "./types";
 
-interface GenericThemeOptions {
-  name: DaisyUIDefaulltColors["name"];
-  value: string;
-  variable:string;
-  locked?: boolean | undefined;
-}
 
 type BaseDaisyUiThemeKeysWithoutBase = Omit<BaseDaisyUiThemeKeys,"base">
 
@@ -39,7 +34,10 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
       <h1 className="font-bold">{theme_key}</h1>
       <div className="w-full  h-full gap-2 flex flex-col items-center justify-center">
         {main && (
-          <ColorpickerModal bg_color={main_bg.bg} colorKey={main.variable} oklchString={main.value}>
+          <ColorpickerModal 
+          theme={theme[theme_key] as any}
+          theme_key={theme_key as any}
+          bg_color={main_bg.bg} colorKey={main.variable} oklchString={main.value}>
             <div
               className={twMerge(
                 "w-full flex flex-col text-sm rounded-lg gap-2 justify-between items-center  p-2",
@@ -56,6 +54,8 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
         )}
         {content && (
           <ColorpickerModal
+            theme={theme[theme_key] as any}
+            theme_key={theme_content_key as any}
             bg_color={content_bg.bg}
             colorKey={content.variable}
             oklchString={content.value}>

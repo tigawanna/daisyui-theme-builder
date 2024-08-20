@@ -6,7 +6,7 @@ import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { daisyUIThemeSearchParamsSchema } from "./-routes-utils/daisy-ui-schema";
-import { defaultThemes } from "@/helpers/daisyui/use-default-theme";
+import { defaultThemes } from "@/helpers/daisyui/default-values";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -32,7 +32,7 @@ export function RootComponent() {
     const mutationObserver = new MutationObserver(() => {
       startTransition(() => {
       });
-      navigate({ search: { ...defaultThemes({theme:searchParams}) } });
+      navigate({ search: defaultThemes({theme:searchParams})  });
     });
     mutationObserver.observe(document.documentElement, {
       attributes: true,

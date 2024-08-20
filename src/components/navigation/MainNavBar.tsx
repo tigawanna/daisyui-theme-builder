@@ -1,16 +1,15 @@
 import { Link, useSearch } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
-import { defaultThemes } from "@/helpers/daisyui/use-default-theme";
+import {useThemeWithDefaults } from "@/helpers/daisyui/default-values";
+
 
 interface MainNavBarProps {
 
 }
 
 export function MainNavBar({}:MainNavBarProps){
-  const searchParams = useSearch({
-    from:"__root__"
-  })
-  const defaultTheme = defaultThemes({theme:searchParams});
+
+  const defaultTheme = useThemeWithDefaults()
 return (
   <div className="w-full sticky top-0 flex  items-center justify-between p-5">
     <Link to="/" search={defaultTheme}>

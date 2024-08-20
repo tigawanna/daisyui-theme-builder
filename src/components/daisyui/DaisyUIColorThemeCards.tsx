@@ -1,9 +1,10 @@
 import { twMerge } from "tailwind-merge";
 import { useNavigate } from "@tanstack/react-router";
 import { useState, useTransition } from "react";
-import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
-import { BaseDaisyUiThemeKeys, getTailwindBg } from "@/helpers/daisyui/daisy-ui-culori-helpers";
+import { BaseDaisyUiThemeKeys, getTailwindBg } from "@/helpers/daisyui/daisyui-theme";
 import { GenericThemeState } from "@/helpers/daisyui/types";
+import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
+import { ColorpickerModal } from "./ColorpickerModal";
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
   [key in T]: GenericThemeState;
@@ -19,16 +20,19 @@ export function DaisyUIColorThemeCard<T extends BaseDaisyUiThemeKeys>({
   group_name,
 }: DaisyUIColorThemeCardProps<T>) {
   const themes = Object.entries<GenericThemeState>(theme_group);
+  console.log("themes", themes[0]);
   return (
     <div className="w-full   xs:w-1/2 sm:w-1/3  lg:w-1/5  flex flex-col items-center justify-center gap-1">
       <h1 className="text-xl font-bold">{group_name}</h1>
       <ul className="w-full h-full flex flex-col items-center justify-center gap-1">
         {themes.map(([key, theme]) => {
-          const { bg, content } = getTailwindBg(theme.name as any);
+          const { bg,bg_muted, content } = getTailwindBg(theme.name as any);
           return (
             <li
               key={key + theme.variable}
               className="w-full h-12 flex flex-col justify-center rounded-lg">
+                <div className={twMerge(bg, content, "w-full bg-accent h-full rounded-lg")}>{theme.value}</div>
+              <ColorpickerModal bg_color={bg_muted} colorKey={key} oklchString={theme.value}>
               <div
                 key={theme.name}
                 className={twMerge(
@@ -39,6 +43,7 @@ export function DaisyUIColorThemeCard<T extends BaseDaisyUiThemeKeys>({
                 {theme.value}
                 <span className="text-xs">{theme.name}</span>
               </div>
+                </ColorpickerModal>
             </li>
           );
         })}
@@ -61,11 +66,12 @@ export function DaisyUIABaseColorThemeCard({ theme_group }: DaisyUIBaseColorThem
       <h1 className="text-xl font-bold">base</h1>
       <ul className="w-full flex flex-wrap items-center justify-center gap-1">
         {themes.map(([key, theme]) => {
-          const { bg, content } = getTailwindBg(theme.name as any);
+          const { bg,bg_muted ,content } = getTailwindBg(theme.name as any);
           return (
             <li
               key={key + theme.variable}
-              className="w-full h-12  xs:w-1/2 sm:w-1/3  lg:w-1/5  flex flex-col justify-center rounded-lg">
+            className="w-full h-12  xs:w-1/2 sm:w-1/3  lg:w-1/5  flex flex-col justify-center rounded-lg">
+                   <ColorpickerModal bg_color={bg_muted} colorKey={key} oklchString={theme.value}>
               <div
                 key={theme.name}
                 className={twMerge(
@@ -76,6 +82,7 @@ export function DaisyUIABaseColorThemeCard({ theme_group }: DaisyUIBaseColorThem
                 {theme.value}
                 <span className="text-xs">{theme.name}</span>
               </div>
+                  </ColorpickerModal>
             </li>
           );
         })}

@@ -2,8 +2,13 @@ import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { GenericThemeState } from "./types";
 import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
 import { getColorValueFromTheme, getThemeVariable } from "./daisy-ui-culori-helpers";
+import { useState } from "react";
 
-export function defaultThemes({ theme }: { theme?: DaisyUIThemeSearchParmsTypes }): DaisyUIThemeSearchParmsTypes {
+export function defaultThemes({
+  theme,
+}: {
+  theme?: DaisyUIThemeSearchParmsTypes;
+}): DaisyUIThemeSearchParmsTypes {
   return {
     accent: {
       accent: {
@@ -160,7 +165,7 @@ export function defaultThemes({ theme }: { theme?: DaisyUIThemeSearchParmsTypes 
         value: theme?.curves?.rounded_btn?.value ?? getThemeVariable("--rounded-btn"),
         locked: theme?.curves?.rounded_btn?.locked ?? false,
       },
-      rounded_badge:{
+      rounded_badge: {
         name: "rounded-badge",
         variable: "--rounded-badge",
         value: theme?.curves?.rounded_badge?.value ?? getThemeVariable("--rounded-badge"),
@@ -196,22 +201,18 @@ export function defaultThemes({ theme }: { theme?: DaisyUIThemeSearchParmsTypes 
         value: theme?.curves?.tab_radius?.value ?? getThemeVariable("--tab-radius"),
         locked: theme?.curves?.tab_radius?.locked ?? false,
       },
-      
+
       btn_focus_scale: {
         name: "btn-focus-scale",
         variable: "--btn-focus-scale",
         value: theme?.curves?.btn_focus_scale?.value ?? getThemeVariable("--btn-focus-scale"),
         locked: theme?.curves?.btn_focus_scale?.locked ?? false,
       },
-
     },
-    theme_mode:"light",
-    theme_name:"custom-light",
-
+    theme_mode: "light",
+    theme_name: "custom-light",
   };
 }
-
-
 
 export function useUpdateTheme() {
   const navigate = useNavigate();
@@ -227,4 +228,26 @@ export function useUpdateTheme() {
     });
   };
   return { updateTheme };
+}
+
+
+export function useThemeWithDefaults() {
+  const themeSearchParams = useSearch({
+    from: "__root__",
+  });
+  const [themes] = useState(defaultThemes({ theme: themeSearchParams }));
+  // useEffect(() => {
+  //   const mutationObserver = new MutationObserver(() => {
+  //     setThems(defaultThemes({}));
+  //   });
+  //   mutationObserver.observe(document.documentElement, {
+  //     attributes: true,
+  //     attributeFilter: ["data-theme"],
+  //   });
+  //   return () => {
+  //     mutationObserver.disconnect();
+  //   };
+  // }, []);
+
+  return themes;
 }

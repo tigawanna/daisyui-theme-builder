@@ -6,7 +6,7 @@ export function hslToOKLCH(hsl: string) {
 }
 
 export function oklchToHSL(oklch: string): HSLColor {
-  const hsl_slice = chroma(`oklch(${oklch})`).hsl();
+  const hsl_slice = chroma(oklch).hsl();
   return {
     h: hsl_slice[0],
     s: hsl_slice[1],

@@ -10,9 +10,7 @@ export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }
   const { primary, secondary, accent, neutral, base, info, success, warning, error, curves } =
     theme;
   return (
-    <div
-      data-theme="custom-dark"
-      className="w-full h-full flex flex-col items-center justify-center">
+    <div data-theme="custom-dark" className="w-full h-full flex flex-col items-center justify-center">
       <div className="w-full h-full flex flex-wrap items-center justify-center gap-2 p-2">
         {primary && <DaisyUIColorThemeCard group_name="primary" theme_group={primary} />}
         {secondary && <DaisyUIColorThemeCard group_name="secondary" theme_group={secondary} />}

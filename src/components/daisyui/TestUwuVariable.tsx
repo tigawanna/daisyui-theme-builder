@@ -1,4 +1,4 @@
-import { ReactColorPicker } from "@/lib/react-color/ReactColorPicker";
+import { ReactColorPicker } from "@/components/react-color/ReactColorPicker";
 
 interface TestUwuVariableProps {}
 

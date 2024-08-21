@@ -2,62 +2,65 @@ import { twMerge } from "tailwind-merge";
 import { ReactColorPicker } from "../react-color/ReactColorPicker";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useTransition } from "react";
-import {GenericThemeOptions} from "./theme-cards/types";
+import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
 
-interface ColorpickerModalProps {
-  oklchString: string;
-  colorKey: string;
-  children: React.ReactNode;
+type BaseDaisyUiThemeKeysWithoutBase = keyof Required<DaisyUIThemeSearchParmsTypes>["colors"];
+interface ColorpickerModalProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
+  theme_key: T;
+  theme: Required<DaisyUIThemeSearchParmsTypes>["colors"][T];
   bg_color: string;
+  children: React.ReactNode;
   className?: string;
-  theme_key: string;
-  theme: GenericThemeOptions;
 }
 
-export function ColorpickerModal({
-  colorKey,
-  oklchString,
+export function ColorpickerModal<T extends BaseDaisyUiThemeKeysWithoutBase>({
   children,
   bg_color,
   theme_key,
   theme,
   className = "",
-}: ColorpickerModalProps) {
+}: ColorpickerModalProps<T>) {
   const searchParams = useSearch({
     from: "__root__",
   });
-  const navigate = useNavigate();
+  const navigate = useNavigate({
+    from: "/",
+  });
   const [, startTransition] = useTransition();
   function saveColor(colorKey: string, newoklch: string) {
-    const parentSearchParams = searchParams[theme_key]
-    const new_color_param = {
-      ...theme[theme_key as any],
-      value: `oklch(${newoklch})`,
-    }
-    console.log("===== theme key ======",theme_key); 
+    const themeSearchParamsColors = searchParams["colors"];
+
+    const newThemeSearchParamsColorsram = {
+      ...themeSearchParamsColors,
+      [colorKey]: {
+        ...theme,
+        value: `oklch(${newoklch})`,
+      },
+    };
+    console.log("=====theme =====", theme);
+    console.log("===== theme key ======", colorKey);
     console.log(" ===== newoklch", newoklch);
-    console.log("=====colorKey =====",colorKey);
-    console.log("====== new_color_param =====",new_color_param);
-    console.log("===================== parentSearchParams =====================",parentSearchParams);
+    console.log("===== newThemeSearchParamsColorsram =====", newThemeSearchParamsColorsram.primary);
+
+    // startTransition(() => {
+    // });
     if (typeof window !== "undefined") {
-      document.documentElement.style.setProperty(colorKey, newoklch);
-      // startTransition(() => {
-      //   navigate({ search: { ...searchParams,} });
-      // });
+      document.documentElement.style.setProperty(theme.variable, newoklch);
+      navigate({ search: { ...searchParams, ...newThemeSearchParamsColorsram } });
     }
   }
   return (
-    <div className={twMerge("w-full items-center", className)} key={oklchString}>
+    <div className={twMerge("w-full items-center", className)}>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <div
         className=""
         // @ts-expect-error
-        onClick={() => document?.getElementById(`my_color_picker_modal-${colorKey}`)?.showModal()}>
+        onClick={() => document?.getElementById(`my_color_picker_modal-${theme_key}`)?.showModal()}>
         {children}
       </div>
-      <dialog id={`my_color_picker_modal-${colorKey}`} className="modal w-full">
+      <dialog id={`my_color_picker_modal-${theme_key}`} className="modal w-full">
         <div className={twMerge("modal-box min-w-fit", bg_color)}>
-          <ReactColorPicker saveColor={saveColor} oklchString={oklchString} colorKey={colorKey} />
+          <ReactColorPicker saveColor={saveColor} oklchString={theme.value} colorKey={theme_key} />
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>

@@ -1,118 +1,118 @@
 import { getColorValueFromTheme } from "./daisy-ui-culori-helpers";
 
-export function getDaisyUiColors(dark = false) {
+export function getDaisyUiColors() {
   return [
     // primary
     {
       name: "primary",
       variable: "--p",
-      value: getColorValueFromTheme("--p", dark),
+      value: getColorValueFromTheme("--p"),
     },
     {
       name: "primary-content",
       variable: "--pc",
-      value: getColorValueFromTheme("--pc", dark),
+      value: getColorValueFromTheme("--pc"),
     },
     // secondary
     {
       name: "secondary",
       variable: "--s",
-      value: getColorValueFromTheme("--s", dark),
+      value: getColorValueFromTheme("--s"),
     },
     {
       name: "secondary-content",
       variable: "--sc",
-      value: getColorValueFromTheme("--sc", dark),
+      value: getColorValueFromTheme("--sc"),
     },
     // accent
     {
       name: "accent",
       variable: "--a",
-      value: getColorValueFromTheme("--a", dark),
+      value: getColorValueFromTheme("--a"),
     },
     {
       name: "accent-content",
       variable: "--ac",
-      value: getColorValueFromTheme("--ac", dark),
+      value: getColorValueFromTheme("--ac"),
     },
     // neutral
     {
       name: "neutral",
       variable: "--n",
-      value: getColorValueFromTheme("--n", dark),
+      value: getColorValueFromTheme("--n"),
     },
     {
       name: "neutral-content",
       variable: "--nc",
-      value: getColorValueFromTheme("--nc", dark),
+      value: getColorValueFromTheme("--nc"),
     },
     // base
     {
       name: "base-100",
       variable: "--b1",
-      value: getColorValueFromTheme("--b1", dark),
+      value: getColorValueFromTheme("--b1"),
     },
     {
       name: "base-200",
       variable: "--b2",
-      value: getColorValueFromTheme("--b2", dark),
+      value: getColorValueFromTheme("--b2"),
     },
     {
       name: "base-300",
       variable: "--b3",
-      value: getColorValueFromTheme("--b3", dark),
+      value: getColorValueFromTheme("--b3"),
     },
     {
       name: "base-content",
       variable: "--bc",
-      value: getColorValueFromTheme("--bc", dark),
+      value: getColorValueFromTheme("--bc"),
     },
     // info
     {
       name: "info",
       variable: "--in",
-      value: getColorValueFromTheme("--in", dark),
+      value: getColorValueFromTheme("--in"),
     },
     {
       name: "info-content",
       variable: "--inc",
-      value: getColorValueFromTheme("--inc", dark),
+      value: getColorValueFromTheme("--inc"),
     },
 
     // success
     {
       name: "success",
       variable: "--su",
-      value: getColorValueFromTheme("--su", dark),
+      value: getColorValueFromTheme("--su"),
     },
     {
       name: "success-content",
       variable: "--suc",
-      value: getColorValueFromTheme("--suc", dark),
+      value: getColorValueFromTheme("--suc"),
     },
 
     // warning
     {
       name: "warning",
       variable: "--wa",
-      value: getColorValueFromTheme("--wa", dark),
+      value: getColorValueFromTheme("--wa"),
     },
     {
       name: "warning-content",
       variable: "--wac",
-      value: getColorValueFromTheme("--wac", dark),
+      value: getColorValueFromTheme("--wac"),
     },
 
     // error
     {
       name: "error",
       variable: "--er",
-      value: getColorValueFromTheme("--er", dark),
+      value: getColorValueFromTheme("--er"),
     },
     {
       name: "error-content",
       variable: "--erc",
-      value: getColorValueFromTheme("--erc", dark),
+      value: getColorValueFromTheme("--erc"),
     },
   ] as const;
 }

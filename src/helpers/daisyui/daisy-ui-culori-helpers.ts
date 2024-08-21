@@ -29,31 +29,7 @@ export function changeColorValuesToObject(input: string): {
   return { l: lStr || 0, c: cStr || 0, h: hStr || 0, a: 1 };
 }
 
-// export const getColorValueFromTheme = (
-//   variable: string,
-//   invertColor = false,
-//   darkenColor = false
-// ) => {
-//   const colorValues = getComputedStyle(document.documentElement).getPropertyValue(variable);
-//   const { l, c, h, a } = changeColorValuesToObject(colorValues);
-//   let result = { l, c, h, a };
-//   if (invertColor) {
-//     // @ts-expect-error typescript is being dumb
-//     result = interpolate([`oklch(${colorObjToString(result)})`, "black"], "oklch")(0.93);
-//   }
-//   if (darkenColor) {
-//     // @ts-expect-error typescript is being dumb
-//     result = interpolate([`oklch(${colorObjToString(result)})`, "white"], "oklch")(0.93);
-//   }
-//   // @ts-expect-error typescript is being dumb
-//   return formatHex(`oklch(${colorObjToString(result)})`);
-//   
-// };
-export const getColorValueFromTheme = (
-  variable: string,
-  invertColor = false,
-  darkenColor = false
-) => {
+export const getColorValueFromTheme = (variable: string) => {
   const colorValues = getComputedStyle(document.documentElement).getPropertyValue(variable);
   return `oklch(${colorValues})`;
 };

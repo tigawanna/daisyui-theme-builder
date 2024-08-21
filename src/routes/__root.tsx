@@ -5,7 +5,7 @@ import { useEffect, useTransition } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
-import { daisyUIThemeSearchParamsSchema } from "./-routes-utils/daisy-ui-schema";
+import { daisyUIThemeSearchParamsSchema } from "../helpers/daisyui/daisy-ui-schema";
 import { defaultThemes } from "@/helpers/daisyui/default-values";
 import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
 

@@ -1,6 +1,6 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { GenericThemeState } from "./types";
-import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
+import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
 import { getColorValueFromTheme, getThemeVariable } from "./daisy-ui-culori-helpers";
 import { useState } from "react";
 

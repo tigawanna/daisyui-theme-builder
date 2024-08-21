@@ -1,6 +1,6 @@
 
 import { oklch } from "culori";
-import { DaisyUIThemeSearchParmsTypes } from "@/routes/-routes-utils/daisy-ui-schema";
+import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
 
 
 const cutNumber = (number: number) => {
@@ -32,121 +32,122 @@ export function updateCSSVariable({ key, value }: { key: string; value: string }
 }
 
 export function loadCSSVariablesFromThemeObject({ theme }: { theme: DaisyUIThemeSearchParmsTypes }) {
-  const { primary, secondary, accent, neutral, base, info, success, warning, error, curves } =
-    theme;
+  const { colors, curves } = theme;
+
   //  set html data-theme attribute
   if (theme.theme_name) {
     document.documentElement.setAttribute("data-theme", theme.theme_name);
   }
-  if (base) {
-    if (base?.["base-100"]) {
-      updateCSSVariable({ key: base["base-100"].variable, value: base["base-100"].value });
+  if(colors){
+  
+    if (colors?.["base-100"]) {
+      updateCSSVariable({ key: colors["base-100"].variable, value: colors["base-100"].value });
     }
 
-    if (base?.["base-200"]) {
-      updateCSSVariable({ key: base["base-200"].variable, value: base["base-200"].value });
+    if (colors?.["base-200"]) {
+      updateCSSVariable({ key: colors["base-200"].variable, value: colors["base-200"].value });
     }
 
-    if (base?.["base-300"]) {
-      updateCSSVariable({ key: base["base-300"].variable, value: base["base-300"].value });
+    if (colors?.["base-300"]) {
+      updateCSSVariable({ key: colors["base-300"].variable, value: colors["base-300"].value });
     }
 
-    if (base?.["base-content"]) {
-      updateCSSVariable({ key: base["base-content"].variable, value: base["base-content"].value });
+    if (colors?.["base-content"]) {
+      updateCSSVariable({ key: colors["base-content"].variable, value: colors["base-content"].value });
     }
-  }
+  
 
-  if (primary) {
-    if (primary?.primary) {
-      updateCSSVariable({ key: primary.primary.variable, value: primary.primary.value });
+
+    if (colors?.primary) {
+      updateCSSVariable({ key: colors.primary.variable, value: colors.primary.value });
     }
-    if (primary?.["primary-content"]) {
+    if (colors?.["primary-content"]) {
       updateCSSVariable({
-        key: primary["primary-content"].variable,
-        value: primary["primary-content"].value,
+        key: colors["primary-content"].variable,
+        value: colors["primary-content"].value,
       });
     }
-  }
-  if (secondary) {
-    if (secondary?.secondary) {
-      updateCSSVariable({ key: secondary.secondary.variable, value: secondary.secondary.value });
+  
+
+    if (colors.secondary) {
+      updateCSSVariable({ key: colors.secondary.variable, value: colors.secondary.value });
     }
-    if (secondary?.["secondary-content"]) {
+    if (colors?.["secondary-content"]) {
       updateCSSVariable({
-        key: secondary["secondary-content"].variable,
-        value: secondary["secondary-content"].value,
+        key: colors["secondary-content"].variable,
+        value: colors["secondary-content"].value,
       });
     }
-  }
+  
 
-  if (accent) {
-    if (accent?.accent) {
-      updateCSSVariable({ key: accent.accent.variable, value: accent.accent.value });
+
+    if (colors?.accent) {
+      updateCSSVariable({ key: colors.accent.variable, value: colors.accent.value });
     }
-    if (accent?.["accent-content"]) {
+    if (colors?.["accent-content"]) {
       updateCSSVariable({
-        key: accent["accent-content"].variable,
-        value: accent["accent-content"].value,
+        key: colors["accent-content"].variable,
+        value: colors["accent-content"].value,
       });
     }
-  }
+  
 
-  if (neutral) {
-    if (neutral?.neutral) {
-      updateCSSVariable({ key: neutral.neutral.variable, value: neutral.neutral.value });
+
+    if (colors?.neutral) {
+      updateCSSVariable({ key: colors.neutral.variable, value: colors.neutral.value });
     }
-    if (neutral?.["neutral-content"]) {
+    if (colors?.["neutral-content"]) {
       updateCSSVariable({
-        key: neutral["neutral-content"].variable,
-        value: neutral["neutral-content"].value,
+        key: colors["neutral-content"].variable,
+        value: colors["neutral-content"].value,
       });
     }
-  }
+  
 
-  if (info) {
-    if (info?.info) {
-      updateCSSVariable({ key: info.info.variable, value: info.info.value });
-    }
-    if (info?.["info-content"]) {
-      updateCSSVariable({ key: info["info-content"].variable, value: info["info-content"].value });
-    }
-  }
 
-  if (success) {
-    if (success?.success) {
-      updateCSSVariable({ key: success.success.variable, value: success.success.value });
+    if (colors?.info) {
+      updateCSSVariable({ key: colors.info.variable, value: colors.info.value });
     }
-    if (success?.["success-content"]) {
+    if (colors?.["info-content"]) {
+      updateCSSVariable({ key: colors["info-content"].variable, value: colors["info-content"].value });
+    }
+  
+
+
+    if (colors?.success) {
+      updateCSSVariable({ key: colors.success.variable, value: colors.success.value });
+    }
+    if (colors?.["success-content"]) {
       updateCSSVariable({
-        key: success["success-content"].variable,
-        value: success["success-content"].value,
+        key: colors["success-content"].variable,
+        value: colors["success-content"].value,
       });
     }
-  }
+  
 
-  if (warning) {
-    if (warning?.warning) {
-      updateCSSVariable({ key: warning.warning.variable, value: warning.warning.value });
+
+    if (colors?.warning) {
+      updateCSSVariable({ key: colors.warning.variable, value: colors.warning.value });
     }
-    if (warning?.["warning-content"]) {
+    if (colors?.["warning-content"]) {
       updateCSSVariable({
-        key: warning["warning-content"].variable,
-        value: warning["warning-content"].value,
+        key: colors["warning-content"].variable,
+        value: colors["warning-content"].value,
       });
     }
-  }
+  
 
-  if (error) {
-    if (error?.error) {
-      updateCSSVariable({ key: error.error.variable, value: error.error.value });
+    if (colors?.error) {
+      updateCSSVariable({ key: colors.error.variable, value: colors.error.value });
     }
-    if (error?.["error-content"]) {
+    if (colors?.["error-content"]) {
       updateCSSVariable({
-        key: error["error-content"].variable,
-        value: error["error-content"].value,
+        key: colors["error-content"].variable,
+        value: colors["error-content"].value,
       });
     }
-  }
+  
+}
 
   if (curves) {
     if (curves?.animation_btn) {

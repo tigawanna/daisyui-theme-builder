@@ -12,8 +12,11 @@ export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColo
   const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString));
   function handleChange(new_color: ColorResult) {
     setColor(new_color.hsl);
-    const hsl_string = hslObjectToStringtinyColor(new_color.hsl);
-    const oklch_string = hslToOKLCH(hsl_string).join(" ");
+    const hsl_string = hslObjectToStringtinyColor(
+      new_color.hsl,
+      "src/components/react-color/ReactColorPicker.tsx"
+    );
+    const oklch_string = hslToOKLCH(hsl_string,"src/components/react-color/ReactColorPicker.tsx").join(" ");
     document.documentElement.style.setProperty(colorKey, oklch_string);
     saveColor(colorKey, oklch_string);
   }

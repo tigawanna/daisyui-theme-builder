@@ -21,28 +21,33 @@ export function ColorpickerModal<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme,
   className = "",
 }: ColorpickerModalProps<T>) {
-const {navigate,searchParams}=useSearchParamsTheme();
-if(!theme)return null
+  const { navigate, searchParams } = useSearchParamsTheme();
+  if (!theme) return null;
   function saveColor(colorKey: string, newoklch: string) {
     const themeSearchParamsColors = searchParams["colors"];
-    console.log("========== themeSearchParamsColors =========== ", themeSearchParamsColors);
+    const newoklchWithPercentage = newoklch
+      .split(" ")
+      .map((item, idx) =>
+        idx === 0 ? `${(parseFloat(item) * 100).toFixed(3)}%` : parseFloat(item).toFixed(4)
+      )
+      .join(" ");
     const newThemeSearchParamsColorsram = {
       ...themeSearchParamsColors,
       [colorKey]: {
         ...theme,
-        value: `oklch(${newoklch})`,
+        value: `oklch(${newoklchWithPercentage})`,
       },
     };
-    console.log("===== newThemeSearchParamsColorsram =====", newThemeSearchParamsColorsram);
-    console.log("=====theme =====", theme);
-    console.log("===== theme key ======", colorKey);
-    console.log(" ===== newoklch", newoklch);
+    // console.log("===== newThemeSearchParamsColorsram =====", newThemeSearchParamsColorsram);
+    // console.log("=====theme =====", theme);
+    // console.log("===== theme key ======", colorKey);
+    // console.log(" ===== newoklchWithPercentage", newoklchWithPercentage);
 
     // startTransition(() => {
     // });
     if (typeof window !== "undefined" && theme?.variable) {
-      document.documentElement.style.setProperty(theme?.variable, newoklch);
-      navigate({ search: { ...searchParams, colors:newThemeSearchParamsColorsram } });
+      document.documentElement.style.setProperty(theme?.variable, newoklchWithPercentage);
+      navigate({ search: { ...searchParams, colors: newThemeSearchParamsColorsram } });
     }
   }
   return (

@@ -1,4 +1,4 @@
-import { createRootRouteWithContext, Outlet, useNavigate, useSearch} from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet, useNavigate, useSearch } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
 import { useEffect, useTransition } from "react";
@@ -8,32 +8,26 @@ import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { daisyUIThemeSearchParamsSchema } from "../helpers/daisyui/daisy-ui-schema";
 import { defaultThemes } from "@/helpers/daisyui/default-values";
 import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
+import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
-  validateSearch:(input)=>{
-    return daisyUIThemeSearchParamsSchema.parse(input)
-  }
+  validateSearch: (input) => {
+    return daisyUIThemeSearchParamsSchema.parse(input);
+  },
 });
 
 export function RootComponent() {
-    const searchParams = useSearch({
-      from: "__root__",
-    });
-    const navigate = useNavigate({
-      from: "/",
-    });
-  const [, startTransition] = useTransition();
+  const { navigate, searchParams } = useSearchParamsTheme();
+
   useEffect(() => {
     themeChange(false);
     // 👆 false parameter is required for react project
   }, []);
   useEffect(() => {
-    loadCSSVariablesFromThemeObject({theme:searchParams})
+    loadCSSVariablesFromThemeObject({ theme: searchParams });
     const mutationObserver = new MutationObserver(() => {
-      startTransition(() => {
-      });
-      navigate({ search: defaultThemes({theme:searchParams})  });
+      navigate({ search: defaultThemes({ theme: searchParams }) });
     });
     mutationObserver.observe(document.documentElement, {
       attributes: true,

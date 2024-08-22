@@ -26,8 +26,10 @@ export function RootComponent() {
   }, []);
   useEffect(() => {
     loadCSSVariablesFromThemeObject({ theme: searchParams });
-    const mutationObserver = new MutationObserver(() => {
-      navigate({ search: defaultThemes({ theme: searchParams }) });
+    const mutationObserver = new MutationObserver((e) => {
+    const elem = e[0].target as HTMLHtmlElement;
+      const current_data_theme = elem.getAttribute("data-theme");
+      navigate({ search: defaultThemes({ theme: {theme_name: current_data_theme??undefined, ...searchParams} }) });
     });
     mutationObserver.observe(document.documentElement, {
       attributes: true,

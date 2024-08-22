@@ -4,6 +4,21 @@ import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema"
 import { getColorValueFromTheme, getThemeVariable } from "./daisy-ui-culori-helpers";
 import { useState } from "react";
 
+function loadFormSearchParamsIfLocked(theme?: {
+  name: string;
+  value: string;
+  variable: string;
+  locked?: boolean | undefined;
+}) {
+  if(!theme) return ""
+  const {value, variable, locked } = theme
+  if (!locked) {
+    const value_from_css_ariable =  getColorValueFromTheme(variable);
+    return value_from_css_ariable
+  }
+  return value??""
+}
+
 export function defaultThemes({
   theme,
 }: {
@@ -14,7 +29,7 @@ export function defaultThemes({
       accent: {
         name: "accent",
         variable: "--a",
-        value: theme?.colors?.accent?.value ?? getColorValueFromTheme("--a") ?? "#6366f1",
+        value:loadFormSearchParamsIfLocked(theme?.colors?.accent),
         locked: theme?.colors?.accent?.locked ?? false,
       },
       "accent-content": {
@@ -202,8 +217,7 @@ export function defaultThemes({
         locked: theme?.curves?.btn_focus_scale?.locked ?? false,
       },
     },
-    theme_mode: "light",
-    theme_name: "custom-light",
+    theme_name: theme?.theme_name ?? "custom-light",
   };
 }
 
@@ -222,7 +236,6 @@ export function useUpdateTheme() {
   };
   return { updateTheme };
 }
-
 
 export function useThemeWithDefaults() {
   const themeSearchParams = useSearch({

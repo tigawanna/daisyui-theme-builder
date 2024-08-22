@@ -145,7 +145,6 @@ export  const daisyUIThemeColorsSearchParamsSchema = z.object({
 
 export const daisyUIThemeSearchParamsSchema = z.object({
   theme_name: z.string().optional(),
-  theme_mode: z.enum(["light", "dark"]).optional().default("light"),
   colors: daisyUIThemeColorsSearchParamsSchema.optional(),
   curves: z.object({
     rounded_box: z

@@ -5,14 +5,19 @@ export function hslToOKLCH(hsl: string, path: string) {
   try {
     return chroma(hsl).oklch();
   } catch (error: any) {
-    alert(" ====  oklch parse error in ==== "+path);
-    console.log(" =========  hsl parse error ============ ", error.message);
+    // alert(" ====  oklch parse error in hslToOKLCH ==== " + path);
+    console.log(" =========  hsl parse error ============ ",path, error.message);
     return [0.5, 0.5, 0.5];
   }
 }
 
-export function oklchToHSL(oklch: string): HSLColor {
+export function oklchToHSL(oklch: string, path: string): HSLColor {
+  // console.log("parsing oklch", oklch);
   try {
+    // if(oklch.startsWith("oklch(") && oklch.endsWith(")")){
+    //   oklch = oklch.slice(6, -1);
+    //   console.log(" cleaned ok;ch  ==== ", oklch);
+    // }
     const hsl_slice = chroma(oklch).hsl();
     return {
       h: hsl_slice[0],
@@ -21,8 +26,9 @@ export function oklchToHSL(oklch: string): HSLColor {
     };
     
   } catch (error:any) {
-    alert(" ====  oklch parse error in ==== ");
-    console.log(" =========  oklch parse error ============ ", error.message);
+    // alert(" ====  oklch parse"+ oklch +"error in oklchToHSL ==== "+path);
+    // console.log(" == this color ==== ", oklch);
+    // console.log(" =========  oklch parse error ============ ",error.message);
     return {
       h: 0,
       s: 0,
@@ -37,7 +43,7 @@ export function hslObjectToStringtinyColor(hsl: HSLColor, path: string) {
     return tinycolor(hsl).toHslString();
   } catch (error: any) {
     alert(" ====  hsl parse error in ==== " + path);
-    console.log(" =========  hsl parse error ============ ", error.message);
+    console.log(" =========  hsl parse error ============ ",path ,error.message);
     return "50% 50% 50%";
   }
 }

@@ -14,9 +14,12 @@ export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }
       <div className="w-full h-full flex flex-wrap items-center justify-center gap-2 p-2">
         {theme.colors?.primary&&<GenericColorCard theme_key="primary" theme={theme.colors?.primary} />}
         {theme.colors?.["primary-content"]&&<GenericColorCard theme_key="primary-content" theme={theme.colors?.["primary-content"]} />}
-        {/* <GenericColorCard theme_key="secondary" theme={theme.colors?.secondary} />
+        <GenericColorCard theme_key="secondary" theme={theme.colors?.secondary} />
+        <GenericColorCard theme_key="secondary-content" theme={theme.colors?.["secondary-content"]} />
         <GenericColorCard theme_key="accent" theme={theme.colors?.accent} />
-        <GenericColorCard theme_key="neutral" theme={theme.colors?.neutral} /> */}
+        <GenericColorCard theme_key="accent-content" theme={theme.colors?.["accent-content"]} />
+        <GenericColorCard theme_key="neutral" theme={theme.colors?.neutral} />
+        <GenericColorCard theme_key="neutral-content" theme={theme.colors?.["neutral-content"]} />
       </div>
       <div className="w-full flex flex-wrap items-center justify-center gap-2 p-2">
         {/* {base && <BaseColorCard theme={base} />} */}

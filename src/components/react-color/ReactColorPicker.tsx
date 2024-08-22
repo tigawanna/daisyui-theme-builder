@@ -9,7 +9,7 @@ interface ReactColorPickerProps {
 }
 
 export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColorPickerProps) {
-  const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString));
+  const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString, "src/components/react-color/ReactColorPicker.tsx"));
   function handleChange(new_color: ColorResult) {
     setColor(new_color.hsl);
     const hsl_string = hslObjectToStringtinyColor(

@@ -20,17 +20,18 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   // theme: DaisyUIThemeSearchParmsTypes["accent"];
   theme_key: T;
   theme: Required<DaisyUIThemeSearchParmsTypes>["colors"][T];
+  className?: string;
 }
 
 export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme_key,
   theme,
+  className
 }: GenericColorCardProps<T>) {
   if (!theme) return null;
   const { bg, content } = getTailwindBg(theme.name);
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 h-full gap-1 flex flex-col items-center justify-center">
-      <h1 className="font-bold">{theme_key}</h1>
+    <div className={twMerge("w-full  h-full gap-1 flex flex-col items-center justify-center",className)}>
       <div className="w-full  h-full gap-2 flex flex-col items-center justify-center">
         <ColorpickerModal
           theme={theme}

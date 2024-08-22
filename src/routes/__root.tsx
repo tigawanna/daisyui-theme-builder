@@ -1,7 +1,7 @@
-import { createRootRouteWithContext, Outlet, useNavigate, useSearch } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
-import { useEffect, useTransition } from "react";
+import { useEffect} from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";

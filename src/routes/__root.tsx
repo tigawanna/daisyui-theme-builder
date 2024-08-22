@@ -30,6 +30,7 @@ export function RootComponent() {
     const elem = e[0].target as HTMLHtmlElement;
       const current_data_theme = elem.getAttribute("data-theme");
       navigate({ search: defaultThemes({ theme: {theme_name: current_data_theme??undefined, ...searchParams} }) });
+          // loadCSSVariablesFromThemeObject({ theme: searchParams });
     });
     mutationObserver.observe(document.documentElement, {
       attributes: true,

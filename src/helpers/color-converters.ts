@@ -47,3 +47,21 @@ export function hslObjectToStringtinyColor(hsl: HSLColor, path: string) {
     return "50% 50% 50%";
   }
 }
+
+
+export function oklchStringFromHex(value2: string){
+  try {
+    const oklch = chroma(value2).oklch().map((val,idx) => {
+      if(idx === 0){
+     return (val*100).toFixed(3)+"%"
+      }
+      return val.toFixed(4)}
+    );
+
+    return `${oklch.join(" ")}`;
+  } catch (error: any) {
+    alert(" ====  oklch parse error in oklchFromHex ==== ");
+    console.log(" =========  oklch parse error ============ ",error.message);
+    return "0.5 0.5 0.5";
+  }
+}

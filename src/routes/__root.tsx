@@ -9,6 +9,7 @@ import { daisyUIThemeSearchParamsSchema } from "../helpers/daisyui/daisy-ui-sche
 import { defaultThemes } from "@/helpers/daisyui/default-values";
 import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
 import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
+import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -43,6 +44,7 @@ export function RootComponent() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <MainNavBar />
+      <DaisyUIThemes theme={searchParams} />
       <Outlet />
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />

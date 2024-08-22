@@ -1,6 +1,15 @@
 import chroma from "chroma-js";
 import { HSLColor } from "react-color";
 import tinycolor from "tinycolor2";
+
+
+export function oklchToHexString(input:string){
+  // if(input.startsWith("oklch(") && input.endsWith(")")){
+  //   input = input.slice(6, -1);
+  // }
+  console.log(" parsing oklch", input);
+  return chroma(input).hex();
+}
 export function hslToOKLCH(hsl: string, path: string) {
   try {
     return chroma(hsl).oklch();

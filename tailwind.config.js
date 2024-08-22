@@ -7,7 +7,12 @@ export default {
       uwu: "oklch(var(--uwu)/ <alpha-value>)",
     },
   },
-  plugins: [require("daisyui"), require("tailwindcss-animate"), require("daisify-shadcn")],
+  plugins: [
+    require("daisyui"),
+    require("tailwindcss-animate"),
+    require("daisify-shadcn"),
+    require("@tailwindcss/container-queries"),
+  ],
   daisyui: {
     themes: [
       "light",

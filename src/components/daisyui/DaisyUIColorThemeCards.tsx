@@ -31,7 +31,11 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   if (!theme) return null;
   const { bg, content } = getTailwindBg(theme.name);
   return (
-    <div className={twMerge("w-full  h-full gap-1 flex flex-col items-center justify-center",className)}>
+    <div
+      className={twMerge(
+        "w-full  h-full gap-1 flex flex-col items-center justify-center",
+        className
+      )}>
       <div className="w-full  h-full gap-2 flex flex-col items-center justify-center">
         <ColorpickerModal
           theme={theme}
@@ -49,7 +53,12 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
               {" "}
               {theme.name} {theme.variable}
             </div>
-            <div className="text-xs line-clamp-2"> {theme.value}</div>
+            <div
+              data-tip={theme.value}
+              className="text-xs line-clamp-1 transform transition-all hover:line-clamp-none duration-300 ease-in-out hover:scale-110 hover:shadow-lg ">
+              {" "}
+              {theme.value}
+            </div>
           </div>
         </ColorpickerModal>
       </div>
@@ -110,7 +119,7 @@ export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesTh
           return (
             <div
               key={key + row.variable}
-              className="w-full sm:w-1/3 md:w-1/4 lg:w-1/5 h-12   flex flex-col justify-center rounded-lg">
+              className="w-full @sm:w-[48%] @md:w-1/3 @lg:w-[24%]h-12   flex flex-col justify-center rounded-lg">
               <h2 className="text-sm font-bold">{key}</h2>
               <input
                 className="w-full input input-sm flex flex-col justify-center rounded-lg"

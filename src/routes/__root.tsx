@@ -48,6 +48,7 @@ export function RootComponent() {
       mutationObserver.disconnect();
     };
   }, []);
+  // navigate({ search: (prev) => ({ ...prev,  }) });
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <MainNavBar />

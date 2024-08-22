@@ -30,7 +30,12 @@ export function RootComponent() {
     const mutationObserver = new MutationObserver((e) => {
     const elem = e[0].target as HTMLHtmlElement;
       const current_data_theme = elem.getAttribute("data-theme");
-      navigate({ search: defaultThemes({ theme: {theme_name: current_data_theme??undefined, ...searchParams} }) });
+      const default_data_theme = defaultThemes({
+        theme: { ...searchParams, theme_name: current_data_theme ?? undefined },
+      });
+      navigate({ 
+        search: { ...default_data_theme }
+    });
           // loadCSSVariablesFromThemeObject({ theme: searchParams });
     });
     mutationObserver.observe(document.documentElement, {

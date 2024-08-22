@@ -1,6 +1,7 @@
 import { Link, useSearch } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
 import {useThemeWithDefaults } from "@/helpers/daisyui/default-values";
+import { ManualThemeSwitcher } from "../daisyui/ManualThemeSwitcher";
 
 
 interface MainNavBarProps {
@@ -8,8 +9,7 @@ interface MainNavBarProps {
 }
 
 export function MainNavBar({}:MainNavBarProps){
-
-  const defaultTheme = useThemeWithDefaults()
+const defaultTheme = useThemeWithDefaults()
 return (
   <div className="w-full sticky top-0 flex  items-center justify-between p-5">
     <Link to="/" search={defaultTheme}>
@@ -35,6 +35,7 @@ return (
         <h1 className="">twarkui</h1>
       </Link>
     </div>
+    <ManualThemeSwitcher/>
     <DaisyuiThemesSelect />
   </div>
 );

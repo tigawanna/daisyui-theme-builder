@@ -27,7 +27,7 @@ export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }
           <GenericColorCard theme_key="primary" theme={theme?.primary} />
           <GenericColorCard theme_key="primary-content" theme={theme?.["primary-content"]} />
         </div>
-        {/* <div className="w-full @sm:w-[48%] @md:w-1/3 @lg:w-[24%] h-full flex flex-col items-center justify-center">
+        <div className="w-full @sm:w-[48%] @md:w-1/3 @lg:w-[24%] h-full flex flex-col items-center justify-center">
           <h3>Secondary</h3>
           <GenericColorCard theme_key="secondary" theme={theme?.secondary} />
           <GenericColorCard
@@ -44,9 +44,9 @@ export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }
           <h3>Neutral</h3>
           <GenericColorCard theme_key="neutral" theme={theme?.neutral} />
           <GenericColorCard theme_key="neutral-content" theme={theme?.["neutral-content"]} />
-        </div> */}
+        </div>
       </div>
-      {/* <div className="w-full flex flex-col items-center justify-center  p-2">
+      <div className="w-full flex flex-col items-center justify-center  p-2">
         <h3>Base</h3>
       <div className="w-full flex flex-wrap items-center justify-center gap-2 p-2">
         <GenericColorCard
@@ -70,8 +70,8 @@ export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }
           theme={theme?.["base-content"]}
         />
       </div>
-      </div> */}
-      {/* <div className="w-full h-full flex flex-wrap items-center justify-center gap-2 p-2">
+      </div>
+      <div className="w-full h-full flex flex-wrap items-center justify-center gap-2 p-2">
         <div className="w-full @sm:w-[48%] @md:w-1/3 @lg:w-[24%] h-full flex flex-col items-center justify-center">
           <h3>Info</h3>
           <GenericColorCard theme_key="info" theme={theme?.info} />
@@ -92,7 +92,7 @@ export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }
           <GenericColorCard theme_key="error" theme={theme?.error} />
           <GenericColorCard theme_key="error-content" theme={theme?.["error-content"]} />
         </div>
-      </div> */}
+      </div>
       <div className="w-full h-full flex flex-wrap items-center justify-center bg-base-200 gap-2 p-2">
         {curves && <DaisyUIABaseCurvesThemeCard theme_group={curves} />}
       </div>

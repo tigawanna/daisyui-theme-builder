@@ -43,290 +43,291 @@ export function updateCSSVariable({ key, value }: { key: string; value: string }
 //     document.documentElement.setAttribute("data-theme", theme.theme_name);
 //   }
 //   if (colors) {
-//     if (colors?.["base-100"] && !colors?.["base-100"]?.locked) {
-//       updateCSSVariable({ key: colors["base-100"].variable, value: colors["base-100"].value });
+//     if (theme?.["base-100"] && !theme?.["base-100"]?.locked) {
+//       updateCSSVariable({ key: theme?.["base-100"].variable, value: theme?.["base-100"].value });
 //     }
 
-//     if (colors?.["base-200"] && !colors?.["base-200"]?.locked) {
-//       updateCSSVariable({ key: colors["base-200"].variable, value: colors["base-200"].value });
+//     if (theme?.["base-200"] && !theme?.["base-200"]?.locked) {
+//       updateCSSVariable({ key: theme?.["base-200"].variable, value: theme?.["base-200"].value });
 //     }
 
-//     if (colors?.["base-300"] && !colors?.["base-300"]?.locked) {
-//       updateCSSVariable({ key: colors["base-300"].variable, value: colors["base-300"].value });
+//     if (theme?.["base-300"] && !theme?.["base-300"]?.locked) {
+//       updateCSSVariable({ key: theme?.["base-300"].variable, value: theme?.["base-300"].value });
 //     }
 
-//     if (colors?.["base-content"] && !colors?.["base-content"]?.locked) {
+//     if (theme?.["base-content"] && !theme?.["base-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["base-content"].variable,
-//         value: colors["base-content"].value,
+//         key: theme?.["base-content"].variable,
+//         value: theme?.["base-content"].value,
 //       });
 //     }
 
-//     if (colors?.primary && !colors?.primary?.locked) {
-//       updateCSSVariable({ key: colors.primary.variable, value: colors.primary.value });
+//     if (theme?.primary && !theme?.primary?.locked) {
+//       updateCSSVariable({ key: theme?.primary.variable, value: theme?.primary.value });
 //     }
-//     if (colors?.["primary-content"] && !colors?.["primary-content"]?.locked) {
+//     if (theme?.["primary-content"] && !theme?.["primary-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["primary-content"].variable,
-//         value: colors["primary-content"].value,
+//         key: theme?.["primary-content"].variable,
+//         value: theme?.["primary-content"].value,
 //       });
 //     }
 
-//     if (colors.secondary && !colors?.secondary?.locked) {
-//       updateCSSVariable({ key: colors.secondary.variable, value: colors.secondary.value });
+//     if (theme?.secondary && !theme?.secondary?.locked) {
+//       updateCSSVariable({ key: theme?.secondary.variable, value: theme?.secondary.value });
 //     }
-//     if (colors?.["secondary-content"] && !colors?.["secondary-content"]?.locked) {
+//     if (theme?.["secondary-content"] && !theme?.["secondary-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["secondary-content"].variable,
-//         value: colors["secondary-content"].value,
+//         key: theme?.["secondary-content"].variable,
+//         value: theme?.["secondary-content"].value,
 //       });
 //     }
 
-//     if (colors?.accent && !colors?.accent?.locked) {
-//       updateCSSVariable({ key: colors.accent.variable, value: colors.accent.value });
+//     if (theme?.accent && !theme?.accent?.locked) {
+//       updateCSSVariable({ key: theme?.accent.variable, value: theme?.accent.value });
 //     }
-//     if (colors?.["accent-content"] && !colors?.["accent-content"]?.locked) {
+//     if (theme?.["accent-content"] && !theme?.["accent-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["accent-content"].variable,
-//         value: colors["accent-content"].value,
+//         key: theme?.["accent-content"].variable,
+//         value: theme?.["accent-content"].value,
 //       });
 //     }
 
-//     if (colors?.neutral && !colors?.neutral?.locked) {
-//       updateCSSVariable({ key: colors.neutral.variable, value: colors.neutral.value });
+//     if (theme?.neutral && !theme?.neutral?.locked) {
+//       updateCSSVariable({ key: theme?.neutral.variable, value: theme?.neutral.value });
 //     }
-//     if (colors?.["neutral-content"] && !colors?.["neutral-content"]?.locked) {
+//     if (theme?.["neutral-content"] && !theme?.["neutral-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["neutral-content"].variable,
-//         value: colors["neutral-content"].value,
+//         key: theme?.["neutral-content"].variable,
+//         value: theme?.["neutral-content"].value,
 //       });
 //     }
 
-//     if (colors?.info && !colors?.info?.locked) {
-//       updateCSSVariable({ key: colors.info.variable, value: colors.info.value });
+//     if (theme?.info && !theme?.info?.locked) {
+//       updateCSSVariable({ key: theme?.info.variable, value: theme?.info.value });
 //     }
-//     if (colors?.["info-content"] && !colors?.["info-content"]?.locked) {
+//     if (theme?.["info-content"] && !theme?.["info-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["info-content"].variable,
-//         value: colors["info-content"].value,
+//         key: theme?.["info-content"].variable,
+//         value: theme?.["info-content"].value,
 //       });
 //     }
 
-//     if (colors?.success && !colors?.success?.locked) {
-//       updateCSSVariable({ key: colors.success.variable, value: colors.success.value });
+//     if (theme?.success && !theme?.success?.locked) {
+//       updateCSSVariable({ key: theme?.success.variable, value: theme?.success.value });
 //     }
-//     if (colors?.["success-content"] && !colors?.["success-content"]?.locked) {
+//     if (theme?.["success-content"] && !theme?.["success-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["success-content"].variable,
-//         value: colors["success-content"].value,
+//         key: theme?.["success-content"].variable,
+//         value: theme?.["success-content"].value,
 //       });
 //     }
 
-//     if (colors?.warning && !colors?.warning?.locked) {
-//       updateCSSVariable({ key: colors.warning.variable, value: colors.warning.value });
+//     if (theme?.warning && !theme?.warning?.locked) {
+//       updateCSSVariable({ key: theme?.warning.variable, value: theme?.warning.value });
 //     }
-//     if (colors?.["warning-content"] && !colors?.["warning-content"]?.locked) {
+//     if (theme?.["warning-content"] && !theme?.["warning-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["warning-content"].variable,
-//         value: colors["warning-content"].value,
+//         key: theme?.["warning-content"].variable,
+//         value: theme?.["warning-content"].value,
 //       });
 //     }
 
-//     if (colors?.error && !colors?.error?.locked) {
-//       updateCSSVariable({ key: colors.error.variable, value: colors.error.value });
+//     if (theme?.error && !theme?.error?.locked) {
+//       updateCSSVariable({ key: theme?.error.variable, value: theme?.error.value });
 //     }
-//     if (colors?.["error-content"] && !colors?.["error-content"]?.locked) {
+//     if (theme?.["error-content"] && !theme?.["error-content"]?.locked) {
 //       updateCSSVariable({
-//         key: colors["error-content"].variable,
-//         value: colors["error-content"].value,
+//         key: theme?.["error-content"].variable,
+//         value: theme?.["error-content"].value,
 //       });
 //     }
 //   }
 
 //   if (curves) {
-//     if (curves?.animation_btn && !curves?.animation_btn?.locked) {
-//       updateCSSVariable({ key: curves.animation_btn.variable, value: curves.animation_btn.value });
+//     if (theme?.animation_btn && !theme?.animation_btn?.locked) {
+//       updateCSSVariable({ key: theme?.animation_btn.variable, value: theme?.animation_btn.value });
 //     }
-//     if (curves?.animation_input && !curves?.animation_input?.locked) {
+//     if (theme?.animation_input && !theme?.animation_input?.locked) {
 //       updateCSSVariable({
-//         key: curves.animation_input.variable,
-//         value: curves.animation_input.value,
+//         key: theme?.animation_input.variable,
+//         value: theme?.animation_input.value,
 //       });
 //     }
-//     if (curves?.tab_border && !curves?.tab_border?.locked) {
-//       updateCSSVariable({ key: curves.tab_border.variable, value: curves.tab_border.value });
+//     if (theme?.tab_border && !theme?.tab_border?.locked) {
+//       updateCSSVariable({ key: theme?.tab_border.variable, value: theme?.tab_border.value });
 //     }
-//     if (curves?.tab_radius && !curves?.tab_radius?.locked) {
-//       updateCSSVariable({ key: curves.tab_radius.variable, value: curves.tab_radius.value });
+//     if (theme?.tab_radius && !theme?.tab_radius?.locked) {
+//       updateCSSVariable({ key: theme?.tab_radius.variable, value: theme?.tab_radius.value });
 //     }
-//     if (curves?.border_btn && !curves?.border_btn?.locked) {
-//       updateCSSVariable({ key: curves.border_btn.variable, value: curves.border_btn.value });
+//     if (theme?.border_btn && !theme?.border_btn?.locked) {
+//       updateCSSVariable({ key: theme?.border_btn.variable, value: theme?.border_btn.value });
 //     }
-//     if (curves.rounded_box && !curves.rounded_box?.locked) {
-//       updateCSSVariable({ key: curves.rounded_box.variable, value: curves.rounded_box.value });
+//     if (theme?.rounded_box && !theme?.rounded_box?.locked) {
+//       updateCSSVariable({ key: theme?.rounded_box.variable, value: theme?.rounded_box.value });
 //     }
-//     if (curves.rounded_badge && !curves.rounded_badge?.locked) {
-//       updateCSSVariable({ key: curves.rounded_badge.variable, value: curves.rounded_badge.value });
+//     if (theme?.rounded_badge && !theme?.rounded_badge?.locked) {
+//       updateCSSVariable({ key: theme?.rounded_badge.variable, value: theme?.rounded_badge.value });
 //     }
-//     if (curves.btn_focus_scale && !curves.btn_focus_scale?.locked) {
+//     if (theme?.btn_focus_scale && !theme?.btn_focus_scale?.locked) {
 //       updateCSSVariable({
-//         key: curves.btn_focus_scale.variable,
-//         value: curves.btn_focus_scale.value,
+//         key: theme?.btn_focus_scale.variable,
+//         value: theme?.btn_focus_scale.value,
 //       });
 //     }
 //   }
 // }
 
 export function loadCSSVariablesFromThemeObject({ theme }: { theme: DaisyUIThemeSearchParmsTypes }) {
-  const { colors, curves } = theme;
+  
 
   //  set html data-theme attribute
   if (theme.theme_name) {
     document.documentElement.setAttribute("data-theme", theme.theme_name);
   }
-  if(colors){
+
+  // #region colors
+    if (theme?.["base-100"]) {
+      updateCSSVariable({ key: theme?.["base-100"].variable, value: theme?.["base-100"].value });
+    }
+
+    if (theme?.["base-200"]) {
+      updateCSSVariable({ key: theme?.["base-200"].variable, value: theme?.["base-200"].value });
+    }
+
+    if (theme?.["base-300"]) {
+      updateCSSVariable({ key: theme?.["base-300"].variable, value: theme?.["base-300"].value });
+    }
+
+    if (theme?.["base-content"]) {
+      updateCSSVariable({ key: theme?.["base-content"].variable, value: theme?.["base-content"].value });
+    }
   
-    if (colors?.["base-100"]) {
-      updateCSSVariable({ key: colors["base-100"].variable, value: colors["base-100"].value });
-    }
-
-    if (colors?.["base-200"]) {
-      updateCSSVariable({ key: colors["base-200"].variable, value: colors["base-200"].value });
-    }
-
-    if (colors?.["base-300"]) {
-      updateCSSVariable({ key: colors["base-300"].variable, value: colors["base-300"].value });
-    }
-
-    if (colors?.["base-content"]) {
-      updateCSSVariable({ key: colors["base-content"].variable, value: colors["base-content"].value });
-    }
-  
 
 
-    if (colors?.primary&&!colors?.primary?.locked) {
-      updateCSSVariable({ key: colors.primary.variable, value: colors.primary.value });
+    if (theme?.primary&&!theme?.primary?.locked) {
+      updateCSSVariable({ key: theme?.primary.variable, value: theme?.primary.value });
     }
-    if (colors?.["primary-content"]&&!colors?.["primary-content"]?.locked) {
+    if (theme?.["primary-content"]&&!theme?.["primary-content"]?.locked) {
       updateCSSVariable({
-        key: colors["primary-content"].variable,
-        value: colors["primary-content"].value,
+        key: theme?.["primary-content"].variable,
+        value: theme?.["primary-content"].value,
       });
     }
   
 
-    if (colors.secondary) {
-      updateCSSVariable({ key: colors.secondary.variable, value: colors.secondary.value });
+    if (theme?.secondary) {
+      updateCSSVariable({ key: theme?.secondary.variable, value: theme?.secondary.value });
     }
-    if (colors?.["secondary-content"]) {
+    if (theme?.["secondary-content"]) {
       updateCSSVariable({
-        key: colors["secondary-content"].variable,
-        value: colors["secondary-content"].value,
-      });
-    }
-  
-
-
-    if (colors?.accent) {
-      updateCSSVariable({ key: colors.accent.variable, value: colors.accent.value });
-    }
-    if (colors?.["accent-content"]) {
-      updateCSSVariable({
-        key: colors["accent-content"].variable,
-        value: colors["accent-content"].value,
+        key: theme?.["secondary-content"].variable,
+        value: theme?.["secondary-content"].value,
       });
     }
   
 
 
-    if (colors?.neutral) {
-      updateCSSVariable({ key: colors.neutral.variable, value: colors.neutral.value });
+    if (theme?.accent) {
+      updateCSSVariable({ key: theme?.accent.variable, value: theme?.accent.value });
     }
-    if (colors?.["neutral-content"]) {
+    if (theme?.["accent-content"]) {
       updateCSSVariable({
-        key: colors["neutral-content"].variable,
-        value: colors["neutral-content"].value,
+        key: theme?.["accent-content"].variable,
+        value: theme?.["accent-content"].value,
       });
     }
   
 
 
-    if (colors?.info) {
-      updateCSSVariable({ key: colors.info.variable, value: colors.info.value });
+    if (theme?.neutral) {
+      updateCSSVariable({ key: theme?.neutral.variable, value: theme?.neutral.value });
     }
-    if (colors?.["info-content"]) {
-      updateCSSVariable({ key: colors["info-content"].variable, value: colors["info-content"].value });
-    }
-  
-
-
-    if (colors?.success) {
-      updateCSSVariable({ key: colors.success.variable, value: colors.success.value });
-    }
-    if (colors?.["success-content"]) {
+    if (theme?.["neutral-content"]) {
       updateCSSVariable({
-        key: colors["success-content"].variable,
-        value: colors["success-content"].value,
+        key: theme?.["neutral-content"].variable,
+        value: theme?.["neutral-content"].value,
       });
     }
   
 
 
-    if (colors?.warning) {
-      updateCSSVariable({ key: colors.warning.variable, value: colors.warning.value });
+    if (theme?.info) {
+      updateCSSVariable({ key: theme?.info.variable, value: theme?.info.value });
     }
-    if (colors?.["warning-content"]) {
+    if (theme?.["info-content"]) {
+      updateCSSVariable({ key: theme?.["info-content"].variable, value: theme?.["info-content"].value });
+    }
+  
+
+
+    if (theme?.success) {
+      updateCSSVariable({ key: theme?.success.variable, value: theme?.success.value });
+    }
+    if (theme?.["success-content"]) {
       updateCSSVariable({
-        key: colors["warning-content"].variable,
-        value: colors["warning-content"].value,
+        key: theme?.["success-content"].variable,
+        value: theme?.["success-content"].value,
       });
     }
   
 
-    if (colors?.error) {
-      updateCSSVariable({ key: colors.error.variable, value: colors.error.value });
+
+    if (theme?.warning) {
+      updateCSSVariable({ key: theme?.warning.variable, value: theme?.warning.value });
     }
-    if (colors?.["error-content"]) {
+    if (theme?.["warning-content"]) {
       updateCSSVariable({
-        key: colors["error-content"].variable,
-        value: colors["error-content"].value,
+        key: theme?.["warning-content"].variable,
+        value: theme?.["warning-content"].value,
       });
     }
   
-}
 
-  if (curves) {
-    if (curves?.animation_btn) {
-      updateCSSVariable({ key: curves.animation_btn.variable, value: curves.animation_btn.value });
+    if (theme?.error) {
+      updateCSSVariable({ key: theme?.error.variable, value: theme?.error.value });
     }
-    if (curves?.animation_input) {
+    if (theme?.["error-content"]) {
       updateCSSVariable({
-        key: curves.animation_input.variable,
-        value: curves.animation_input.value,
+        key: theme?.["error-content"].variable,
+        value: theme?.["error-content"].value,
       });
     }
-    if (curves?.tab_border) {
-      updateCSSVariable({ key: curves.tab_border.variable, value: curves.tab_border.value });
+  // #endregion
+
+    //  #region curves
+
+    if (theme?.animation_btn) {
+      updateCSSVariable({ key: theme?.animation_btn.variable, value: theme?.animation_btn.value });
     }
-    if (curves?.tab_radius) {
-      updateCSSVariable({ key: curves.tab_radius.variable, value: curves.tab_radius.value });
-    }
-    if (curves?.border_btn) {
-      updateCSSVariable({ key: curves.border_btn.variable, value: curves.border_btn.value });
-    }
-    if (curves.rounded_box) {
-      updateCSSVariable({ key: curves.rounded_box.variable, value: curves.rounded_box.value });
-    }
-    if (curves.rounded_badge) {
-      updateCSSVariable({ key: curves.rounded_badge.variable, value: curves.rounded_badge.value });
-    }
-    if (curves.btn_focus_scale) {
+    if (theme?.animation_input) {
       updateCSSVariable({
-        key: curves.btn_focus_scale.variable,
-        value: curves.btn_focus_scale.value,
+        key: theme?.animation_input.variable,
+        value: theme?.animation_input.value,
       });
     }
+    if (theme?.tab_border) {
+      updateCSSVariable({ key: theme?.tab_border.variable, value: theme?.tab_border.value });
+    }
+    if (theme?.tab_radius) {
+      updateCSSVariable({ key: theme?.tab_radius.variable, value: theme?.tab_radius.value });
+    }
+    if (theme?.border_btn) {
+      updateCSSVariable({ key: theme?.border_btn.variable, value: theme?.border_btn.value });
+    }
+    if (theme?.rounded_box) {
+      updateCSSVariable({ key: theme?.rounded_box.variable, value: theme?.rounded_box.value });
+    }
+    if (theme?.rounded_badge) {
+      updateCSSVariable({ key: theme?.rounded_badge.variable, value: theme?.rounded_badge.value });
+    }
+    if (theme?.btn_focus_scale) {
+      updateCSSVariable({
+        key: theme?.btn_focus_scale.variable,
+        value: theme?.btn_focus_scale.value,
+      });
+    }
+    // #endregion
   }
-}
+
 
 

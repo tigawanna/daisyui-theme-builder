@@ -1,6 +1,6 @@
 
 import { useNavigate } from "@tanstack/react-router";
-import { useState, useTransition } from "react";
+import { startTransition, useState, useTransition } from "react";
 import { BaseDaisyUiThemeKeys, getTailwindBg } from "@/helpers/daisyui/daisyui-theme";
 import { GenericThemeState } from "@/helpers/daisyui/types";
 import { DaisyUIColorSearchParmsTypes, DaisyUICurvesSearchParmsTypes, DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
@@ -78,7 +78,7 @@ interface DaisyUIBaseCurvesThemeCardProps {
   };
 }
 export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesThemeCardProps) {
-  if(!theme_group) return null
+
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group as any);
   const navigate = useNavigate();
   function handleVariableChange({
@@ -102,17 +102,20 @@ export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesTh
       },
     };
     document.documentElement.style.setProperty(css_varaiable_key, value);
-    navigate({
-      search: (prev) => ({
-        ...prev,
-        ...new_curves,
-      })
-    });
+    startTransition(() => {
+      navigate({
+        search: (prev) => ({
+          ...prev,
+          ...new_curves,
+        })
+      });
+      
+    })
   }
-
+  if (!theme_group) return null;
   return (
     <div className="w-full   flex flex-col items-center justify-center gap-1">
-      <h1 className="text-xl font-bold">curves</h1>
+      <h1 className="">curves</h1>
       <ul className="w-full flex flex-wrap items-center justify-center gap-2 ">
         {curves.map(([key, theme]) => {
           if (!theme) return null;

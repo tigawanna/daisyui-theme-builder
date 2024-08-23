@@ -28,6 +28,7 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme,
   className
 }: GenericColorCardProps<T>) {
+  console.log(" ====== GenericColorCard ===== ", {theme_key, theme});
   if (!theme) return null;
   const { bg, content } = getTailwindBg(theme.name);
   return (
@@ -51,13 +52,13 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
             )}>
             <div className="w-fit">
               {" "}
-              {theme.name} {theme.variable}
+              {theme.name} {theme?.variable}
             </div>
             <div
-              data-tip={theme.value}
+              data-tip={theme?.value}
               className="text-xs line-clamp-1 transform transition-all hover:line-clamp-none duration-300 ease-in-out hover:scale-110 hover:shadow-lg ">
               {" "}
-              {theme.value}
+              {theme?.value}
             </div>
           </div>
         </ColorpickerModal>
@@ -78,7 +79,7 @@ interface DaisyUIBaseCurvesThemeCardProps {
 }
 export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesThemeCardProps) {
   if(!theme_group) return null
-  const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group);
+  const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group as any);
   const navigate = useNavigate();
   function handleVariableChange({
     theme_key,
@@ -102,9 +103,10 @@ export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesTh
     };
     document.documentElement.style.setProperty(css_varaiable_key, value);
     navigate({
-      search: {
-        curves: new_curves,
-      },
+      search: (prev) => ({
+        ...prev,
+        ...new_curves,
+      })
     });
   }
 
@@ -113,10 +115,10 @@ export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesTh
       <h1 className="text-xl font-bold">curves</h1>
       <ul className="w-full flex flex-wrap items-center justify-center gap-2 ">
         {curves.map(([key, theme]) => {
+          if (!theme) return null;
           const row = theme as GenericThemeState;
           const [input, setInput] = useState(row.value);
           const [, startTransition] = useTransition();
-
           return (
             <div
               key={key + row.variable}

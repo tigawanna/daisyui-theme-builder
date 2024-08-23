@@ -289,3 +289,4 @@ export const daisyUIThemeSearchParamsSchema = z.object({
 export type DaisyUIThemeSearchParmsTypes = z.infer<typeof daisyUIThemeSearchParamsSchema>;
 export type DaisyUIColorSearchParmsTypes = z.infer<typeof daisyUIThemeColorsSearchParamsSchema>;
 export type DaisyUICurvesSearchParmsTypes = z.infer<typeof daisyUIThemeCurvesSearchParamsSchema>;
+

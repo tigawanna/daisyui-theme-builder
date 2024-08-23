@@ -1,14 +1,14 @@
 import { twMerge } from "tailwind-merge";
 import { ReactColorPicker } from "../react-color/ReactColorPicker";
-import { useNavigate, useSearch } from "@tanstack/react-router";
-import { useTransition } from "react";
-import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
+import {
+  DaisyUIColorSearchParmsTypes,
+} from "@/helpers/daisyui/daisy-ui-schema";
 import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
 
-type BaseDaisyUiThemeKeysWithoutBase = keyof Required<DaisyUIThemeSearchParmsTypes>["colors"];
+type BaseDaisyUiThemeKeysWithoutBase = keyof DaisyUIColorSearchParmsTypes;
 interface ColorpickerModalProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   theme_key: T;
-  theme: Required<DaisyUIThemeSearchParmsTypes>["colors"][T];
+  theme: DaisyUIColorSearchParmsTypes[T];
   bg_color: string;
   children: React.ReactNode;
   className?: string;
@@ -24,30 +24,23 @@ export function ColorpickerModal<T extends BaseDaisyUiThemeKeysWithoutBase>({
   const { navigate, searchParams } = useSearchParamsTheme();
   if (!theme) return null;
   function saveColor(colorKey: string, newoklch: string) {
-    const themeSearchParamsColors = searchParams["colors"];
     const newoklchWithPercentage = newoklch
       .split(" ")
       .map((item, idx) =>
         idx === 0 ? `${(parseFloat(item) * 100).toFixed(3)}%` : parseFloat(item).toFixed(4)
       )
       .join(" ");
-    const newThemeSearchParamsColorsram = {
-      ...themeSearchParamsColors,
-      [colorKey]: {
-        ...theme,
-        value: `oklch(${newoklchWithPercentage})`,
-      },
-    };
-    // console.log("===== newThemeSearchParamsColorsram =====", newThemeSearchParamsColorsram);
-    // console.log("=====theme =====", theme);
-    // console.log("===== theme key ======", colorKey);
-    // console.log(" ===== newoklchWithPercentage", newoklchWithPercentage);
-
-    // startTransition(() => {
-    // });
     if (typeof window !== "undefined" && theme?.variable) {
       document.documentElement.style.setProperty(theme?.variable, newoklchWithPercentage);
-      navigate({ search: { ...searchParams, colors: newThemeSearchParamsColorsram } });
+      navigate({
+        search: (prev) => ({
+          ...prev,
+          [theme_key]: {
+            ...prev[theme_key],
+            value: newoklch,
+          },
+        }),
+      });
     }
   }
   return (

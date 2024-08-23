@@ -3,7 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useState, useTransition } from "react";
 import { BaseDaisyUiThemeKeys, getTailwindBg } from "@/helpers/daisyui/daisyui-theme";
 import { GenericThemeState } from "@/helpers/daisyui/types";
-import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
+import { DaisyUIColorSearchParmsTypes, DaisyUICurvesSearchParmsTypes, DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
 import { twMerge } from "tailwind-merge";
 import { ColorpickerModal } from "./ColorpickerModal";
 
@@ -14,12 +14,12 @@ export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
 
 
 
-type BaseDaisyUiThemeKeysWithoutBase = keyof Required<DaisyUIThemeSearchParmsTypes>["colors"];
+type BaseDaisyUiThemeKeysWithoutBase = keyof DaisyUIColorSearchParmsTypes;
 
 interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   // theme: DaisyUIThemeSearchParmsTypes["accent"];
   theme_key: T;
-  theme: Required<DaisyUIThemeSearchParmsTypes>["colors"][T];
+  theme: DaisyUIColorSearchParmsTypes[T];
   className?: string;
 }
 
@@ -68,15 +68,16 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
 
 
 
-type ThemeCurves = DaisyUIThemeSearchParmsTypes["curves"];
+type ThemeCurves = DaisyUICurvesSearchParmsTypes;
 type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
 
 interface DaisyUIBaseCurvesThemeCardProps {
   theme_group: {
-    [key in ThemeCurveKeys]: ThemeCurves[key];
+    [key in ThemeCurveKeys]?: ThemeCurves[key];
   };
 }
 export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesThemeCardProps) {
+  if(!theme_group) return null
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group);
   const navigate = useNavigate();
   function handleVariableChange({

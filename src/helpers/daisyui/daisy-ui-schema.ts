@@ -1,9 +1,6 @@
 import { z } from "zod";
 
-export const daisyUIThemeColorsSearchParamsSchema = z.object({});
-
-export const daisyUIThemeSearchParamsSchema = z.object({
-  theme_name: z.string().optional(),
+export const daisyUIThemeColorsSearchParamsSchema = z.object({
   primary: z
     .object({
       name: z.literal("primary"),
@@ -164,6 +161,8 @@ export const daisyUIThemeSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
+});
+export const daisyUIThemeCurvesSearchParamsSchema = z.object({
   rounded_box: z
     .object({
       name: z.literal("rounded-box"),
@@ -239,6 +238,12 @@ export const daisyUIThemeSearchParamsSchema = z.object({
     .optional(),
 });
 
+export const daisyUIThemeSearchParamsSchema = z.object({
+  theme_name: z.string().optional(),
+})
+.merge(daisyUIThemeColorsSearchParamsSchema)
+.merge(daisyUIThemeCurvesSearchParamsSchema);
+
 // "--p": "primary",          // primary color and its values
 // "--pc": "primary-content", // color of content within primary color
 
@@ -282,3 +287,5 @@ export const daisyUIThemeSearchParamsSchema = z.object({
 // "--tab-radius": "0.5rem",         // border radius of tabs
 
 export type DaisyUIThemeSearchParmsTypes = z.infer<typeof daisyUIThemeSearchParamsSchema>;
+export type DaisyUIColorSearchParmsTypes = z.infer<typeof daisyUIThemeColorsSearchParamsSchema>;
+export type DaisyUICurvesSearchParmsTypes = z.infer<typeof daisyUIThemeCurvesSearchParamsSchema>;

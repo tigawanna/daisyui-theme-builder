@@ -5,7 +5,8 @@ import {
   GenericColorCard,
 } from "./DaisyUIColorThemeCards";
 
-
+// TODO: remebre to hoisrt out the theme update mechanism to make tis component 
+// more re-usable , alos pull in all related helpers inoot this directory
 
 export function DaisyUIThemes({ theme }: { theme: DaisyUIThemeSearchParmsTypes }) {
   const {  tab_border,tab_radius,btn_focus_scale,border_btn,rounded_box,rounded_badge,animation_btn,animation_input, } = theme;

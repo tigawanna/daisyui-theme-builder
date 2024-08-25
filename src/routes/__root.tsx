@@ -42,14 +42,13 @@ export function RootComponent() {
     const mutationObserver = new MutationObserver((e) => {
       const elem = e[0].target as HTMLHtmlElement;
       const current_data_theme = elem.getAttribute("data-theme");
-
       const default_data_theme = defaultThemes({
         theme: { ...searchParams, theme_name: current_data_theme ?? undefined },
       });
       navigate({
         search: { ...default_data_theme },
       });
-      // loadCSSVariablesFromThemeObject({ theme: searchParams });
+
     });
     mutationObserver.observe(document.documentElement, {
       attributes: true,
@@ -97,7 +96,7 @@ export function RootComponent() {
             className="drawer-overlay"></label>
           <ul className="menu bg-base-200 text-base-content min-h-full  md:w-[70%] p-4">
             {/* Sidebar content here */}
-            <ExportTheme theme={searchParams} />
+            {/* <ExportTheme theme={searchParams} /> */}
           </ul>
         </div>
       </div>

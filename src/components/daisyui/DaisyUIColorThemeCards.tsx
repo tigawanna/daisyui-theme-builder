@@ -1,18 +1,18 @@
-
 import { useNavigate } from "@tanstack/react-router";
 import { startTransition, useState, useTransition } from "react";
 import { BaseDaisyUiThemeKeys, getTailwindBg } from "@/helpers/daisyui/daisyui-theme";
 import { GenericThemeState } from "@/helpers/daisyui/types";
-import { DaisyUIColorSearchParmsTypes, DaisyUICurvesSearchParmsTypes, DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
+import {
+  DaisyUIColorSearchParmsTypes,
+  DaisyUICurvesSearchParmsTypes,
+  DaisyUIThemeSearchParmsTypes,
+} from "@/helpers/daisyui/daisy-ui-schema";
 import { twMerge } from "tailwind-merge";
 import { ColorpickerModal } from "./ColorpickerModal";
-
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
   [key in T]: GenericThemeState;
 };
-
-
 
 type BaseDaisyUiThemeKeysWithoutBase = keyof DaisyUIColorSearchParmsTypes;
 
@@ -26,7 +26,7 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
 export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme_key,
   theme,
-  className
+  className,
 }: GenericColorCardProps<T>) {
   if (!theme) return null;
   const { bg, content } = getTailwindBg(theme.name);
@@ -49,24 +49,14 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
               bg,
               content
             )}>
-            <div className="w-fit">
-              {" "}
-              {theme.name} {theme?.variable}
-            </div>
-            <div
-              data-tip={theme?.value}
-              className="text-xs line-clamp-1 transform transition-all hover:line-clamp-none duration-300 ease-in-out hover:scale-110 hover:shadow-lg ">
-              {" "}
-              {theme?.value}
-            </div>
+            <div className="">{theme?.name}</div>
+            <div className="text-xs line-clamp-1">{theme?.value}</div>
           </div>
         </ColorpickerModal>
       </div>
     </div>
   );
 }
-
-
 
 type ThemeCurves = DaisyUICurvesSearchParmsTypes;
 type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
@@ -77,7 +67,6 @@ interface DaisyUIBaseCurvesThemeCardProps {
   };
 }
 export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesThemeCardProps) {
-
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group as any);
   const navigate = useNavigate();
   function handleVariableChange({
@@ -106,12 +95,11 @@ export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesTh
         search: (prev) => ({
           ...prev,
           ...new_curves,
-        })
+        }),
       });
-      
-    })
+    });
   }
-  if (!theme_group) return null;
+
   return (
     <div className="w-full   flex flex-col items-center justify-center gap-1">
       <h1 className="">curves</h1>

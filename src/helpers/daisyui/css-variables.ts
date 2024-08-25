@@ -1,6 +1,7 @@
 
 import { oklch } from "culori";
 import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
+import { isThemeNotNull } from "./default-values";
 
 
 const cutNumber = (number: number) => {
@@ -178,9 +179,11 @@ export function updateCSSVariable({ key, value }: { key: string; value: string }
 // }
 
 export function loadCSSVariablesFromThemeObject({ theme }: { theme: DaisyUIThemeSearchParmsTypes }) {
+  if(!isThemeNotNull(theme)){
+    return
+  }
   
-
-  //  set html data-theme attribute
+    //  set html data-theme attribute
   if (theme.theme_name) {
     document.documentElement.setAttribute("data-theme", theme.theme_name);
   }

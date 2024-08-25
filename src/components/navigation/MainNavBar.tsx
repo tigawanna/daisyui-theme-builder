@@ -35,7 +35,7 @@ return (
         <h1 className="">twarkui</h1>
       </Link>
     </div>
-    <ManualThemeSwitcher/>
+    {/* <ManualThemeSwitcher/> */}
     <DaisyuiThemesSelect />
   </div>
 );

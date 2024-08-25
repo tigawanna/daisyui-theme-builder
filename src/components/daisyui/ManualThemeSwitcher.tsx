@@ -6,9 +6,9 @@ export function ManualThemeSwitcher({}: ManualThemeSwitcherProps) {
   const [allTyemes] = useState(formatedAllThemeDefaults);
   const [currentTheme, setCurrentTheme] = useState<keyof typeof formatedAllThemeDefaults>("light");
   const curremtThemeDefaults = allTyemes[currentTheme];
-useEffect(() => {
-  document.documentElement.style.setProperty("data-theme", currentTheme);
-},[])
+// useEffect(() => {
+//   document.documentElement.style.setProperty("data-theme", currentTheme);
+// },[])
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <select className="select select-sm" onChange={((e) => setCurrentTheme(e.target.value as any))}>

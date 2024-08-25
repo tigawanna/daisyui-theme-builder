@@ -1,17 +1,18 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { daisyUIThemeSearchParamsSchema } from "../helpers/daisyui/daisy-ui-schema";
-import { defaultThemes } from "@/helpers/daisyui/default-values";
-import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
 import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
 import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
 import { Palette, Save } from "lucide-react";
 import { ExportTheme } from "@/components/daisyui/ExportTheme";
+import { getDaisyUiColors } from "@/helpers/daisyui/daisyui-theme";
+import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
+import { defaultThemes, isThemeNotNull } from "@/helpers/daisyui/default-values";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -22,23 +23,33 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 
 export function RootComponent() {
   const { navigate, searchParams } = useSearchParamsTheme();
-
+  const [theme, setTheme] = useState(getDaisyUiColors());
   useEffect(() => {
     themeChange(false);
     // 👆 false parameter is required for react project
   }, []);
   useEffect(() => {
-    loadCSSVariablesFromThemeObject({ theme: searchParams });
+    if (!isThemeNotNull(searchParams)) {
+      navigate({
+        search: defaultThemes({ theme: searchParams }),
+      });
+    } else {
+      loadCSSVariablesFromThemeObject({ theme: searchParams });
+    }
+  }, []);
+
+  useEffect(() => {
     const mutationObserver = new MutationObserver((e) => {
-    const elem = e[0].target as HTMLHtmlElement;
+      const elem = e[0].target as HTMLHtmlElement;
       const current_data_theme = elem.getAttribute("data-theme");
+
       const default_data_theme = defaultThemes({
         theme: { ...searchParams, theme_name: current_data_theme ?? undefined },
       });
-      navigate({ 
-        search: { ...default_data_theme }
-    });
-          // loadCSSVariablesFromThemeObject({ theme: searchParams });
+      navigate({
+        search: { ...default_data_theme },
+      });
+      // loadCSSVariablesFromThemeObject({ theme: searchParams });
     });
     mutationObserver.observe(document.documentElement, {
       attributes: true,
@@ -48,7 +59,7 @@ export function RootComponent() {
       mutationObserver.disconnect();
     };
   }, []);
-  // navigate({ search: (prev) => ({ ...prev,  }) });
+  navigate({ search: (prev) => ({ ...prev }) });
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <MainNavBar />
@@ -65,7 +76,7 @@ export function RootComponent() {
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className="menu bg-base-200 @container text-base-content min-h-full w-[40%] p-4">
             {/* Sidebar content here */}
-            <DaisyUIThemes theme={searchParams} />
+            <DaisyUIThemes theme={{ ...searchParams }} />
           </ul>
         </div>
       </div>
@@ -86,7 +97,7 @@ export function RootComponent() {
             className="drawer-overlay"></label>
           <ul className="menu bg-base-200 text-base-content min-h-full  md:w-[70%] p-4">
             {/* Sidebar content here */}
-        <ExportTheme theme={searchParams}/>
+            <ExportTheme theme={searchParams} />
           </ul>
         </div>
       </div>

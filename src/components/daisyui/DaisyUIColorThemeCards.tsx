@@ -28,7 +28,6 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme,
   className
 }: GenericColorCardProps<T>) {
-  console.log(" ====== GenericColorCard ===== ", {theme_key, theme});
   if (!theme) return null;
   const { bg, content } = getTailwindBg(theme.name);
   return (

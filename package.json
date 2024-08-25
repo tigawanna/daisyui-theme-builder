@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@park-ui/tailwind-plugin": "^0.20.1",
+    "@redux-devtools/extension": "^3.3.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tanstack/router-devtools": "^1.43.6",
     "@tanstack/router-vite-plugin": "^1.43.9",

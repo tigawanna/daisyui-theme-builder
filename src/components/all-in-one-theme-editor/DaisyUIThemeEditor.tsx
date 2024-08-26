@@ -30,6 +30,7 @@ export function DaisyUIThemeEditor({theme,saveChanges}: {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-[5%] gap-3">
+
       <div className="w-full h-full flex flex-wrap items-center justify-center gap-2 p-2">
         <div className="w-full @sm:w-[48%] @md:w-1/3 @lg:w-[24%] h-full flex flex-col items-center justify-center">
           <h3>Primary</h3>

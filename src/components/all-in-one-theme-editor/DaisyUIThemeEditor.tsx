@@ -27,6 +27,7 @@ export function DaisyUIThemeEditor({theme,saveChanges}: {
     animation_btn,
     animation_input,
   };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-[5%] gap-3">
       <div className="w-full h-full flex flex-wrap items-center justify-center gap-2 p-2">

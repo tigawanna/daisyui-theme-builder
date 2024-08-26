@@ -105,7 +105,7 @@ export function DaisyUIABaseCurvesThemeCard({ theme_group }: DaisyUIBaseCurvesTh
       <h1 className="">curves</h1>
       <ul className="w-full flex flex-wrap items-center justify-center gap-2 ">
         {curves.map(([key, theme]) => {
-          if (!theme) return null;
+  
           const row = theme as GenericThemeState;
           const [input, setInput] = useState(row.value);
           const [, startTransition] = useTransition();

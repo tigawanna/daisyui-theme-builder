@@ -5,7 +5,7 @@ import {
   DaisyUICurvesSearchParmsTypes,
 } from "./utils/schema";
 import { twMerge } from "tailwind-merge";
-import { ColorpickerModal } from "./ColorPickerModal";
+import { ColorpickerModal } from "./ColorpickerModal";
 import { BaseDaisyUiThemeKeys, getTailwindBg } from "./utils/daisyui-css-variables-helpers";
 import { GenericThemeState } from "./utils/types";
 

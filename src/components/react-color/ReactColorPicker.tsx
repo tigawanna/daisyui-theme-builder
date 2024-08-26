@@ -1,5 +1,5 @@
 import { oklchToHSL, hslObjectToStringtinyColor, hslToOKLCH } from "@/helpers/color-converters";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ColorResult, HSLColor, SketchPicker, SliderPicker, SwatchesPicker } from "react-color";
 
 interface ReactColorPickerProps {
@@ -10,6 +10,10 @@ interface ReactColorPickerProps {
 
 export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColorPickerProps) {
   const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString, "src/components/react-color/ReactColorPicker.tsx"));
+   useEffect(() => {
+     console.log(" ==== ReactColorPicker useEffect === ");
+   }, [color]);
+ 
   function handleChange(new_color: ColorResult) {
     setColor(new_color.hsl);
     const hsl_string = hslObjectToStringtinyColor(
@@ -18,6 +22,7 @@ export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColo
     );
     const oklch_string = hslToOKLCH(hsl_string,"src/components/react-color/ReactColorPicker.tsx").join(" ");
     document.documentElement.style.setProperty(colorKey, oklch_string);
+    console.log(" ==== ReactColorPicker useEffect === ",oklch_string);
     saveColor(colorKey, oklch_string);
   }
   return (

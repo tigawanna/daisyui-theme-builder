@@ -1,5 +1,5 @@
 import { oklchToHSL, hslObjectToStringtinyColor, hslToOKLCH } from "./utils/color-converters";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ColorResult, HSLColor, SketchPicker, SliderPicker, SwatchesPicker } from "react-color";
 
 interface ReactColorPickerProps {
@@ -12,6 +12,13 @@ export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColo
   const [color, setColor] = useState<HSLColor>(
     oklchToHSL(oklchString, "src/components/react-color/ReactColorPicker.tsx")
   );
+  // useEffect(() => {
+  //   console.log(" ==== All in one ReactColorPicker useEffect === ");
+  // }, [color]);
+
+  function decimalToPercentage(decimal: number) {
+    return `${(decimal * 100).toFixed(2)}%`;
+  }
   function handleChange(new_color: ColorResult) {
     setColor(new_color.hsl);
     const hsl_string = hslObjectToStringtinyColor(
@@ -22,6 +29,7 @@ export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColo
       hsl_string,
       "src/components/react-color/ReactColorPicker.tsx"
     ).join(" ");
+    console.log(" ==== ReactColorPicker handleChange oklchstring === ", oklch_string);
     document.documentElement.style.setProperty(colorKey, oklch_string);
     saveColor(colorKey, oklch_string);
   }

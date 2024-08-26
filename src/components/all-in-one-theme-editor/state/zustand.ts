@@ -4,7 +4,6 @@ import type {} from "@redux-devtools/extension"; // required for devtools typing
 import { DaisyUIThemeSearchParmsTypes } from "@/helpers/daisyui/daisy-ui-schema";
 import { defaultThemes } from "../utils/theme-default-values";
 
-
 type KeyofTheme = keyof DaisyUIThemeSearchParmsTypes;
 
 interface ThemeState {
@@ -16,12 +15,13 @@ export const useThemeStore = create<ThemeState>()(
   devtools(
     persist(
       (set, get) => ({
-        theme: defaultThemes({}),
+        theme: defaultThemes({ theme: get()?.theme }),
         updateTheme: (item_key: KeyofTheme, new_item: DaisyUIThemeSearchParmsTypes[KeyofTheme]) =>
           set((state) => ({ ...state, theme: { ...state.theme, [item_key]: new_item } })),
       }),
       {
-        name: "theme-storage",
+        name: "theme-storage", // name of the item in the storage (must be unique)
+ 
       }
     )
   )

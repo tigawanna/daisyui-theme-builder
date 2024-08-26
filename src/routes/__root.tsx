@@ -58,7 +58,7 @@ export function RootComponent() {
       mutationObserver.disconnect();
     };
   }, []);
-  navigate({ search: (prev) => ({ ...prev }) });
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <MainNavBar />
@@ -75,7 +75,7 @@ export function RootComponent() {
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className="menu bg-base-200 @container text-base-content min-h-full w-[40%] p-4">
             {/* Sidebar content here */}
-            <DaisyUIThemes theme={{ ...searchParams }} />
+            {/* <DaisyUIThemes theme={{ ...searchParams }} /> */}
           </ul>
         </div>
       </div>

@@ -48,26 +48,26 @@ export function RootComponent() {
     });
   }, [searchParams.theme_name]);
 
-  useLayoutEffect(() => {
-    const mutationObserver = new MutationObserver((e) => {
-      const elem = e[0].target as HTMLHtmlElement;
-      const current_data_theme = elem.getAttribute("data-theme");
-        const default_data_theme = defaultThemes({
-          theme: { ...searchParams },
-        });
-      navigate({
-        search: default_data_theme,
-      });
+  // useLayoutEffect(() => {
+  //   const mutationObserver = new MutationObserver((e) => {
+  //     const elem = e[0].target as HTMLHtmlElement;
+  //     const current_data_theme = elem.getAttribute("data-theme");
+  //       const default_data_theme = defaultThemes({
+  //         theme: { ...searchParams },
+  //       });
+  //     navigate({
+  //       search: default_data_theme,
+  //     });
 
-    });
-    mutationObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-    return () => {
-      mutationObserver.disconnect();
-    };
-  }, []);
+  //   });
+  //   mutationObserver.observe(document.documentElement, {
+  //     attributes: true,
+  //     attributeFilter: ["data-theme"],
+  //   });
+  //   return () => {
+  //     mutationObserver.disconnect();
+  //   };
+  // }, []);
 
   // const inline_css_variables = Object.entries(searchParams).map(([key, value]) =>{
   //   if(typeof value === "string") return

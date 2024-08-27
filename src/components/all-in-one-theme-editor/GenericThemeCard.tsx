@@ -1,4 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
 import { useState, useTransition } from "react";
 import {
   DaisyUIColorSearchParmsTypes,
@@ -8,6 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { ColorpickerModal } from "./ColorpickerModal";
 import { BaseDaisyUiThemeKeys, getTailwindBg } from "./utils/daisyui-css-variables-helpers";
 import { GenericThemeState } from "./utils/types";
+import { Lock, Unlock } from "lucide-react";
 
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
@@ -22,6 +22,7 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   theme: DaisyUIColorSearchParmsTypes[T];
   className?: string;
   saveChanges: (item_key: string, new_item: string) => void;
+  lockTheme: (item_key: string, new_item: boolean) => void;
 }
 
 export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
@@ -29,16 +30,20 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme,
   className,
   saveChanges,
+  lockTheme
 }: GenericColorCardProps<T>) {
-  if (!theme) return null;
-  const { bg, content } = getTailwindBg(theme.name);
+  // if (!theme) return null;
+  const { bg, content } = getTailwindBg(theme?.name);
+  if(theme?.name==="primary"){
+    console.log(theme)
+  }
   return (
     <div
       className={twMerge(
         "w-full  h-full gap-1 flex flex-col items-center justify-center",
         className
       )}>
-      <div className="w-full  h-full gap-2 flex flex-col items-center justify-center">
+      <div className={"w-full  h-full gap-2 flex flex-col items-center justify-center"}>
         <ColorpickerModal
           theme={theme}
           theme_key={theme_key}
@@ -57,6 +62,13 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
           </div>
         </ColorpickerModal>
       </div>
+      <div className="gap-2 flex flex-col items-center justify-center">
+        {theme?.locked ? (
+        <Lock className="size-4 text-error" onClick={() => lockTheme(theme_key, false)} />
+        ) : (
+          <Unlock className="size-4 text-success" onClick={() => lockTheme(theme_key, true)} />
+        )}
+      </div>
     </div>
   );
 }
@@ -69,8 +81,9 @@ interface DaisyUIBaseCurvesThemeCardProps {
     [key in ThemeCurveKeys]?: ThemeCurves[key];
   };
   saveChanges: (item_key: string, new_item: string) => void;
+  lockTheme: (item_key: string, new_item: boolean) => void;
 }
-export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges }: DaisyUIBaseCurvesThemeCardProps) {
+export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges,lockTheme }: DaisyUIBaseCurvesThemeCardProps) {
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group as any);
   function handleVariableChange({
     theme_key,
@@ -94,14 +107,7 @@ export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges }: DaisyUIB
     };
     document.documentElement.style.setProperty(css_varaiable_key, value);
     saveChanges(theme_key, value);
-    // startTransition(() => {
-    //   navigate({
-    //     search: (prev) => ({
-    //       ...prev,
-    //       ...new_curves,
-    //     }),
-    //   });
-    // });
+
   }
 
   return (
@@ -133,6 +139,12 @@ export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges }: DaisyUIB
                     });
                   });
                 }}
+              />
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={row?.locked}
+                onChange={(e) => lockTheme(key, e.target.checked)}
               />
             </div>
           );

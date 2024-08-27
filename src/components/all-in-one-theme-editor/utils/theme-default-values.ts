@@ -50,6 +50,7 @@ export function defaultThemes({
 }: {
   theme?: DaisyUIThemeSearchParmsTypes;
 }): DaisyUIThemeSearchParmsTypes {
+  console.log(" is primary locked in loadDefaultThemes === ", theme?.primary?.locked);
   return {
     accent: {
       name: "accent",
@@ -261,18 +262,6 @@ export function useThemeWithDefaults() {
     from: "__root__",
   });
   const [themes] = useState(defaultThemes({ theme: themeSearchParams }));
-  // useEffect(() => {
-  //   const mutationObserver = new MutationObserver(() => {
-  //     setThems(defaultThemes({}));
-  //   });
-  //   mutationObserver.observe(document.documentElement, {
-  //     attributes: true,
-  //     attributeFilter: ["data-theme"],
-  //   });
-  //   return () => {
-  //     mutationObserver.disconnect();
-  //   };
-  // }, []);
 
   return themes;
 }

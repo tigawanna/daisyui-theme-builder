@@ -18,5 +18,30 @@ export function useSearchParamsTheme() {
       }
     })
   }
-  return { searchParams, navigate, updateTheme };
+  function updateThemeName(theme_name: string) {
+    console.log("updating theme_name === ",theme_name)
+    navigate({
+      search:(prev)=>{
+        return {
+          ...prev,
+          theme_name,
+        };
+      }
+    })
+  }
+  function updateLockedTheme(items_key: string,is_locked: boolean) {
+    console.log("locking === ",items_key,is_locked)
+    navigate({
+      search:(prev)=>{
+        return {
+          ...prev,
+          [items_key]: {
+            ...prev[items_key as Exclude<keyof typeof prev, "theme_name">],
+            locked: is_locked,
+          },
+        };
+      }
+    })
+  }
+  return { searchParams, navigate, updateTheme, updateLockedTheme,updateThemeName };
 }

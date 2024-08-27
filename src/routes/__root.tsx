@@ -1,7 +1,7 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
@@ -10,10 +10,14 @@ import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
 import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
 import { Palette, Save } from "lucide-react";
 import { ExportTheme } from "@/components/daisyui/ExportTheme";
-
-import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
-import { getDaisyUiColors, getDaisyUiInlineCSSVariables } from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
-import { defaultThemes, isThemeNotNull } from "@/components/all-in-one-theme-editor/utils/theme-default-values";
+import {
+  getDaisyUiColors,
+  getDaisyUiInlineCSSVariables,
+} from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
+import {
+  defaultThemes,
+  isThemeNotNull,
+} from "@/components/all-in-one-theme-editor/utils/theme-default-values";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -24,28 +28,35 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 
 export function RootComponent() {
   const { navigate, searchParams } = useSearchParamsTheme();
-  const [theme, setTheme] = useState(getDaisyUiColors());
   useEffect(() => {
     themeChange(false);
     // 👆 false parameter is required for react project
   }, []);
   useEffect(() => {
-    if (!isThemeNotNull(searchParams)) {
-      navigate({
-        search: defaultThemes({ theme: searchParams }),
-      });
-    } 
+    navigate({
+      search: defaultThemes({ theme: searchParams }),
+    });
+    // if (!isThemeNotNull(searchParams)) {
+    // }
   }, []);
+  useLayoutEffect(() => {
+    const default_data_theme = defaultThemes({
+      theme: { ...searchParams },
+    });
+    navigate({
+      search: default_data_theme,
+    });
+  }, [searchParams.theme_name]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mutationObserver = new MutationObserver((e) => {
       const elem = e[0].target as HTMLHtmlElement;
       const current_data_theme = elem.getAttribute("data-theme");
-      const default_data_theme = defaultThemes({
-        theme: { ...searchParams, theme_name: current_data_theme ?? undefined },
-      });
+        const default_data_theme = defaultThemes({
+          theme: { ...searchParams },
+        });
       navigate({
-        search: { ...default_data_theme },
+        search: default_data_theme,
       });
 
     });
@@ -57,10 +68,11 @@ export function RootComponent() {
       mutationObserver.disconnect();
     };
   }, []);
-// const inline_css_variables = Object.entries(searchParams).map(([key, value]) =>{
-//   if(typeof value === "string") return
-//   return `${value.variable}: ${value.value};`
-// }).join(";")
+
+  // const inline_css_variables = Object.entries(searchParams).map(([key, value]) =>{
+  //   if(typeof value === "string") return
+  //   return `${value.variable}: ${value.value};`
+  // }).join(";")
 
   return (
     <div

@@ -1,3 +1,8 @@
+import { defaultThemes } from "@/helpers/daisyui/default-values";
+
+import { useEffect } from "react";
+import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
+
 interface DaisyuiThemesSelectProps {}
 
 export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
@@ -35,11 +40,22 @@ export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
     "nord",
     "sunset",
   ];
+  const {searchParams,navigate,updateThemeName} = useSearchParamsTheme();
+  function onThemeChange(theme_name: string) {
+    updateThemeName(theme_name);
+
+  }
+
   return (
-    <select data-choose-theme className="select select-primary select-sm">
+    <select
+      data-choose-theme
+      className="select select-primary select-sm"
+      onChange={(e) => onThemeChange(e.target.value)}>
       <option value="text-center">Default</option>
       {items.map((item) => (
-        <option value={item} key={item}>{item}</option>
+        <option value={item} key={item}>
+          {item}
+        </option>
       ))}
     </select>
   );

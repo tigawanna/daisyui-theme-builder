@@ -170,7 +170,7 @@ export function getDaisyUiColors() {
 export const daisyUiColors = getDaisyUiColors();
 
 export const getTailwindBg = (
-  color: (typeof daisyUiColors)[number]["name"]
+  color?: (typeof daisyUiColors)[number]["name"]
 ): {
   bg: string;
   bg_muted: string;

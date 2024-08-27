@@ -72,7 +72,6 @@ interface DaisyUIBaseCurvesThemeCardProps {
 }
 export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges }: DaisyUIBaseCurvesThemeCardProps) {
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group as any);
-  const navigate = useNavigate();
   function handleVariableChange({
     theme_key,
     value_key,
@@ -110,7 +109,7 @@ export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges }: DaisyUIB
       <h1 className="">curves</h1>
       <ul className="w-full flex flex-wrap items-center justify-center gap-2 ">
         {curves.map(([key, theme]) => {
-          if (!theme) return null;
+          // if (!theme) return null;
           const row = theme as GenericThemeState;
           const [input, setInput] = useState(row.value);
           const [, startTransition] = useTransition();

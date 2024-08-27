@@ -1,12 +1,54 @@
+import { DaisyUIThemeSearchParmsTypes } from "./schema";
+
 export const getColorValueFromTheme = (variable: string) => {
   const colorValues = getComputedStyle(document.documentElement).getPropertyValue(variable);
-  return `oklch(${colorValues})`;
+  // return `oklch(${colorValues})`;
+  return colorValues;
 };
 
 export const getThemeVariable = (variable: string) => {
   const colorValues = getComputedStyle(document.documentElement).getPropertyValue(variable);
   return colorValues;
 };
+
+type InlineCSSVaraiblesTheme = Omit<DaisyUIThemeSearchParmsTypes,"theme_name">
+type InlineCSSVaraiblesThemeVAriable = Required<InlineCSSVaraiblesTheme>[keyof InlineCSSVaraiblesTheme]["variable"]
+type InlineCSSVaraibles = {
+  [key in InlineCSSVaraiblesThemeVAriable]?: string
+}
+export function getDaisyUiInlineCSSVariables(theme: DaisyUIThemeSearchParmsTypes): InlineCSSVaraibles {
+  return {
+    "--p": theme.primary?.value,
+    "--pc": theme["primary-content"]?.value,
+    "--s": theme.secondary?.value,
+    "--sc": theme["secondary-content"]?.value,
+    "--a": theme.accent?.value,
+    "--ac": theme["accent-content"]?.value,
+    "--n": theme.neutral?.value,
+    "--nc": theme["neutral-content"]?.value,
+    "--b1": theme["base-100"]?.value,
+    "--b2": theme["base-200"]?.value,
+    "--b3": theme["base-300"]?.value,
+    "--bc": theme["base-content"]?.value,
+    "--wa": theme.warning?.value,
+    "--wac": theme["warning-content"]?.value,
+    "--er": theme.error?.value,
+    "--erc": theme["error-content"]?.value,
+    "--in": theme.info?.value,
+    "--inc": theme["info-content"]?.value,
+    "--su": theme.success?.value,
+    "--suc": theme["success-content"]?.value,
+    "--animation-btn": theme["animation_btn"]?.value,
+    "--animation-input": theme["animation_input"]?.value,
+  "--border-btn": theme["border_btn"]?.value,
+  "--btn-focus-scale": theme["btn_focus_scale"]?.value,
+  "--rounded-badge": theme["rounded_badge"]?.value,
+  "--rounded-btn": theme["rounded_btn"]?.value,
+  "--rounded-box": theme["rounded_box"]?.value,
+  "--tab-radius": theme["tab_radius"]?.value,
+
+  }
+}
 
 export function getDaisyUiColors() {
   return [

@@ -10,9 +10,10 @@ import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
 import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
 import { Palette, Save } from "lucide-react";
 import { ExportTheme } from "@/components/daisyui/ExportTheme";
-import { getDaisyUiColors } from "@/helpers/daisyui/daisyui-theme";
+
 import { loadCSSVariablesFromThemeObject } from "@/helpers/daisyui/css-variables";
-import { defaultThemes, isThemeNotNull } from "@/helpers/daisyui/default-values";
+import { getDaisyUiColors, getDaisyUiInlineCSSVariables } from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
+import { defaultThemes, isThemeNotNull } from "@/components/all-in-one-theme-editor/utils/theme-default-values";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -33,9 +34,7 @@ export function RootComponent() {
       navigate({
         search: defaultThemes({ theme: searchParams }),
       });
-    } else {
-      loadCSSVariablesFromThemeObject({ theme: searchParams });
-    }
+    } 
   }, []);
 
   useEffect(() => {
@@ -58,9 +57,16 @@ export function RootComponent() {
       mutationObserver.disconnect();
     };
   }, []);
+// const inline_css_variables = Object.entries(searchParams).map(([key, value]) =>{
+//   if(typeof value === "string") return
+//   return `${value.variable}: ${value.value};`
+// }).join(";")
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div
+      // @ts-expect-error
+      style={getDaisyUiInlineCSSVariables(searchParams)}
+      className="w-full h-full flex flex-col items-center justify-center">
       <MainNavBar />
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />

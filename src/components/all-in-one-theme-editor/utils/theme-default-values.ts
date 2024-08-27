@@ -50,7 +50,6 @@ export function defaultThemes({
 }: {
   theme?: DaisyUIThemeSearchParmsTypes;
 }): DaisyUIThemeSearchParmsTypes {
-  console.log(" is primary locked in loadDefaultThemes === ", theme?.primary?.locked);
   return {
     accent: {
       name: "accent",

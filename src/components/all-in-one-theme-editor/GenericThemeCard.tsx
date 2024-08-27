@@ -1,14 +1,10 @@
 import { useState, useTransition } from "react";
-import {
-  DaisyUIColorSearchParmsTypes,
-  DaisyUICurvesSearchParmsTypes,
-} from "./utils/schema";
+import { DaisyUIColorSearchParmsTypes, DaisyUICurvesSearchParmsTypes } from "./utils/schema";
 import { twMerge } from "tailwind-merge";
 import { ColorpickerModal } from "./ColorpickerModal";
 import { BaseDaisyUiThemeKeys, getTailwindBg } from "./utils/daisyui-css-variables-helpers";
 import { GenericThemeState } from "./utils/types";
 import { Lock, Unlock } from "lucide-react";
-
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
   [key in T]: GenericThemeState;
@@ -30,17 +26,13 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme,
   className,
   saveChanges,
-  lockTheme
+  lockTheme,
 }: GenericColorCardProps<T>) {
-  // if (!theme) return null;
   const { bg, content } = getTailwindBg(theme?.name);
-  if(theme?.name==="primary"){
-    console.log(theme)
-  }
   return (
     <div
       className={twMerge(
-        "w-full  h-full gap-1 flex flex-col items-center justify-center",
+        "w-full  h-full gap-1 flex flex-col items-center justify-center relative",
         className
       )}>
       <div className={"w-full  h-full gap-2 flex flex-col items-center justify-center"}>
@@ -62,11 +54,21 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
           </div>
         </ColorpickerModal>
       </div>
-      <div className="gap-2 flex flex-col items-center justify-center">
+      <div
+        className={twMerge(
+          `gap-2 flex flex-col items-center justify-center absolute top-[5%] right-[1%]`
+        )}>
         {theme?.locked ? (
-        <Lock className="size-4 text-error" onClick={() => lockTheme(theme_key, false)} />
+          <div className="p-2 bg-error-content rounded-lg">
+            <Lock className="size-4 text-error  " onClick={() => lockTheme(theme_key, false)} />
+          </div>
         ) : (
-          <Unlock className="size-4 text-success" onClick={() => lockTheme(theme_key, true)} />
+          <div className="p-2 bg-error-content rounded-lg">
+            <Unlock
+              className="size-4 text-success bg-success-content"
+              onClick={() => lockTheme(theme_key, true)}
+            />
+          </div>
         )}
       </div>
     </div>
@@ -83,7 +85,11 @@ interface DaisyUIBaseCurvesThemeCardProps {
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }
-export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges,lockTheme }: DaisyUIBaseCurvesThemeCardProps) {
+export function DaisyUIBaseCurvesThemeCard({
+  theme_group,
+  saveChanges,
+  lockTheme,
+}: DaisyUIBaseCurvesThemeCardProps) {
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(theme_group as any);
   function handleVariableChange({
     theme_key,
@@ -107,7 +113,6 @@ export function DaisyUIBaseCurvesThemeCard({ theme_group,saveChanges,lockTheme }
     };
     document.documentElement.style.setProperty(css_varaiable_key, value);
     saveChanges(theme_key, value);
-
   }
 
   return (

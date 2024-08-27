@@ -7,8 +7,8 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { daisyUIThemeSearchParamsSchema } from "../helpers/daisyui/daisy-ui-schema";
 import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
-import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
 import { Palette, Save } from "lucide-react";
+import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
 import { ExportTheme } from "@/components/daisyui/ExportTheme";
 import {
   getDaisyUiColors,

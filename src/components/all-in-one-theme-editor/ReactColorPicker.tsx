@@ -8,28 +8,25 @@ interface ReactColorPickerProps {
   saveColor: (color_key: string, new_color: string) => void;
 }
 
+
 export function ReactColorPicker({ oklchString, colorKey, saveColor }: ReactColorPickerProps) {
   const [color, setColor] = useState<HSLColor>(
     oklchToHSL(oklchString, "src/components/react-color/ReactColorPicker.tsx")
   );
-  // useEffect(() => {
-  //   console.log(" ==== All in one ReactColorPicker useEffect === ");
-  // }, [color]);
 
-  function decimalToPercentage(decimal: number) {
-    return `${(decimal * 100).toFixed(2)}%`;
-  }
-  function handleChange(new_color: ColorResult) {
+function handleChange(new_color: ColorResult) {
     setColor(new_color.hsl);
     const hsl_string = hslObjectToStringtinyColor(
       new_color.hsl,
       "src/components/react-color/ReactColorPicker.tsx"
     );
-    const oklch_string = hslToOKLCH(
+    const oklch_arr = hslToOKLCH(
       hsl_string,
       "src/components/react-color/ReactColorPicker.tsx"
-    ).join(" ");
-    console.log(" ==== ReactColorPicker handleChange oklchstring === ", oklch_string);
+    )
+    const oklch_string = `${(oklch_arr[0]*100).toFixed(2)}% ${oklch_arr[1].toFixed(2)} ${oklch_arr[2].toFixed(2)}`
+   
+    
     document.documentElement.style.setProperty(colorKey, oklch_string);
     saveColor(colorKey, oklch_string);
   }

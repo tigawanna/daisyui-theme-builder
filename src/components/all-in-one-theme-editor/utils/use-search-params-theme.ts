@@ -19,7 +19,6 @@ export function useSearchParamsTheme() {
     })
   }
   function updateThemeName(theme_name: string) {
-    console.log("updating theme_name === ",theme_name)
     navigate({
       search:(prev)=>{
         return {
@@ -30,7 +29,6 @@ export function useSearchParamsTheme() {
     })
   }
   function updateLockedTheme(items_key: string,is_locked: boolean) {
-    console.log("locking === ",items_key,is_locked)
     navigate({
       search:(prev)=>{
         return {

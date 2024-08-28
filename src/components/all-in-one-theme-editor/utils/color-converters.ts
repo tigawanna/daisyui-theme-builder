@@ -4,10 +4,10 @@ import tinycolor from "tinycolor2";
 
 
 export function oklchToHexString(input:string){
-  // if(input.startsWith("oklch(") && input.endsWith(")")){
-  //   input = input.slice(6, -1);
-  // }
-  console.log(" parsing oklch", input);
+  if(!input.startsWith("oklch(")){
+    input = `oklch(${input})`;
+  }
+  // console.log(" parsing oklch", input);
   return chroma(input).hex();
 }
 export function hslToOKLCH(hsl: string, path: string) {
@@ -15,7 +15,7 @@ export function hslToOKLCH(hsl: string, path: string) {
     return chroma(hsl).oklch();
   } catch (error: any) {
     // alert(" ====  oklch parse error in hslToOKLCH ==== " + path);
-    console.log(" =========  hsl parse error ============ ",path, error.message);
+    // console.log(" =========  hsl parse error ============ ",path, error.message);
     return [0.5, 0.5, 0.5];
   }
 }

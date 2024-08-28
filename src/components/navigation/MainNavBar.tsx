@@ -1,7 +1,5 @@
 import { Link, useRouterState, useSearch } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
-import {useThemeWithDefaults } from "@/helpers/daisyui/default-values";
-import { ManualThemeSwitcher } from "../daisyui/ManualThemeSwitcher";
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 
 
@@ -11,7 +9,6 @@ interface MainNavBarProps {
 }
 
 export function MainNavBar({}:MainNavBarProps){
-const defaultTheme = useThemeWithDefaults()
 const {searchParams} = useSearchParamsTheme()
 const {isLoading}=useRouterState()
 return (

@@ -45,12 +45,12 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
         >
           <div
             className={twMerge(
-              "w-full flex flex-col text-sm rounded-lg gap-2 justify-between items-center  p-2",
+              "w-full flex flex-col text-sm rounded-lg gap-2 justify-between items-center  p-1",
               bg,
               content
             )}>
             <div className="">{theme?.name}</div>
-            <div className="text-xs line-clamp-1">{theme?.value}</div>
+            <div className="text-[9px] line-clamp-1">{theme?.value}</div>
           </div>
         </ColorpickerModal>
       </div>
@@ -116,9 +116,9 @@ export function DaisyUIBaseCurvesThemeCard({
   }
 
   return (
-    <div className="w-full   flex flex-col items-center justify-center gap-1">
+    <div className="w-full flex flex-col items-center justify-center gap-1">
       <h1 className="">curves</h1>
-      <ul className="w-full flex flex-wrap items-center justify-center gap-2 ">
+      <ul className="w-full flex flex-wrap items-center justify-center ">
         {curves.map(([key, theme]) => {
           // if (!theme) return null;
           const row = theme as GenericThemeState;
@@ -127,8 +127,8 @@ export function DaisyUIBaseCurvesThemeCard({
           return (
             <div
               key={key + row.variable}
-              className="w-full @sm:w-[48%] @md:w-1/3 @lg:w-[24%]h-12   flex flex-col justify-center rounded-lg">
-              <h2 className="text-sm font-bold">{key}</h2>
+              className="w-[48%] @md:w-1/3 @lg:w-[24%] flex flex-col justify-center rounded-lg">
+              <h2 className="text-sm font-bold">{key.replace(/_/g, " ")}</h2>
               <input
                 className="w-full input input-sm flex flex-col justify-center rounded-lg"
                 value={input}

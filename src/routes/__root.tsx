@@ -1,23 +1,17 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
-import { daisyUIThemeSearchParamsSchema } from "../helpers/daisyui/daisy-ui-schema";
-import { useSearchParamsTheme } from "@/helpers/use-search-params-theme";
 import { Palette, Save } from "lucide-react";
-import { DaisyUIThemes } from "@/components/daisyui/DaisyUIThemes";
-import { ExportTheme } from "@/components/daisyui/ExportTheme";
-import {
-  getDaisyUiColors,
-  getDaisyUiInlineCSSVariables,
-} from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
-import {
-  defaultThemes,
-  isThemeNotNull,
-} from "@/components/all-in-one-theme-editor/utils/theme-default-values";
+import { getDaisyUiInlineCSSVariables } from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
+import { defaultThemes } from "@/components/all-in-one-theme-editor/utils/theme-default-values";
+import { DaisyUIThemeEditor } from "@/components/all-in-one-theme-editor/DaisyUIThemeEditor";
+import { useSearchParamsTheme } from "@/components/all-in-one-theme-editor/utils/use-search-params-theme";
+import { daisyUIThemeSearchParamsSchema } from "@/components/all-in-one-theme-editor/utils/schema";
+import { ExportTheme } from "@/components/all-in-one-theme-editor/ExportTheme";
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -27,7 +21,7 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 });
 
 export function RootComponent() {
-  const { navigate, searchParams } = useSearchParamsTheme();
+  const { updateLockedTheme, searchParams, updateTheme, navigate } = useSearchParamsTheme();
   useEffect(() => {
     themeChange(false);
     // 👆 false parameter is required for react project
@@ -91,9 +85,17 @@ export function RootComponent() {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className="menu bg-base-200 @container text-base-content min-h-full w-[40%] p-4">
+          <ul className="menu  @container text-base-content bg-base-200 min-h-full w-[40%] p-4">
             {/* Sidebar content here */}
-            {/* <DaisyUIThemes theme={{ ...searchParams }} /> */}
+            <DaisyUIThemeEditor
+              theme={searchParams}
+              saveChanges={(items_key, new_items) => {
+                updateTheme(items_key as any, new_items);
+              }}
+              lockTheme={(items_key, new_items) => {
+                updateLockedTheme(items_key as any, new_items);
+              }}
+            />
           </ul>
         </div>
       </div>
@@ -112,9 +114,9 @@ export function RootComponent() {
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
             className="drawer-overlay"></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full  md:w-[70%] p-4">
+          <ul className="menu bg-base-200 text-base-content min-h-full w-[90%]  md:w-[40%] ">
             {/* Sidebar content here */}
-            {/* <ExportTheme theme={searchParams} /> */}
+            <ExportTheme theme={searchParams} />
           </ul>
         </div>
       </div>

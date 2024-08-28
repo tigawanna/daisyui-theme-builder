@@ -1,6 +1,3 @@
-import { defaultThemes } from "@/helpers/daisyui/default-values";
-
-import { useEffect } from "react";
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 
 interface DaisyuiThemesSelectProps {}

@@ -59,11 +59,11 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
           `gap-2 flex flex-col items-center justify-center absolute top-[5%] right-[1%]`
         )}>
         {theme?.locked ? (
-          <div className="p-2 bg-error-content rounded-lg">
+          <div className="p-1 bg-error-content rounded-lg">
             <Lock className="size-4 text-error  " onClick={() => lockTheme(theme_key, false)} />
           </div>
         ) : (
-          <div className="p-2 bg-error-content rounded-lg">
+          <div className="p-1 bg-error-content rounded-lg">
             <Unlock
               className="size-4 text-success bg-success-content"
               onClick={() => lockTheme(theme_key, true)}
@@ -127,30 +127,41 @@ export function DaisyUIBaseCurvesThemeCard({
           return (
             <div
               key={key + row.variable}
-              className="w-[48%] @md:w-1/3 @lg:w-[24%] flex flex-col justify-center rounded-lg">
+              className="w-[48%] @md:w-1/3 @lg:w-[24%] flex flex-col rounded-lg">
               <h2 className="text-sm font-bold">{key.replace(/_/g, " ")}</h2>
-              <input
-                className="w-full input input-sm flex flex-col justify-center rounded-lg"
-                value={input}
-                onChange={(e) => {
-                  setInput(e.target.value);
-                  startTransition(() => {
-                    handleVariableChange({
-                      css_varaiable_key: row.variable,
-                      theme_key: key,
-                      value_key: "value",
-                      value: e.target.value,
-                      theme: row,
+              <div className="flex gap-1">
+                <input
+                  className="w-full input input-sm flex flex-col justify-center rounded-lg"
+                  value={input}
+                  onChange={(e) => {
+                    setInput(e.target.value);
+                    startTransition(() => {
+                      handleVariableChange({
+                        css_varaiable_key: row.variable,
+                        theme_key: key,
+                        value_key: "value",
+                        value: e.target.value,
+                        theme: row,
+                      });
                     });
-                  });
-                }}
-              />
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={row?.locked}
-                onChange={(e) => lockTheme(key, e.target.checked)}
-              />
+                  }}
+                />
+                <div
+                  className={twMerge(`gap-2 flex flex-col items-center justify-center right-[1%]`)}>
+                  {row?.locked ? (
+                    <div className="p-1 bg-error-content rounded-lg">
+                      <Lock className="size-4 text-error  " onClick={() => lockTheme(key, false)} />
+                    </div>
+                  ) : (
+                    <div className="p-1 bg-error-content rounded-lg">
+                      <Unlock
+                        className="size-4 text-success bg-success-content"
+                        onClick={() => lockTheme(key, true)}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           );
         })}

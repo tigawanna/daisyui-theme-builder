@@ -287,7 +287,12 @@ export const daisyUIThemeSearchParamsSchema = z
 // "--tab-border": "1px",            // border width of tabs
 // "--tab-radius": "0.5rem",         // border radius of tabs
 
-export type DaisyUIThemeSearchParmsTypes = z.infer<typeof daisyUIThemeSearchParamsSchema>;
-export type DaisyUIColorSearchParmsTypes = z.infer<typeof daisyUIThemeColorsSearchParamsSchema>;
-export type DaisyUICurvesSearchParmsTypes = z.infer<typeof daisyUIThemeCurvesSearchParamsSchema>;
-
+export type DaisyUIThemeSearchParmsTypes = z.infer<
+  typeof daisyUIThemeSearchParamsSchema
+>;
+export type DaisyUIColorSearchParmsTypes = z.infer<
+  typeof daisyUIThemeColorsSearchParamsSchema
+>;
+export type DaisyUICurvesSearchParmsTypes = z.infer<
+  typeof daisyUIThemeCurvesSearchParamsSchema
+>;

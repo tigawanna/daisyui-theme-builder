@@ -1,22 +1,29 @@
 import { DaisyUIThemeSearchParmsTypes } from "./schema";
 
 export const getColorValueFromTheme = (variable: string) => {
-  const colorValues = getComputedStyle(document.documentElement).getPropertyValue(variable);
+  const colorValues = getComputedStyle(
+    document.documentElement,
+  ).getPropertyValue(variable);
   // return `oklch(${colorValues})`;
   return colorValues;
 };
 
 export const getThemeVariable = (variable: string) => {
-  const colorValues = getComputedStyle(document.documentElement).getPropertyValue(variable);
+  const colorValues = getComputedStyle(
+    document.documentElement,
+  ).getPropertyValue(variable);
   return colorValues;
 };
 
-type InlineCSSVaraiblesTheme = Omit<DaisyUIThemeSearchParmsTypes,"theme_name">
-type InlineCSSVaraiblesThemeVAriable = Required<InlineCSSVaraiblesTheme>[keyof InlineCSSVaraiblesTheme]["variable"]
+type InlineCSSVaraiblesTheme = Omit<DaisyUIThemeSearchParmsTypes, "theme_name">;
+type InlineCSSVaraiblesThemeVAriable =
+  Required<InlineCSSVaraiblesTheme>[keyof InlineCSSVaraiblesTheme]["variable"];
 type InlineCSSVaraibles = {
-  [key in InlineCSSVaraiblesThemeVAriable]?: string
-}
-export function getDaisyUiInlineCSSVariables(theme: DaisyUIThemeSearchParmsTypes): InlineCSSVaraibles {
+  [key in InlineCSSVaraiblesThemeVAriable]?: string;
+};
+export function getDaisyUiInlineCSSVariables(
+  theme: DaisyUIThemeSearchParmsTypes,
+): InlineCSSVaraibles {
   return {
     "--p": theme.primary?.value,
     "--pc": theme["primary-content"]?.value,
@@ -40,14 +47,13 @@ export function getDaisyUiInlineCSSVariables(theme: DaisyUIThemeSearchParmsTypes
     "--suc": theme["success-content"]?.value,
     "--animation-btn": theme["animation_btn"]?.value,
     "--animation-input": theme["animation_input"]?.value,
-  "--border-btn": theme["border_btn"]?.value,
-  "--btn-focus-scale": theme["btn_focus_scale"]?.value,
-  "--rounded-badge": theme["rounded_badge"]?.value,
-  "--rounded-btn": theme["rounded_btn"]?.value,
-  "--rounded-box": theme["rounded_box"]?.value,
-  "--tab-radius": theme["tab_radius"]?.value,
-
-  }
+    "--border-btn": theme["border_btn"]?.value,
+    "--btn-focus-scale": theme["btn_focus_scale"]?.value,
+    "--rounded-badge": theme["rounded_badge"]?.value,
+    "--rounded-btn": theme["rounded_btn"]?.value,
+    "--rounded-box": theme["rounded_box"]?.value,
+    "--tab-radius": theme["tab_radius"]?.value,
+  };
 }
 
 export function getDaisyUiColors() {
@@ -170,7 +176,7 @@ export function getDaisyUiColors() {
 export const daisyUiColors = getDaisyUiColors();
 
 export const getTailwindBg = (
-  color?: (typeof daisyUiColors)[number]["name"]
+  color?: (typeof daisyUiColors)[number]["name"],
 ): {
   bg: string;
   bg_muted: string;
@@ -179,7 +185,11 @@ export const getTailwindBg = (
   switch (color) {
     // primary
     case "primary":
-      return { bg: "bg-primary", bg_muted: "bg-primary/20", content: "text-primary-content" };
+      return {
+        bg: "bg-primary",
+        bg_muted: "bg-primary/20",
+        content: "text-primary-content",
+      };
     case "primary-content":
       return {
         bg: "bg-primary-content",
@@ -189,7 +199,11 @@ export const getTailwindBg = (
 
     // secondary
     case "secondary":
-      return { bg: "bg-secondary", bg_muted: "bg-secondary/20", content: "text-secondary-content" };
+      return {
+        bg: "bg-secondary",
+        bg_muted: "bg-secondary/20",
+        content: "text-secondary-content",
+      };
     case "secondary-content":
       return {
         bg: "bg-secondary-content",
@@ -199,13 +213,25 @@ export const getTailwindBg = (
 
     // accent
     case "accent":
-      return { bg: "bg-accent", bg_muted: "bg-accent/20", content: "text-accent-content" };
+      return {
+        bg: "bg-accent",
+        bg_muted: "bg-accent/20",
+        content: "text-accent-content",
+      };
     case "accent-content":
-      return { bg: "bg-accent-content", bg_muted: "bg-accent-content/20", content: "text-accent" };
+      return {
+        bg: "bg-accent-content",
+        bg_muted: "bg-accent-content/20",
+        content: "text-accent",
+      };
 
     // neutral
     case "neutral":
-      return { bg: "bg-neutral", bg_muted: "bg-neutral/20", content: "text-neutral-content" };
+      return {
+        bg: "bg-neutral",
+        bg_muted: "bg-neutral/20",
+        content: "text-neutral-content",
+      };
     case "neutral-content":
       return {
         bg: "bg-neutral-content",
@@ -215,22 +241,50 @@ export const getTailwindBg = (
 
     // base
     case "base-100":
-      return { bg: "bg-base-100", bg_muted: "bg-base-100/20", content: "text-base-content" };
+      return {
+        bg: "bg-base-100",
+        bg_muted: "bg-base-100/20",
+        content: "text-base-content",
+      };
     case "base-200":
-      return { bg: "bg-base-200", bg_muted: "bg-base-200/20", content: "text-base-content" };
+      return {
+        bg: "bg-base-200",
+        bg_muted: "bg-base-200/20",
+        content: "text-base-content",
+      };
     case "base-300":
-      return { bg: "bg-base-300", bg_muted: "bg-base-300/20", content: "text-base-content" };
+      return {
+        bg: "bg-base-300",
+        bg_muted: "bg-base-300/20",
+        content: "text-base-content",
+      };
     case "base-content":
-      return { bg: "bg-base-content", bg_muted: "bg-base-content/20", content: "text-base-100" };
+      return {
+        bg: "bg-base-content",
+        bg_muted: "bg-base-content/20",
+        content: "text-base-100",
+      };
     // info
     case "info":
-      return { bg: "bg-info", bg_muted: "bg-info/20", content: "text-info-content" };
+      return {
+        bg: "bg-info",
+        bg_muted: "bg-info/20",
+        content: "text-info-content",
+      };
     case "info-content":
-      return { bg: "bg-info-content", bg_muted: "bg-info-content/20", content: "text-info" };
+      return {
+        bg: "bg-info-content",
+        bg_muted: "bg-info-content/20",
+        content: "text-info",
+      };
 
     // success
     case "success":
-      return { bg: "bg-success", bg_muted: "bg-success/20", content: "text-success-content" };
+      return {
+        bg: "bg-success",
+        bg_muted: "bg-success/20",
+        content: "text-success-content",
+      };
     case "success-content":
       return {
         bg: "bg-success-content",
@@ -240,7 +294,11 @@ export const getTailwindBg = (
 
     // warning
     case "warning":
-      return { bg: "bg-warning", bg_muted: "bg-warning/20", content: "text-warning-content" };
+      return {
+        bg: "bg-warning",
+        bg_muted: "bg-warning/20",
+        content: "text-warning-content",
+      };
     case "warning-content":
       return {
         bg: "bg-warning-content",
@@ -250,12 +308,24 @@ export const getTailwindBg = (
 
     // error
     case "error":
-      return { bg: "bg-error", bg_muted: "bg-error/20", content: "text-error-content" };
+      return {
+        bg: "bg-error",
+        bg_muted: "bg-error/20",
+        content: "text-error-content",
+      };
     case "error-content":
-      return { bg: "bg-error-content", bg_muted: "bg-error-content/20", content: "text-error" };
+      return {
+        bg: "bg-error-content",
+        bg_muted: "bg-error-content/20",
+        content: "text-error",
+      };
 
     default:
-      return { bg: "bg-base-100", bg_muted: "bg-base-100/20", content: "text-base-content" };
+      return {
+        bg: "bg-base-100",
+        bg_muted: "bg-base-100/20",
+        content: "text-base-content",
+      };
   }
 };
 

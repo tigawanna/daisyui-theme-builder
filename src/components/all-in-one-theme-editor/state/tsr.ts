@@ -14,5 +14,5 @@ export function useUpdateTheme() {
       },
     });
   };
-  return { updateTheme, searchParams,navigate };
+  return { updateTheme, searchParams, navigate };
 }

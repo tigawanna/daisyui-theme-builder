@@ -5,9 +5,9 @@ export function useSearchParamsTheme() {
     from: "__root__",
   });
   const navigate = useNavigate();
-  function updateTheme(items_key: string,new_items: string) {
+  function updateTheme(items_key: string, new_items: string) {
     navigate({
-      search:(prev)=>{
+      search: (prev) => {
         return {
           ...prev,
           [items_key]: {
@@ -15,22 +15,22 @@ export function useSearchParamsTheme() {
             value: new_items,
           },
         };
-      }
-    })
+      },
+    });
   }
   function updateThemeName(theme_name: string) {
     navigate({
-      search:(prev)=>{
+      search: (prev) => {
         return {
           ...prev,
           theme_name,
         };
-      }
-    })
+      },
+    });
   }
-  function updateLockedTheme(items_key: string,is_locked: boolean) {
+  function updateLockedTheme(items_key: string, is_locked: boolean) {
     navigate({
-      search:(prev)=>{
+      search: (prev) => {
         return {
           ...prev,
           [items_key]: {
@@ -38,8 +38,14 @@ export function useSearchParamsTheme() {
             locked: is_locked,
           },
         };
-      }
-    })
+      },
+    });
   }
-  return { searchParams, navigate, updateTheme, updateLockedTheme,updateThemeName };
+  return {
+    searchParams,
+    navigate,
+    updateTheme,
+    updateLockedTheme,
+    updateThemeName,
+  };
 }

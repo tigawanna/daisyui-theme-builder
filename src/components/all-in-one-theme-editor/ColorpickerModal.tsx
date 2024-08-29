@@ -2,7 +2,6 @@ import { twMerge } from "tailwind-merge";
 import { ReactColorPicker } from "./ReactColorPicker";
 import { DaisyUIColorSearchParmsTypes } from "./utils/schema";
 
-
 type BaseDaisyUiThemeKeysWithoutBase = keyof DaisyUIColorSearchParmsTypes;
 interface ColorpickerModalProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   theme_key: T;
@@ -29,12 +28,24 @@ export function ColorpickerModal<T extends BaseDaisyUiThemeKeysWithoutBase>({
       <div
         className=""
         // @ts-expect-error
-        onClick={() => document?.getElementById(`my_color_picker_modal-${theme_key}`)?.showModal()}>
+        onClick={() =>
+          document
+            ?.getElementById(`my_color_picker_modal-${theme_key}`)
+            ?.showModal()
+        }
+      >
         {children}
       </div>
-      <dialog id={`my_color_picker_modal-${theme_key}`} className="modal w-full">
+      <dialog
+        id={`my_color_picker_modal-${theme_key}`}
+        className="modal w-full"
+      >
         <div className={twMerge("modal-box min-w-fit", bg_color)}>
-          <ReactColorPicker saveColor={saveColor} oklchString={theme?.value} colorKey={theme_key} />
+          <ReactColorPicker
+            saveColor={saveColor}
+            oklchString={theme?.value}
+            colorKey={theme_key}
+          />
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>

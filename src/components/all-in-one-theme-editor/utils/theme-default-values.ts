@@ -1,7 +1,10 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { GenericThemeState } from "./types";
 import { useState } from "react";
-import { getColorValueFromTheme, getThemeVariable } from "./daisyui-css-variables-helpers";
+import {
+  getColorValueFromTheme,
+  getThemeVariable,
+} from "./daisyui-css-variables-helpers";
 import { DaisyUIThemeSearchParmsTypes } from "./schema";
 
 export function isThemeNotNull(theme?: DaisyUIThemeSearchParmsTypes) {
@@ -85,7 +88,10 @@ export function defaultThemes({
     "base-content": {
       name: "base-content",
       variable: "--bc",
-      value: theme?.["base-content"]?.value ?? getColorValueFromTheme("--bc") ?? "#1f2937",
+      value:
+        theme?.["base-content"]?.value ??
+        getColorValueFromTheme("--bc") ??
+        "#1f2937",
       locked: theme?.["base-content"]?.locked ?? false,
     },
 
@@ -207,7 +213,8 @@ export function defaultThemes({
     animation_input: {
       name: "animation-input",
       variable: "--animation-input",
-      value: theme?.animation_input?.value ?? getThemeVariable("--animation-input"),
+      value:
+        theme?.animation_input?.value ?? getThemeVariable("--animation-input"),
       locked: theme?.animation_input?.locked ?? false,
     },
     border_btn: {
@@ -232,7 +239,8 @@ export function defaultThemes({
     btn_focus_scale: {
       name: "btn-focus-scale",
       variable: "--btn-focus-scale",
-      value: theme?.btn_focus_scale?.value ?? getThemeVariable("--btn-focus-scale"),
+      value:
+        theme?.btn_focus_scale?.value ?? getThemeVariable("--btn-focus-scale"),
       locked: theme?.btn_focus_scale?.locked ?? false,
     },
 

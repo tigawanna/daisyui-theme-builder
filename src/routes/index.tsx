@@ -2,7 +2,6 @@ import { DaisyUIThemeEditor } from "@/components/all-in-one-theme-editor/DaisyUI
 import { useSearchParamsTheme } from "../components/all-in-one-theme-editor/utils/use-search-params-theme";
 import { createFileRoute } from "@tanstack/react-router";
 
-
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
@@ -10,10 +9,11 @@ export const Route = createFileRoute("/")({
 interface HomePageProps {}
 
 export function HomePage({}: HomePageProps) {
-  const { updateLockedTheme, searchParams, updateTheme } = useSearchParamsTheme();
+  const { updateLockedTheme, searchParams, updateTheme } =
+    useSearchParamsTheme();
 
   return (
-    <div className="w-full  h-full bg-uwu/10 min-h-screen flex flex-col items-center gap-7 ">
+    <div className="flex h-full min-h-screen w-full flex-col items-center gap-7 bg-uwu/10">
       {/* <DaisyUIThemeEditor
         theme={searchParams}
         saveChanges={(items_key, new_items) => {

@@ -21,7 +21,8 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 });
 
 export function RootComponent() {
-  const { updateLockedTheme, searchParams, updateTheme, navigate } = useSearchParamsTheme();
+  const { updateLockedTheme, searchParams, updateTheme, navigate } =
+    useSearchParamsTheme();
   useEffect(() => {
     themeChange(false);
     // 👆 false parameter is required for react project
@@ -73,20 +74,28 @@ export function RootComponent() {
       data-theme={searchParams.theme_name}
       // @ts-expect-error
       style={getDaisyUiInlineCSSVariables(searchParams)}
-      className="w-full h-full flex flex-col items-center justify-center">
+      className="flex h-full w-full flex-col items-center justify-center"
+    >
       <MainNavBar />
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
 
-          <label htmlFor="my-drawer" className="drawer-button absolute top-5 left-5">
+          <label
+            htmlFor="my-drawer"
+            className="drawer-button absolute left-5 top-5"
+          >
             <Palette className="ml-4" />
           </label>
         </div>
         <div className="drawer-side">
-          <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className="menu  @container text-base-content bg-base-200 min-h-full w-[40%] p-4">
+          <label
+            htmlFor="my-drawer"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu min-h-full w-[40%] bg-base-200 p-4 text-base-content @container">
             {/* Sidebar content here */}
             <DaisyUIThemeEditor
               theme={searchParams}
@@ -106,7 +115,8 @@ export function RootComponent() {
           {/* Page content here */}
           <label
             htmlFor="my-drawer-4"
-            className="drawer-button btn-outline flex gap-2 absolute top-5 right-5">
+            className="btn-outline drawer-button absolute right-5 top-5 flex gap-2"
+          >
             export <Save />
           </label>
         </div>
@@ -114,8 +124,9 @@ export function RootComponent() {
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
-            className="drawer-overlay"></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-[90%]  md:w-[40%] ">
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu min-h-full w-[90%] bg-base-200 text-base-content md:w-[40%]">
             {/* Sidebar content here */}
             <ExportTheme theme={searchParams} />
           </ul>

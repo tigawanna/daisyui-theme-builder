@@ -37,19 +37,24 @@ export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
     "nord",
     "sunset",
   ];
-  const {searchParams,updateThemeName} = useSearchParamsTheme();
+  const { searchParams, updateThemeName } = useSearchParamsTheme();
   function onThemeChange(theme_name: string) {
     updateThemeName(theme_name);
-   }
+  }
 
   return (
     <select
       data-choose-theme
       className="select select-primary select-sm"
-      onChange={(e) => onThemeChange(e.target.value)}>
+      onChange={(e) => onThemeChange(e.target.value)}
+    >
       <option value="dark">Default</option>
       {items.map((item) => (
-        <option value={item} key={item} selected={item === searchParams.theme_name}>
+        <option
+          value={item}
+          key={item}
+          selected={item === searchParams.theme_name}
+        >
           {item}
         </option>
       ))}

@@ -15,7 +15,10 @@ export function oklchToHexString(input: string) {
     // console.log(" parsing oklch", input);
     return chroma(input).hex();
   } catch (error) {
-    console.log(" ⚠️ ====  oklch parse error in oklchToHexString ====⚠️", error);
+    console.log(
+      " ⚠️ ====  oklch parse error in oklchToHexString ====⚠️",
+      error,
+    );
     return "#000000";
   }
 }
@@ -70,7 +73,10 @@ export function reactColorHSLToOKLCH(hsl: HSLColor) {
     }
     return `${(oklch_slice[0] * 100).toFixed(2)}% ${oklch_slice[1].toFixed(2)} ${oklch_slice[2].toFixed(2)}`;
   } catch (error) {
-    console.log(" =========  reactColorHSLToOKLCH convert hsl to oklch issue ============ ", error);
+    console.log(
+      " =========  reactColorHSLToOKLCH convert hsl to oklch issue ============ ",
+      error,
+    );
     return "0.5 0.5 0.5";
   }
 }

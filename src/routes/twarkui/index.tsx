@@ -9,7 +9,7 @@ export function index() {
     from: "__root__",
   });
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="flex h-full w-full flex-col items-center justify-center">
       <p className="p-[6%]">{JSON.stringify(searchParams?.primary, null, 2)}</p>
       <div>
         {searchParams?.primary?.value}

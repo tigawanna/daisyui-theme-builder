@@ -21,19 +21,13 @@ export function ColorpickerModal<T extends BaseDaisyUiThemeKeysWithoutBase>({
   className = "",
 }: ColorpickerModalProps<T>) {
   if (!theme) return null;
-
+  const current_modal = document.getElementById(
+    `my_color_picker_modal-${theme_key}`,
+  ) as HTMLDialogElement;
   return (
     <div className={twMerge("w-full items-center", className)}>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <div
-        className=""
-        // @ts-expect-error
-        onClick={() =>
-          document
-            ?.getElementById(`my_color_picker_modal-${theme_key}`)
-            ?.showModal()
-        }
-      >
+      <div className="" onClick={() => current_modal?.showModal()}>
         {children}
       </div>
       <dialog

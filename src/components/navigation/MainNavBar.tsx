@@ -11,6 +11,8 @@ interface MainNavBarProps {
 export function MainNavBar({}:MainNavBarProps){
 const {searchParams} = useSearchParamsTheme()
 const {isLoading}=useRouterState()
+// const isLoading=true
+// // console.log(" ========= isLoading ========= ", isLoading)
 return (
   <div className="w-full sticky top-0 flex flex-col  items-center justify-between ">
     <div className="w-full  flex  items-center justify-between p-5">

@@ -1,4 +1,4 @@
-import { Link, useRouterState, useSearch } from "@tanstack/react-router";
+import { Link, useRouterState} from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 

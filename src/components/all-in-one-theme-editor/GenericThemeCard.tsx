@@ -38,7 +38,7 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   return (
     <div
       className={twMerge(
-        "relative flex h-full w-full flex-col items-center justify-center gap-1",
+        "relative flex h-full w-full flex-col items-center cursor-pointer justify-center gap-1 hover:animate-in hover:scale-110",
         className,
       )}
     >
@@ -63,7 +63,7 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
               content,
             )}
           >
-            <div className="line-clamp-1">{theme?.name}</div>
+            <div className="line-clamp-1 text-sm">{theme?.name}</div>
             <div className="line-clamp-1 text-[9px]">{theme?.value}</div>
           </div>
         </ColorpickerModal>

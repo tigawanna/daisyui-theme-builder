@@ -5,7 +5,7 @@ export function Actions({}: ActionsProps) {
     <div className="flex h-full w-full flex-col items-center justify-center gap-5 divide-y p-[5%]">
       {/* drop down */}
       <div className="w-[80%]">
-        <h1 className="text-3xl font-bold">drop down</h1>
+        <h1 className="text-3xl font-bold">navbar</h1>
         <div className="navbar rounded-box bg-base-300">
           <div className="flex-1 px-2 lg:flex-none">
             <a className="text-lg font-bold">daisyUI</a>

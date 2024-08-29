@@ -13,16 +13,9 @@ export function MainNavBar({}: MainNavBarProps) {
     <div className="sticky top-0 flex w-full flex-col items-center justify-between">
       <div className="flex w-full items-center justify-between p-5">
         <Link to="/" search={searchParams}>
-          <h1 className="text-xl font-bold hover:text-accent">TWARK UI</h1>
+          <h1 className="text-xl font-bold hover:text-accent">UI</h1>
         </Link>
-        <div className="flex items-center justify-between gap-2 px-2">
-          <Link
-            search={searchParams}
-            to="/daisyui"
-            className="badge border border-accent hover:badge-accent"
-          >
-            <h1 className="">daisyui</h1>
-          </Link>
+        <div className="hidden md:flex items-center justify-between gap-2 px-2">
           <Link
             search={searchParams}
             to="/shadcn"

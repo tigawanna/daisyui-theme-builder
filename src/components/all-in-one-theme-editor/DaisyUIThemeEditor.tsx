@@ -38,7 +38,7 @@ export function DaisyUIThemeEditor({
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-[5%]">
       <div className="flex h-full w-full flex-wrap items-center justify-center gap-2 p-2">
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Primary</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -53,7 +53,7 @@ export function DaisyUIThemeEditor({
             theme={theme?.["primary-content"]}
           />
         </div>
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Secondary</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -68,7 +68,7 @@ export function DaisyUIThemeEditor({
             theme={theme?.["secondary-content"]}
           />
         </div>
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Accent</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -83,7 +83,7 @@ export function DaisyUIThemeEditor({
             theme={theme?.["accent-content"]}
           />
         </div>
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Neutral</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -112,28 +112,28 @@ export function DaisyUIThemeEditor({
           <GenericColorCard
             lockTheme={lockTheme}
             saveChanges={saveChanges}
-            className="w-[48%] gap-1 @md:w-[23%]"
+            className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%] "
             theme_key="base-200"
             theme={theme?.["base-200"]}
           />
           <GenericColorCard
             lockTheme={lockTheme}
             saveChanges={saveChanges}
-            className="w-[48%] gap-1 @md:w-[23%]"
+            className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%] "
             theme_key="base-300"
             theme={theme?.["base-300"]}
           />
           <GenericColorCard
             lockTheme={lockTheme}
             saveChanges={saveChanges}
-            className="w-[48%] gap-1 @md:w-[23%]"
+            className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%] "
             theme_key="base-content"
             theme={theme?.["base-content"]}
           />
         </div>
       </div>
       <div className="flex h-full w-full flex-wrap items-center justify-center gap-2 p-2">
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Info</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -148,7 +148,7 @@ export function DaisyUIThemeEditor({
             theme={theme?.["info-content"]}
           />
         </div>
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Success</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -163,7 +163,7 @@ export function DaisyUIThemeEditor({
             theme={theme?.["success-content"]}
           />
         </div>
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Warning</h3>
           <GenericColorCard
             lockTheme={lockTheme}
@@ -178,7 +178,7 @@ export function DaisyUIThemeEditor({
             theme={theme?.["warning-content"]}
           />
         </div>
-        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%]">
+        <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%] ">
           <h3>Error</h3>
           <GenericColorCard
             lockTheme={lockTheme}

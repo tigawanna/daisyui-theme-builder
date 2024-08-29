@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
-import { Palette, Save } from "lucide-react";
+import { Palette, Save, X } from "lucide-react";
 import { getDaisyUiInlineCSSVariables } from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
 import { defaultThemes } from "@/components/all-in-one-theme-editor/utils/theme-default-values";
 import { DaisyUIThemeEditor } from "@/components/all-in-one-theme-editor/DaisyUIThemeEditor";
@@ -77,25 +77,26 @@ export function RootComponent() {
       className="flex h-full w-full flex-col items-center justify-center"
     >
       <MainNavBar />
-      <div className="drawer">
+      <div className="drawer sticky top-[10%] z-20">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
-
           <label
             htmlFor="my-drawer"
-            className="drawer-button absolute left-5 top-5"
+            className="drawer-button absolute left-2 top-5"
           >
             <Palette className="ml-4" />
           </label>
         </div>
         <div className="drawer-side">
-          <label
-            htmlFor="my-drawer"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <ul className="menu min-h-full w-[40%] bg-base-200 p-4 text-base-content @container">
+          <ul className="menu min-h-full w-[70%] bg-base-200 text-base-content @container md:w-[40%] md:p-4">
+            <label
+              htmlFor="my-drawer"
+              aria-label="close sidebar"
+              className="drawer-overlay sticky top-4"
+            >
+              <X />
+            </label>
             {/* Sidebar content here */}
             <DaisyUIThemeEditor
               theme={searchParams}
@@ -109,24 +110,26 @@ export function RootComponent() {
           </ul>
         </div>
       </div>
-      <div className="drawer drawer-end">
+      <div className="drawer drawer-end sticky top-[12%]">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
           <label
             htmlFor="my-drawer-4"
-            className="btn-outline drawer-button absolute right-5 top-5 flex gap-2"
+            className="btn-outline drawer-button absolute right-5 top-0 flex gap-2"
           >
             export <Save />
           </label>
         </div>
         <div className="drawer-side">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
           <ul className="menu min-h-full w-[90%] bg-base-200 text-base-content md:w-[40%]">
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="close sidebar"
+              className="drawer-overlay sticky top-4"
+            >
+              <X />
+            </label>
             {/* Sidebar content here */}
             <ExportTheme theme={searchParams} />
           </ul>

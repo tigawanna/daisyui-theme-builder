@@ -105,7 +105,7 @@ export function ExportTheme({ theme }: ExportThemeProps) {
   const copied_styles = copied ? "animate-bounce text-success" : "";
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3">
-      <div className="flex items-center justify-center pt-2">
+      <button className="flex items-center justify-center pt-2">
         <Copy
           className={`h-6 w-6 ${copied_styles}`}
           onClick={() => {
@@ -122,10 +122,14 @@ export function ExportTheme({ theme }: ExportThemeProps) {
             "Copy"
           )}
         </div>
-      </div>
+      </button>
       <pre className="bg-base-300 p-5">
         <code>{exportFormatedTring}</code>
       </pre>
     </div>
   );
 }
+
+
+
+

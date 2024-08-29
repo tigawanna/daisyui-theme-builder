@@ -1,76 +1,76 @@
 import chroma from "chroma-js";
 import { HSLColor } from "react-color";
-import tinycolor from "tinycolor2";
 
-
-export function oklchToHexString(input:string){
-  if(!input.startsWith("oklch(")){
-    input = `oklch(${input})`;
-  }
-  // console.log(" parsing oklch", input);
-  return chroma(input).hex();
-}
-export function hslToOKLCH(hsl: string, path: string) {
+/**
+ * Converts an OKLCH color to a hexadecimal color string.
+ *
+ * @param {string} input - The OKLCH color to convert, optionally wrapped in 'oklch()'.
+ * @return {string} The hexadecimal color string, or '#000000' if the conversion fails.
+ */
+export function oklchToHexString(input: string) {
   try {
-    return chroma(hsl).oklch();
-  } catch (error: any) {
-    // alert(" ====  oklch parse error in hslToOKLCH ==== " + path);
-    // console.log(" =========  hsl parse error ============ ",path, error.message);
-    return [0.5, 0.5, 0.5];
+    if (!input.startsWith("oklch(")) {
+      input = `oklch(${input})`;
+    }
+    // console.log(" parsing oklch", input);
+    return chroma(input).hex();
+  } catch (error) {
+    console.log(" ⚠️ ====  oklch parse error in oklchToHexString ====⚠️", error);
+    return "#000000";
   }
 }
 
-export function oklchToHSL(oklch: string, path: string): HSLColor {
-  // console.log("parsing oklch", oklch);
+/**
+ * Converts an OKLCH color to an HSL color object.
+ *
+ * @param {string} oklch - The OKLCH color to convert.
+ * @return {HSLColor} The HSL color object, or a default HSL color if the conversion fails.
+ */
+export function oklchToHSL(oklch: string): HSLColor {
   try {
-    // if(oklch.startsWith("oklch(") && oklch.endsWith(")")){
-    //   oklch = oklch.slice(6, -1);
-    //   console.log(" cleaned ok;ch  ==== ", oklch);
-    // }
     const hsl_slice = chroma(oklch).hsl();
     return {
       h: hsl_slice[0],
       s: hsl_slice[1],
       l: hsl_slice[2],
     };
-    
-  } catch (error:any) {
-    // alert(" ====  oklch parse"+ oklch +"error in oklchToHSL ==== "+path);
-    // console.log(" == this color ==== ", oklch);
-    // console.log(" =========  oklch parse error ============ ",error.message);
+  } catch (error: any) {
     return {
       h: 0,
       s: 0,
       l: 0,
     };
-    
   }
 }
 
-export function hslObjectToStringtinyColor(hsl: HSLColor, path: string) {
+/**
+ * Converts an HSL color to an OKLCH color string.
+ *
+ * @param {{ h: number, s: number, l: number, a?: number }} hsl - The HSL color to convert.
+ * @return {string} The OKLCH color string, or a default value if the conversion fails.
+ *
+ * @example
+ * reactColorHSLToOKLCH({h: 0, s: 0, l: 0})
+ */
+export function reactColorHSLToOKLCH(hsl: HSLColor) {
   try {
-    return tinycolor(hsl).toHslString();
-  } catch (error: any) {
-    alert(" ====  hsl parse error in ==== " + path);
-    console.log(" =========  hsl parse error ============ ",path ,error.message);
-    return "50% 50% 50%";
-  }
-}
-
-
-export function oklchStringFromHex(value2: string){
-  try {
-    const oklch = chroma(value2).oklch().map((val,idx) => {
-      if(idx === 0){
-     return (val*100).toFixed(3)+"%"
-      }
-      return val.toFixed(4)}
-    );
-
-    return `${oklch.join(" ")}`;
-  } catch (error: any) {
-    alert(" ====  oklch parse error in oklchFromHex ==== ");
-    console.log(" =========  oklch parse error ============ ",error.message);
+    if (Number.isNaN(hsl.h)) [(hsl.h = 0)];
+    if (Number.isNaN(hsl.s)) [(hsl.s = 0)];
+    if (Number.isNaN(hsl.l)) [(hsl.l = 0)];
+    const hsl_string = `hsl(${hsl.h.toFixed(0)}, ${(hsl.s * 100).toFixed(0)}%, ${(hsl.l * 100).toFixed(0)}%)`;
+    const oklch_slice = chroma(hsl_string).oklch();
+    if (Number.isNaN(oklch_slice[0])) {
+      return;
+    }
+    if (Number.isNaN(oklch_slice[1])) {
+      return;
+    }
+    if (Number.isNaN(oklch_slice[2])) {
+      return;
+    }
+    return `${(oklch_slice[0] * 100).toFixed(2)}% ${oklch_slice[1].toFixed(2)} ${oklch_slice[2].toFixed(2)}`;
+  } catch (error) {
+    console.log(" =========  reactColorHSLToOKLCH convert hsl to oklch issue ============ ", error);
     return "0.5 0.5 0.5";
   }
 }

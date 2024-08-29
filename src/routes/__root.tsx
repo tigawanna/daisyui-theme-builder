@@ -70,6 +70,7 @@ export function RootComponent() {
 
   return (
     <div
+      data-theme={searchParams.theme_name}
       // @ts-expect-error
       style={getDaisyUiInlineCSSVariables(searchParams)}
       className="w-full h-full flex flex-col items-center justify-center">

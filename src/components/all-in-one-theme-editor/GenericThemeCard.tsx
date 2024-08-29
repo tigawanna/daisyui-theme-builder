@@ -45,11 +45,11 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
         >
           <div
             className={twMerge(
-              "w-full flex flex-col text-sm rounded-lg gap-2 justify-between items-center  p-1",
+              "w-full flex flex-col text-sm rounded-lg gap-0.5 justify-between items-center  p-1",
               bg,
               content
             )}>
-            <div className="">{theme?.name}</div>
+            <div className="line-clamp-1">{theme?.name}</div>
             <div className="text-[9px] line-clamp-1">{theme?.value}</div>
           </div>
         </ColorpickerModal>
@@ -60,12 +60,12 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
         )}>
         {theme?.locked ? (
           <div className="p-1 bg-error-content rounded-lg">
-            <Lock className="size-4 text-error  " onClick={() => lockTheme(theme_key, false)} />
+            <Lock className="size-3 text-error  " onClick={() => lockTheme(theme_key, false)} />
           </div>
         ) : (
           <div className="p-1 bg-error-content rounded-lg">
             <Unlock
-              className="size-4 text-success bg-success-content"
+              className="size-3 text-success bg-success-content"
               onClick={() => lockTheme(theme_key, true)}
             />
           </div>
@@ -120,10 +120,10 @@ export function DaisyUIBaseCurvesThemeCard({
       <h1 className="">curves</h1>
       <ul className="w-full flex flex-wrap items-center justify-center ">
         {curves.map(([key, theme]) => {
-          // if (!theme) return null;
           const row = theme as GenericThemeState;
-          const [input, setInput] = useState(row.value);
+          const [input, setInput] = useState(row?.value);
           const [, startTransition] = useTransition();
+          if (!theme) return null;
           return (
             <div
               key={key + row.variable}

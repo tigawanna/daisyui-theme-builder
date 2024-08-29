@@ -1,4 +1,6 @@
 import { Actions } from "./Actions";
+import { DaisyUIDisplayComponents } from "./DaisyUIDisplayComponents";
+import { DaisyUIForm } from "./DaisyUIForm";
 
 interface AllDaisyUIComponentsProps {
 
@@ -6,8 +8,10 @@ interface AllDaisyUIComponentsProps {
 
 export function AllDaisyUIComponents({}:AllDaisyUIComponentsProps){
 return (
- <div className='w-full h-full flex flex-col items-center justify-center'>
-    <Actions/>
- </div>
+  <div className="flex h-full w-full flex-col items-center justify-center">
+    <Actions />
+   <DaisyUIForm/>
+   <DaisyUIDisplayComponents/>
+  </div>
 );
 }

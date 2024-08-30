@@ -12,7 +12,7 @@ export function MainNavBar({}: MainNavBarProps) {
   // // console.log(" ========= isLoading ========= ", isLoading)
   return (
     <header className="flex w-full flex-col items-center justify-between">
-      <nav className="flex w-full items-center justify-between">
+      <nav className="flex w-full items-center justify-end md:justify-between ">
         <div className="hidden w-full items-center justify-center gap-2 text-sm md:flex">
           <Link
             search={searchParams}
@@ -32,7 +32,7 @@ export function MainNavBar({}: MainNavBarProps) {
         {/* <ManualThemeSwitcher/> */}
         <DaisyuiThemesSelect />
         <div className="flex min-w-[20%] justify-end gap-3">
-          <div className="hideen items-center justify-center gap-2 md:flex">
+          <div className="hidden items-center justify-center gap-2 md:flex">
             <label
               htmlFor="import-theme-drawer"
               className="btn drawer-button btn-sm flex gap-2"

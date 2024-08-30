@@ -93,7 +93,38 @@ export function RootComponent() {
       className="drawer flex h-full w-full flex-col items-center justify-center"
     >
       <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex w-full flex-col">
+        {/* Navbar */}
+        <div className="sticky top-0 flex items-center justify-center bg-base-200 p-2">
+          <label
+            htmlFor="main-page-drawer"
+            aria-label="open sidebar"
+            className="btn btn-square btn-ghost btn-sm"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="inline-block h-6 w-6 stroke-current"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </label>
+          <Link to="/" search={searchParams} classID="px-2">
+            <h1 className="mx-2 text-2xl font-bold hover:text-accent">UI</h1>
+          </Link>
 
+          <MainNavBar />
+        </div>
+
+        {/* Page content here */}
+        <Outlet />
+      </div>
       <MainDaisyUiDrawer
         closeDrawer={closeDrawer}
         searchParams={searchParams}

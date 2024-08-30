@@ -31,7 +31,7 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 });
 
 export function RootComponent() {
-  const { updateLockedTheme, searchParams, updateTheme, navigate } =
+  const { updateLockedTheme, searchParams, updateTheme,updateWholeTheme, navigate } =
     useSearchParamsTheme();
   useEffect(() => {
     themeChange(false);
@@ -134,7 +134,7 @@ export function RootComponent() {
       {/* export theme drawer */}
       <ExportThemeDaisyUiDrawer searchParams={searchParams} />
       {/* import theme drawer */}
-      <ImportThemeDaisyUiDrawer searchParams={searchParams} />
+      <ImportThemeDaisyUiDrawer searchParams={searchParams} updateWholeTheme={updateWholeTheme}/>
 
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />

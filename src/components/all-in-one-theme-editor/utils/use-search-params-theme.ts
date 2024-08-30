@@ -18,6 +18,16 @@ export function useSearchParamsTheme() {
       },
     });
   }
+  function updateWholeTheme(theme: Record<string, any>) {
+    navigate({
+      search: (prev) => {
+        return {
+          ...prev,
+          ...theme
+        };
+      },
+    });
+  }
   function updateThemeName(theme_name: string) {
     navigate({
       search: (prev) => {
@@ -47,5 +57,6 @@ export function useSearchParamsTheme() {
     updateTheme,
     updateLockedTheme,
     updateThemeName,
+    updateWholeTheme,
   };
 }

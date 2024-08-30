@@ -5,6 +5,7 @@ import { DaisyUIThemeSearchParmsTypes } from "../all-in-one-theme-editor/utils/s
 import { FileUp, Import, Save, X } from "lucide-react";
 import { DaisyUIThemeEditor } from "../all-in-one-theme-editor/DaisyUIThemeEditor";
 import { ExportTheme } from "../all-in-one-theme-editor/ExportTheme";
+import { ImportTheme } from "../all-in-one-theme-editor/ImprtTheme";
 
 interface MainDaisyUiDrawerProps {
   searchParams: DaisyUIThemeSearchParmsTypes;
@@ -129,10 +130,12 @@ export function ExportThemeDaisyUiDrawer({
 }
 interface ImportThemeDaisyUiDrawerProps {
   searchParams: DaisyUIThemeSearchParmsTypes;
+  updateWholeTheme: (theme: Record<string, any>) => void;
 }
 
 export function ImportThemeDaisyUiDrawer({
   searchParams,
+  updateWholeTheme
 }: ImportThemeDaisyUiDrawerProps) {
   return (
     <div className="drawer drawer-end sticky top-[12%] z-20">
@@ -157,7 +160,7 @@ export function ImportThemeDaisyUiDrawer({
             <X />
           </label>
           {/* Sidebar content here */}
-          <ExportTheme theme={searchParams} />
+          <ImportTheme theme={searchParams} updateWholeTheme={updateWholeTheme}/>
         </ul>
       </div>
     </div>

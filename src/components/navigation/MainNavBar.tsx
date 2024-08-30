@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
+import { FileUp, Import } from "lucide-react";
 
 interface MainNavBarProps {}
 
@@ -10,12 +11,9 @@ export function MainNavBar({}: MainNavBarProps) {
   // const isLoading=true
   // // console.log(" ========= isLoading ========= ", isLoading)
   return (
-    <div className="sticky top-0 flex w-full flex-col items-center justify-between">
-      <div className="flex w-full items-center justify-between p-5">
-        <Link to="/" search={searchParams}>
-          <h1 className="text-xl font-bold hover:text-accent">UI</h1>
-        </Link>
-        <div className="hidden md:flex items-center justify-between gap-2 px-2">
+    <header className="flex w-full flex-col items-center justify-between">
+      <nav className="flex w-full items-center justify-between">
+        <div className="hidden w-full items-center justify-center gap-2 text-sm md:flex">
           <Link
             search={searchParams}
             to="/shadcn"
@@ -33,12 +31,28 @@ export function MainNavBar({}: MainNavBarProps) {
         </div>
         {/* <ManualThemeSwitcher/> */}
         <DaisyuiThemesSelect />
-      </div>
+        <div className="flex min-w-[20%] justify-end gap-3">
+          <div className="hideen items-center justify-center gap-2 md:flex">
+            <label
+              htmlFor="import-theme-drawer"
+              className="btn drawer-button btn-sm flex gap-2"
+            >
+              import <Import />
+            </label>
+              <label
+              htmlFor="export-theme-drawer"
+              className="btn drawer-button btn-sm flex gap-2"
+            >
+              export <FileUp />
+            </label>
+          </div>
+        </div>
+      </nav>
       {isLoading ? (
         <div className="skeleton h-1 w-full bg-accent" />
       ) : (
         <div className="h-1 w-full" />
       )}
-    </div>
+    </header>
   );
 }

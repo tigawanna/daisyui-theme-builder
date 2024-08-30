@@ -1,4 +1,8 @@
-import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import {
+  createRootRouteWithContext,
+  Link,
+  Outlet,
+} from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
 import { useEffect, useLayoutEffect } from "react";
@@ -12,7 +16,13 @@ import { DaisyUIThemeEditor } from "@/components/all-in-one-theme-editor/DaisyUI
 import { useSearchParamsTheme } from "@/components/all-in-one-theme-editor/utils/use-search-params-theme";
 import { daisyUIThemeSearchParamsSchema } from "@/components/all-in-one-theme-editor/utils/schema";
 import { ExportTheme } from "@/components/all-in-one-theme-editor/ExportTheme";
+import {
+  ExportThemeDaisyUiDrawer,
+  ImportThemeDaisyUiDrawer,
+  MainDaisyUiDrawer,
+} from "@/components/navigation/DaisyUiDrawers";
 
+export type DrawerIds = "main-page-drawer" | "daisyui-theme-editor-drawer";
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
   validateSearch: (input) => {
@@ -69,84 +79,32 @@ export function RootComponent() {
   //   return `${value.variable}: ${value.value};`
   // }).join(";")
 
+  function closeDrawer(drawerId: DrawerIds) {
+    const drawer = document.getElementById(drawerId) as HTMLInputElement;
+    if (drawer) {
+      drawer.checked = false;
+    }
+  }
   return (
     <div
       data-theme={searchParams.theme_name}
       // @ts-expect-error
       style={getDaisyUiInlineCSSVariables(searchParams)}
-      className="flex h-full w-full flex-col items-center justify-center"
+      className="drawer flex h-full w-full flex-col items-center justify-center"
     >
-      <MainNavBar />
-      <div className="drawer sticky top-[10%] z-20">
-        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          {/* Page content here */}
-          <label
-            htmlFor="my-drawer"
-            className="drawer-button absolute left-2 top-5 flex gap-2"
-          >
-            <Palette className="ml-4" /> remix
-          </label>
-        </div>
-        <div className="drawer-side z-20">
-          <label
-            htmlFor="my-drawer"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          />
-          <ul className="menu min-h-full w-[70%] bg-base-200 text-base-content @container md:w-[40%] md:p-4">
-            <label
-              htmlFor="my-drawer"
-              aria-label="close sidebar"
-              className="drawer-overlay sticky top-4"
-            >
-              <X />
-            </label>
-            {/* Sidebar content here */}
-            <DaisyUIThemeEditor
-              theme={searchParams}
-              saveChanges={(items_key, new_items) => {
-                updateTheme(items_key as any, new_items);
-              }}
-              lockTheme={(items_key, new_items) => {
-                updateLockedTheme(items_key as any, new_items);
-              }}
-            />
-          </ul>
-        </div>
-      </div>
-      <div className="drawer drawer-end sticky top-[12%] z-20">
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          {/* Page content here */}
-          <label
-            htmlFor="my-drawer-4"
-            className="btn-outline drawer-button absolute right-5 top-0 flex gap-2"
-          >
-            export <Save />
-          </label>
-        </div>
-        <div className="drawer-side">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          />
-          <ul className="menu min-h-full w-[90%] bg-base-200 text-base-content md:w-[40%]">
-            <label
-              htmlFor="my-drawer-4"
-              aria-label="close sidebar"
-              className="drawer-overlay sticky top-4"
-            >
-              <X />
-            </label>
-            {/* Sidebar content here */}
-            <ExportTheme theme={searchParams} />
-          </ul>
-        </div>
-      </div>
+      <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />
 
-      <Outlet />
+      <MainDaisyUiDrawer
+        closeDrawer={closeDrawer}
+        searchParams={searchParams}
+        updateLockedTheme={updateLockedTheme}
+        updateTheme={updateTheme}
+      />
+      {/* export theme drawer */}
+      <ExportThemeDaisyUiDrawer searchParams={searchParams} />
+      {/* import theme drawer */}
+      <ImportThemeDaisyUiDrawer searchParams={searchParams} />
+
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />
       <footer className="flex w-full items-center justify-between bg-base-200 p-2 px-4">
@@ -168,3 +126,42 @@ export function RootComponent() {
     </div>
   );
 }
+
+// <div className="drawer sticky top-[10%] z-20">
+//   <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+//   <div className="drawer-content">
+//     {/* Page content here */}
+//     <label
+//       htmlFor="my-drawer"
+//       className="drawer-button absolute left-2 top-5 flex gap-2"
+//     >
+//       <Palette className="ml-4" /> remix
+//     </label>
+//   </div>
+//   <div className="drawer-side z-20">
+//     <label
+//       htmlFor="my-drawer"
+//       aria-label="close sidebar"
+//       className="drawer-overlay"
+//     />
+//     <ul className="menu min-h-full w-[70%] bg-base-200 text-base-content @container md:w-[40%] md:p-4">
+//       <label
+//         htmlFor="my-drawer"
+//         aria-label="close sidebar"
+//         className="drawer-overlay sticky top-4"
+//       >
+//         <X />
+//       </label>
+//       {/* Sidebar content here */}
+//       <DaisyUIThemeEditor
+//         theme={searchParams}
+//         saveChanges={(items_key, new_items) => {
+//           updateTheme(items_key as any, new_items);
+//         }}
+//         lockTheme={(items_key, new_items) => {
+//           updateLockedTheme(items_key as any, new_items);
+//         }}
+//       />
+//     </ul>
+//   </div>
+// </div>

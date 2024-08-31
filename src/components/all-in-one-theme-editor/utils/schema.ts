@@ -163,7 +163,7 @@ export const daisyUIThemeColorsSearchParamsSchema = z.object({
     .optional(),
 });
 export const daisyUIThemeCurvesSearchParamsSchema = z.object({
-  rounded_box: z
+  "--rounded-box": z
     .object({
       name: z.literal("rounded-box"),
       variable: z.literal("--rounded-box"),
@@ -171,7 +171,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  rounded_btn: z
+  "--rounded-btn": z
     .object({
       name: z.literal("rounded-btn"),
       variable: z.literal("--rounded-btn"),
@@ -179,7 +179,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  rounded_badge: z
+  "--rounded-badge": z
     .object({
       name: z.literal("rounded-badge"),
       variable: z.literal("--rounded-badge"),
@@ -188,7 +188,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
     })
     .optional(),
 
-  animation_btn: z
+  "--animation-btn": z
     .object({
       name: z.literal("animation-btn"),
       variable: z.literal("--animation-btn"),
@@ -196,7 +196,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  animation_input: z
+  "--animation-input": z
     .object({
       name: z.literal("animation-input"),
       variable: z.literal("--animation-input"),
@@ -204,7 +204,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  btn_focus_scale: z
+  "--btn-focus-scale": z
     .object({
       name: z.literal("btn-focus-scale"),
       variable: z.literal("--btn-focus-scale"),
@@ -212,7 +212,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  border_btn: z
+  "--border-btn": z
     .object({
       name: z.literal("border-btn"),
       variable: z.literal("--border-btn"),
@@ -220,7 +220,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  tab_border: z
+  "--tab-border": z
     .object({
       name: z.literal("tab-border"),
       variable: z.literal("--tab-border"),
@@ -228,7 +228,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
-  tab_radius: z
+ "--tab-radius": z
     .object({
       name: z.literal("tab-radius"),
       variable: z.literal("--tab-radius"),

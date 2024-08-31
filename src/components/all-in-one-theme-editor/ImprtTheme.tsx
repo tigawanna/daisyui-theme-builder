@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { daisyUIThemeSearchParamsSchema, DaisyUIThemeSearchParmsTypes } from "./utils/schema";
+import { importThemes } from "./utils/theme-default-values";
 
 interface ImportThemeProps {
   theme: DaisyUIThemeSearchParmsTypes;
@@ -8,7 +9,6 @@ interface ImportThemeProps {
 
 export function ImportTheme({ theme, updateWholeTheme }: ImportThemeProps) {
   const samplePlaceholder = `
-        {
         "primary": "#ffd900",
         "primary-content": "#4c4528",
         "secondary": "#ffa400",
@@ -34,35 +34,26 @@ export function ImportTheme({ theme, updateWholeTheme }: ImportThemeProps) {
         "--rounded-btn": "1.9rem",
         "--tab-border": "2px",
         "--tab-radius": "0.7rem"
-        }
   `;  
   const [input, setInput] = useState("");
-  function handleImport() {
-    if (!input.startsWith("{")) {
-      setInput((prev) => "{" + input);
-    }
-    if (!input.endsWith("}")) {
-      setInput((prev) => input + "}");
-    }
-  }
-  useEffect(() => {
-    if (input === "") return;
-    try {
-    const theme = daisyUIThemeSearchParamsSchema.parse(JSON.parse(input)); 
-        console.log(theme);   
-    }
-    catch(e:any){
-        console.log("========= Error =========",e.message);
-    }
-  }, [input]);
+
+;
+
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
+    <div className="flex h-screen w-full flex-col gap-2 md:items-center justify-center">
       <textarea
         placeholder={samplePlaceholder}
-        className="textarea textarea-bordered h-full min-h-[70vh] w-full"
+        className="textarea textarea-bordered h-[80%] min-h-[70vh] w-full p-6"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
+      <button onClick={() => {
+       const imported_theme = importThemes(input);
+       console.log(imported_theme);
+        updateWholeTheme(imported_theme)
+        }} className="btn btn-wide btn-sm btn-primary">
+        import
+      </button>
     </div>
   );
 }

@@ -13,26 +13,17 @@ export function DaisyUIThemeEditor({
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }) {
-  const {
-    tab_border,
-    tab_radius,
-    btn_focus_scale,
-    border_btn,
-    rounded_box,
-    rounded_badge,
-    animation_btn,
-    animation_input,
-  } = theme;
+
 
   const curves = {
-    tab_border,
-    tab_radius,
-    btn_focus_scale,
-    border_btn,
-    rounded_box,
-    rounded_badge,
-    animation_btn,
-    animation_input,
+    "--tab-border":theme?.["--tab-border"],
+   "--tab-radius":theme?.["--tab-radius"],
+   "--btn-focus-scale":theme?.["--btn-focus-scale"],
+   "--border-btn":theme?.["--border-btn"],
+   "--rounded-box":theme?.["--rounded-box"],
+   "--rounded-badge":theme?.["--rounded-badge"],
+   "--animation-btn":theme?.["--animation-btn"],
+   "--animation-input":theme?.["--animation-input"],
   };
 
   return (

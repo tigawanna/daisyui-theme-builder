@@ -14,12 +14,48 @@ export function oklchToHexString(input: string) {
     }
     // console.log(" parsing oklch", input);
     return chroma(input).hex();
-  } catch (error) {
-    console.log(
+  } catch (error: any) {
+    console.error(
       " ⚠️ ====  oklch parse error in oklchToHexString ====⚠️",
-      error,
+      error.message,
     );
     return "#000000";
+  }
+}
+
+/**
+ * Converts an OKLCH color slice to a string representation.
+ *
+ * @param {number[]} oklchSlice - The OKLCH color slice to convert, in the format [lightness, chroma, hue].
+ * @param {boolean} [wrapWithoklch=false] - Whether to wrap the resulting string in 'oklch()'.
+ * @return {string} The string representation of the OKLCH color slice in the format 'lightness% chroma, hue optionally wrapped in 'oklch()'.
+ */
+function oklchSliceToString(
+  oklchSlice: [number, number, number],
+  wrapWithoklch = false,
+) {
+  const l = Number.isNaN(oklchSlice[0])
+    ? 0.5
+    : (oklchSlice[0] * 100).toFixed(2);
+  const c = Number.isNaN(oklchSlice[1]) ? 0.5 : oklchSlice[1].toFixed(2);
+  const h = Number.isNaN(oklchSlice[2]) ? 0.5 : oklchSlice[2].toFixed(2);
+  const oklchSTring = `${l}% ${c} ${h}`;
+  if (wrapWithoklch) return `oklch(${oklchSTring})`;
+  return oklchSTring;
+}
+
+export function hexToOklch(input: string) {
+  // if(input.startsWith("#")) input = input.slice(1)
+  try {
+    const oklch_slice = chroma(input).oklch();
+    console.log(" parsing oklch", oklch_slice);
+    return oklchSliceToString(oklch_slice);
+  } catch (error: any) {
+    console.error(
+      " ⚠️ ====  oklch parse error in hexToOklch ====⚠️",
+      error.message,
+    );
+    return oklchSliceToString([0.5, 0.5, 0.5]);
   }
 }
 
@@ -31,6 +67,10 @@ export function oklchToHexString(input: string) {
  */
 export function oklchToHSL(oklch: string): HSLColor {
   try {
+    if (!oklch.startsWith("oklch(")) {
+      oklch = `oklch(${oklch})`;
+    }
+
     const hsl_slice = chroma(oklch).hsl();
     return {
       h: hsl_slice[0],
@@ -38,6 +78,10 @@ export function oklchToHSL(oklch: string): HSLColor {
       l: hsl_slice[2],
     };
   } catch (error: any) {
+    console.error(
+      " ⚠️ ====  oklch parse error in oklchToHSL ====⚠️",
+      error.message,
+    );
     return {
       h: 0,
       s: 0,
@@ -72,10 +116,10 @@ export function reactColorHSLToOKLCH(hsl: HSLColor) {
       return;
     }
     return `${(oklch_slice[0] * 100).toFixed(2)}% ${oklch_slice[1].toFixed(2)} ${oklch_slice[2].toFixed(2)}`;
-  } catch (error) {
+  } catch (error: any) {
     console.log(
       " =========  reactColorHSLToOKLCH convert hsl to oklch issue ============ ",
-      error,
+      error.message,
     );
     return "0.5 0.5 0.5";
   }

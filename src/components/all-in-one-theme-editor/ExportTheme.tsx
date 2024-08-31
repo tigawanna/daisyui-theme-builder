@@ -60,33 +60,33 @@ export function ExportTheme({ theme }: ExportThemeProps) {
     theme?.["warning"]?.value
       ? `"warning":"${oklchToHexString(theme?.["warning"]?.value)}"`
       : undefined,
-    theme.animation_btn?.value
-      ? `"--animation-btn":"${theme.animation_btn?.value}"`
+    theme?.["--animation-btn"]?.value
+      ? `"--animation-btn":"${theme?.["--animation-btn"]?.value}"`
       : undefined,
-    theme.animation_input?.value
-      ? `"--animation-input":"${theme.animation_input?.value}"`
+    theme?.["--animation-input"]?.value
+      ? `"--animation-input":"${theme?.["--animation-input"]?.value}"`
       : undefined,
 
-    theme.border_btn?.value
-      ? `"--border-btn":"${theme.border_btn?.value}"`
+    theme?.["--border-btn"]?.value
+      ? `"--border-btn":"${theme?.["--border-btn"]?.value}"`
       : undefined,
-    theme.btn_focus_scale?.value
-      ? `"--btn-focus-scale":"${theme.btn_focus_scale?.value}"`
+    theme?.["--btn-focus-scale"]?.value
+      ? `"--btn-focus-scale":"${theme?.["--btn-focus-scale"]?.value}"`
       : undefined,
-    theme.rounded_badge?.value
-      ? `"--rounded-badge":"${theme.rounded_badge?.value}"`
+    theme?.["--rounded-badge"]?.value
+      ? `"--rounded-badge":"${theme?.["--rounded-badge"]?.value}"`
       : undefined,
-    theme.rounded_box?.value
-      ? `"--rounded-box":"${theme.rounded_box?.value}"`
+    theme?.["--rounded-box"]?.value
+      ? `"--rounded-box":"${theme?.["--rounded-box"]?.value}"`
       : undefined,
-    theme.rounded_btn?.value
-      ? `"--rounded-btn":"${theme.rounded_btn?.value}"`
+    theme?.["--rounded-btn"]?.value
+      ? `"--rounded-btn":"${theme?.["--rounded-btn"]?.value}"`
       : undefined,
-    theme.tab_border?.value
-      ? `"--tab-border":"${theme.tab_border?.value}"`
+    theme?.["--tab-border"]?.value
+      ? `"--tab-border":"${theme?.["--tab-border"]?.value}"`
       : undefined,
-    theme.tab_radius?.value
-      ? `"--tab-radius":"${theme.tab_radius?.value}"`
+    theme?.["--tab-radius"]?.value
+      ? `"--tab-radius":"${theme?.["--tab-radius"]?.value}"`
       : undefined,
   ].filter(Boolean);
 

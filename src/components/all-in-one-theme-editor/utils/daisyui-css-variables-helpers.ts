@@ -45,14 +45,14 @@ export function getDaisyUiInlineCSSVariables(
     "--inc": theme["info-content"]?.value,
     "--su": theme.success?.value,
     "--suc": theme["success-content"]?.value,
-    "--animation-btn": theme["animation_btn"]?.value,
-    "--animation-input": theme["animation_input"]?.value,
-    "--border-btn": theme["border_btn"]?.value,
-    "--btn-focus-scale": theme["btn_focus_scale"]?.value,
-    "--rounded-badge": theme["rounded_badge"]?.value,
-    "--rounded-btn": theme["rounded_btn"]?.value,
-    "--rounded-box": theme["rounded_box"]?.value,
-    "--tab-radius": theme["tab_radius"]?.value,
+    "--animation-btn": theme["--animation-btn"]?.value,
+    "--animation-input": theme["--animation-input"]?.value,
+    "--border-btn": theme["--border-btn"]?.value,
+    "--btn-focus-scale": theme["--btn-focus-scale"]?.value,
+    "--rounded-badge": theme["--rounded-badge"]?.value,
+    "--rounded-btn": theme["--rounded-btn"]?.value,
+    "--rounded-box": theme["--rounded-box"]?.value,
+    "--tab-radius": theme["--tab-radius"]?.value,
   };
 }
 

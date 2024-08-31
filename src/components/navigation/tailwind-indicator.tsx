@@ -1,5 +1,4 @@
 export function TailwindIndicator() {
-  if (!import.meta.env.DEV) return null;
 
   return (
     <div className="bg-bg-emphasized fixed bottom-[1.5%] left-[50%] z-50 flex size-8 items-center justify-center font-bold">

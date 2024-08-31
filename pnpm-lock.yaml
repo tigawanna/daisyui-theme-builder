@@ -147,6 +147,9 @@ importers:
       vite:
         specifier: ^5.3.1
         version: 5.3.3
+      vite-plugin-splash-screen:
+        specifier: ^0.0.1
+        version: 0.0.1
       vite-tsconfig-paths:
         specifier: ^4.3.2
         version: 4.3.2(typescript@5.5.3)(vite@5.3.3)
@@ -2904,6 +2907,9 @@ packages:
     resolution: {integrity: sha512-LdsW4pxj0Ot69FAoXZ1yTnA9bjGohr2yNBU7QKRxpz8ITSkhuDl6h3zS/tvgz4qrNjeRnvrWeXQ8ZF7Um4W00Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  vite-plugin-splash-screen@0.0.1:
+    resolution: {integrity: sha512-DaLECKmrUf+xQcSckIXv5myAwwA6ha6vYoac6FC3aoEmhEIhWGuwZ5SjgDQ3+cAFB9q1JfxFKdGLX1PjyiOppA==}
 
   vite-tsconfig-paths@4.3.2:
     resolution: {integrity: sha512-0Vd/a6po6Q+86rPlntHye7F31zA2URZMbH8M3saAZ/xR9QoGN/L21bxEGfXdWmFdNkqPpRdxFT7nmNe12e9/uA==}
@@ -5951,6 +5957,8 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-plugin-splash-screen@0.0.1: {}
 
   vite-tsconfig-paths@4.3.2(typescript@5.5.3)(vite@5.3.3):
     dependencies:

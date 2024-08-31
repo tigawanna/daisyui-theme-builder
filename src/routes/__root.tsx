@@ -19,6 +19,7 @@ import {
   ImportThemeDaisyUiDrawer,
   MainDaisyUiDrawer,
 } from "@/components/navigation/DaisyUiDrawers";
+import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
 
 export type DrawerIds = "main-page-drawer" | "daisyui-theme-editor-drawer";
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
@@ -52,31 +53,9 @@ export function RootComponent() {
     });
   }, [searchParams?.["--theme-name"]?.value])
 
-  // useLayoutEffect(() => {
-  //   const mutationObserver = new MutationObserver((e) => {
-  //     const elem = e[0].target as HTMLHtmlElement;
-  //     const current_data_theme = elem.getAttribute("data-theme");
-  //       const default_data_theme = defaultThemes({
-  //         theme: { ...searchParams },
-  //       });
-  //     navigate({
-  //       search: default_data_theme,
-  //     });
-
-  //   });
-  //   mutationObserver.observe(document.documentElement, {
-  //     attributes: true,
-  //     attributeFilter: ["data-theme"],
-  //   });
-  //   return () => {
-  //     mutationObserver.disconnect();
-  //   };
-  // }, []);
-
-  // const inline_css_variables = Object.entries(searchParams).map(([key, value]) =>{
-  //   if(typeof value === "string") return
-  //   return `${value.variable}: ${value.value};`
-  // }).join(";")
+  useEffect(() => {
+    hideSplashScreen();
+  }, []);
 
   function closeDrawer(drawerId: DrawerIds) {
     const drawer = document.getElementById(drawerId) as HTMLInputElement;

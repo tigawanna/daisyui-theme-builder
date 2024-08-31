@@ -14,11 +14,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as ShadcnIndexImport } from './routes/shadcn/index'
 
 // Create Virtual Routes
 
 const TwarkuiIndexLazyImport = createFileRoute('/twarkui/')()
+const ShadcnIndexLazyImport = createFileRoute('/shadcn/')()
 
 // Create/Update Routes
 
@@ -32,10 +32,10 @@ const TwarkuiIndexLazyRoute = TwarkuiIndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/twarkui/index.lazy').then((d) => d.Route))
 
-const ShadcnIndexRoute = ShadcnIndexImport.update({
+const ShadcnIndexLazyRoute = ShadcnIndexLazyImport.update({
   path: '/shadcn/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/shadcn/index.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
@@ -52,7 +52,7 @@ declare module '@tanstack/react-router' {
       id: '/shadcn/'
       path: '/shadcn'
       fullPath: '/shadcn'
-      preLoaderRoute: typeof ShadcnIndexImport
+      preLoaderRoute: typeof ShadcnIndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/twarkui/': {
@@ -69,7 +69,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  ShadcnIndexRoute,
+  ShadcnIndexLazyRoute,
   TwarkuiIndexLazyRoute,
 })
 
@@ -90,7 +90,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "index.tsx"
     },
     "/shadcn/": {
-      "filePath": "shadcn/index.tsx"
+      "filePath": "shadcn/index.lazy.tsx"
     },
     "/twarkui/": {
       "filePath": "twarkui/index.lazy.tsx"

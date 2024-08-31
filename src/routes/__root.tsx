@@ -53,9 +53,9 @@ export function RootComponent() {
     });
   }, [searchParams?.["--theme-name"]?.value])
 
-  useEffect(() => {
-    hideSplashScreen();
-  }, []);
+  // useEffect(() => {
+  //   hideSplashScreen();
+  // }, []);
 
   function closeDrawer(drawerId: DrawerIds) {
     const drawer = document.getElementById(drawerId) as HTMLInputElement;

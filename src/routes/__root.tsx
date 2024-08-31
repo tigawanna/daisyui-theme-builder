@@ -68,13 +68,13 @@ export function RootComponent() {
       data-theme={searchParams?.["--theme-name"]?.value}
       // @ts-expect-error
       style={getDaisyUiInlineCSSVariables(searchParams)}
-      className="drawer flex h-full w-full flex-col items-center justify-center bg-base-100 text-base-content"
+      className="drawer flex h-full w-full flex-col items-center justify-between bg-base-100 text-base-content"
     >
       <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex w-full flex-col">
         {/* Navbar */}
-        <div className="sticky top-0 flex flex-col items-center justify-center bg-base-200 ">
-          <div className="w-full h-full justify-center flex  items-center p-2">
+        <div className="sticky top-0 flex flex-col items-center justify-center bg-base-200">
+          <div className="flex h-full w-full items-center justify-center p-2">
             <label
               htmlFor="main-page-drawer"
               aria-label="open sidebar"
@@ -107,9 +107,9 @@ export function RootComponent() {
           )}
         </div>
 
-        {/* Page content here */}
         <Outlet />
       </div>
+      {/* Page content here */}
       <MainDaisyUiDrawer
         closeDrawer={closeDrawer}
         searchParams={searchParams}

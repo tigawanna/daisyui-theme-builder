@@ -15,6 +15,7 @@ export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
     "cyberpunk",
     "valentine",
     "halloween",
+    "custom_theme",
     "garden",
     "forest",
     "aqua",
@@ -53,7 +54,7 @@ export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
         <option
           value={item}
           key={item}
-          selected={item === searchParams.theme_name}
+          selected={item === searchParams?.["--theme-name"]?.value}
         >
           {item}
         </option>

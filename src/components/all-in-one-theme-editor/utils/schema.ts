@@ -240,7 +240,20 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
 
 export const daisyUIThemeSearchParamsSchema = z
   .object({
-    theme_name: z.string().optional(),
+    "--theme-name": z.object({
+      name: z.literal("theme-name"),
+      variable: z.literal("data-theme"),
+      value: z.string(),
+      locked: z.boolean().optional(),
+
+    }).optional(),
+    "--color-scheme": z.object({
+      name: z.literal("color-scheme"),
+      variable: z.literal("color-scheme"),
+      value: z.string(),
+      locked: z.boolean().optional(),
+
+    }).optional()
   })
   .merge(daisyUIThemeColorsSearchParamsSchema)
   .merge(daisyUIThemeCurvesSearchParamsSchema);

@@ -2,6 +2,7 @@ import {
   createRootRouteWithContext,
   Link,
   Outlet,
+  useRouterState,
 } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
@@ -9,13 +10,10 @@ import { useEffect, useLayoutEffect } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
-import { Palette, Save, X } from "lucide-react";
 import { getDaisyUiInlineCSSVariables } from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
 import { defaultThemes } from "@/components/all-in-one-theme-editor/utils/theme-default-values";
-import { DaisyUIThemeEditor } from "@/components/all-in-one-theme-editor/DaisyUIThemeEditor";
 import { useSearchParamsTheme } from "@/components/all-in-one-theme-editor/utils/use-search-params-theme";
 import { daisyUIThemeSearchParamsSchema } from "@/components/all-in-one-theme-editor/utils/schema";
-import { ExportTheme } from "@/components/all-in-one-theme-editor/ExportTheme";
 import {
   ExportThemeDaisyUiDrawer,
   ImportThemeDaisyUiDrawer,
@@ -33,6 +31,7 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 export function RootComponent() {
   const { updateLockedTheme, searchParams, updateTheme,updateWholeTheme, navigate } =
     useSearchParamsTheme();
+  const { status } = useRouterState();
   useEffect(() => {
     themeChange(false);
     // 👆 false parameter is required for react project
@@ -51,7 +50,7 @@ export function RootComponent() {
     navigate({
       search: default_data_theme,
     });
-  }, [searchParams.theme_name]);
+  }, [searchParams?.["--theme-name"]?.value])
 
   // useLayoutEffect(() => {
   //   const mutationObserver = new MutationObserver((e) => {
@@ -87,39 +86,46 @@ export function RootComponent() {
   }
   return (
     <div
-      data-theme={searchParams.theme_name}
+      data-theme={searchParams?.["--theme-name"]?.value}
       // @ts-expect-error
       style={getDaisyUiInlineCSSVariables(searchParams)}
-      className="drawer flex h-full w-full flex-col items-center justify-center"
+      className="drawer flex h-full w-full flex-col items-center justify-center bg-base-100 text-base-content"
     >
       <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex w-full flex-col">
         {/* Navbar */}
-        <div className="sticky top-0 flex items-center justify-center bg-base-200 p-2">
-          <label
-            htmlFor="main-page-drawer"
-            aria-label="open sidebar"
-            className="btn btn-square btn-ghost btn-sm"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="inline-block h-6 w-6 stroke-current"
+        <div className="sticky top-0 flex flex-col items-center justify-center bg-base-200 ">
+          <div className="w-full h-full justify-center flex  items-center p-2">
+            <label
+              htmlFor="main-page-drawer"
+              aria-label="open sidebar"
+              className="btn btn-square btn-ghost btn-sm"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </label>
-          <Link to="/" search={searchParams} classID="px-2">
-            <h1 className="mx-2 text-2xl font-bold hover:text-accent">UI</h1>
-          </Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block h-6 w-6 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </label>
+            <Link to="/" search={searchParams} classID="px-2">
+              <h1 className="mx-2 text-2xl font-bold hover:text-accent">UI</h1>
+            </Link>
 
-          <MainNavBar />
+            <MainNavBar />
+          </div>
+          {status === "pending" ? (
+            <div className="skeleton h-1 w-full bg-accent" />
+          ) : (
+            <div className="h-1 w-full" />
+          )}
         </div>
 
         {/* Page content here */}
@@ -134,7 +140,10 @@ export function RootComponent() {
       {/* export theme drawer */}
       <ExportThemeDaisyUiDrawer searchParams={searchParams} />
       {/* import theme drawer */}
-      <ImportThemeDaisyUiDrawer searchParams={searchParams} updateWholeTheme={updateWholeTheme}/>
+      <ImportThemeDaisyUiDrawer
+        searchParams={searchParams}
+        updateWholeTheme={updateWholeTheme}
+      />
 
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />

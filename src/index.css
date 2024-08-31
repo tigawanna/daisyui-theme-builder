@@ -64,6 +64,7 @@
   }
   @media (prefers-color-scheme: dark) {
     .dark {
+   
       /* 
         use your editor's find and replace to edit these values
     primary-foreground -> primary-content

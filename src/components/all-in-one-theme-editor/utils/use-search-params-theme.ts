@@ -33,7 +33,12 @@ export function useSearchParamsTheme() {
       search: (prev) => {
         return {
           ...prev,
-          theme_name,
+          "--theme-name":{
+            // ...prev["--theme-name"],
+            value:theme_name,
+            name:"theme-name",
+            variable:"data-theme"
+          }
         };
       },
     });

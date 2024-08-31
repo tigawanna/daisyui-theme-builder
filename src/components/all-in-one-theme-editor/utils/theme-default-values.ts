@@ -33,6 +33,12 @@ export function loadThemeName() {
   const current_data_theme = elem.getAttribute("data-theme");
   return current_data_theme ?? "light";
 }
+export function loadColorScheme() {
+  const color_scheme = getComputedStyle(document.documentElement).getPropertyValue(
+    "color-scheme",
+  );
+  return color_scheme ?? undefined
+}
 
 function loadFromSearchParamsIfLocked(theme?: {
   name: string;
@@ -55,6 +61,12 @@ export function defaultThemes({
   theme?: DaisyUIThemeSearchParmsTypes;
 }): DaisyUIThemeSearchParmsTypes {
   return {
+    "--color-scheme":{
+      name: "color-scheme",
+      variable: "color-scheme",
+      value: loadFromSearchParamsIfLocked(theme?.["--color-scheme"]),
+      locked: theme?.["--color-scheme"]?.locked ?? false
+    },
     accent: {
       name: "accent",
       variable: "--a",
@@ -190,32 +202,39 @@ export function defaultThemes({
     "--rounded-box": {
       name: "rounded-box",
       variable: "--rounded-box",
-      value: theme?.["--rounded-box"]?.value ?? getThemeVariable("--rounded-box"),
+      value:
+        theme?.["--rounded-box"]?.value ?? getThemeVariable("--rounded-box"),
       locked: theme?.["--rounded-box"]?.locked ?? false,
     },
     "--rounded-btn": {
       name: "rounded-btn",
       variable: "--rounded-btn",
-      value: theme?.["--rounded-btn"]?.value ?? getThemeVariable("--rounded-btn"),
+      value:
+        theme?.["--rounded-btn"]?.value ?? getThemeVariable("--rounded-btn"),
       locked: theme?.["--rounded-btn"]?.locked ?? false,
     },
     "--rounded-badge": {
       name: "rounded-badge",
       variable: "--rounded-badge",
-      value: theme?.["--rounded-badge"]?.value ?? getThemeVariable("--rounded-badge"),
+      value:
+        theme?.["--rounded-badge"]?.value ??
+        getThemeVariable("--rounded-badge"),
       locked: theme?.["--rounded-badge"]?.locked ?? false,
     },
     "--animation-btn": {
       name: "animation-btn",
       variable: "--animation-btn",
-      value: theme?.["--animation-btn"]?.value ?? getThemeVariable("--animation-btn"),
+      value:
+        theme?.["--animation-btn"]?.value ??
+        getThemeVariable("--animation-btn"),
       locked: theme?.["--animation-btn"]?.locked ?? false,
     },
     "--animation-input": {
       name: "animation-input",
       variable: "--animation-input",
       value:
-        theme?.["--animation-input"]?.value ?? getThemeVariable("--animation-input"),
+        theme?.["--animation-input"]?.value ??
+        getThemeVariable("--animation-input"),
       locked: theme?.["--animation-input"]?.locked ?? false,
     },
     "--border-btn": {
@@ -230,22 +249,39 @@ export function defaultThemes({
       value: theme?.["--tab-border"]?.value ?? getThemeVariable("--tab-border"),
       locked: theme?.["--tab-border"]?.locked ?? false,
     },
-   "--tab-radius": {
+    "--tab-radius": {
       name: "tab-radius",
       variable: "--tab-radius",
       value: theme?.["--tab-radius"]?.value ?? getThemeVariable("--tab-radius"),
       locked: theme?.["--tab-radius"]?.locked ?? false,
     },
 
-   "--btn-focus-scale": {
-      name:"btn-focus-scale",
+    "--btn-focus-scale": {
+      name: "btn-focus-scale",
       variable: "--btn-focus-scale",
       value:
-        theme?.["--btn-focus-scale"]?.value ?? getThemeVariable("--btn-focus-scale"),
+        theme?.["--btn-focus-scale"]?.value ??
+        getThemeVariable("--btn-focus-scale"),
       locked: theme?.["--btn-focus-scale"]?.locked ?? false,
     },
+    "--theme-name": {
+      name: "theme-name",
+      variable: "data-theme",
+      value:
+        theme?.["--theme-name"]?.value ?? loadThemeName() ?? "",
+      locked: theme?.["--theme-name"]?.locked ?? false,
+    },
+    // "--color-scheme": {
+    //   name: "color-scheme",
+    //   variable: "--color-scheme",
+    //   value:
+    //     theme?.["--color-scheme"]?.value ??
+    //     loadColorScheme() ??
+    //     "",
+    //   locked: theme?.["--color-scheme"]?.locked ?? false,
+    // },
 
-    theme_name: theme?.theme_name ?? loadThemeName(),
+    // theme_name: theme?.theme_name ?? loadThemeName(),
   };
 }
 

@@ -10,6 +10,8 @@ interface ExportThemeProps {
 export function ExportTheme({ theme }: ExportThemeProps) {
   const [wrapInBraces,setWrapInBraces] = useState(false)
   const colors_to_export = [
+    theme?.["--color-scheme"]?.value ? `"color-scheme":"${theme?.["--color-scheme"]?.value}"` 
+    : undefined,
     theme?.primary?.value
       ? `"primary":"${oklchToHexString(theme?.primary?.value)}"`
       : undefined,

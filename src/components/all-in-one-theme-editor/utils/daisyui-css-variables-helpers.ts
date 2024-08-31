@@ -4,14 +4,33 @@ export const getColorValueFromTheme = (variable: string) => {
   const colorValues = getComputedStyle(
     document.documentElement,
   ).getPropertyValue(variable);
-  // return `oklch(${colorValues})`;
-  return colorValues;
+  // let oklch_string = colorValues?.trim().split(" ");
+  // if(oklch_string[2]?.split(".")?.[0]?.length>2){
+  //   oklch_string[2] = (Number.parseFloat(oklch_string[2])/10).toFixed(2)
+  //   const oklch = oklch_string.join(" ")
+  //   console.log("--var >>>> ",variable,"colorValues >>> ", colorValues,"oklch >>> " ,oklch);
+  // } 
+  return colorValues
 };
 
 export const getThemeVariable = (variable: string) => {
   const colorValues = getComputedStyle(
     document.documentElement,
   ).getPropertyValue(variable);
+    // let oklch_string = colorValues?.trim().split(" ");
+    // if (oklch_string[2]?.split(".")?.[0]?.length > 2) {
+    //   oklch_string[2] = (Number.parseFloat(oklch_string[2]) / 10).toFixed(2);
+    //   const newColorValue = oklch_string.join(" ");
+    //   console.log(
+    //     "--var >>>> ",
+    //     variable,
+    //     "colorValues >>> ",
+    //     colorValues,
+    //     "newColorValue >>> ",
+    //     newColorValue,
+    //   );
+    //   return newColorValue;
+    // }
   return colorValues;
 };
 
@@ -20,11 +39,14 @@ type InlineCSSVaraiblesThemeVAriable =
   Required<InlineCSSVaraiblesTheme>[keyof InlineCSSVaraiblesTheme]["variable"];
 type InlineCSSVaraibles = {
   [key in InlineCSSVaraiblesThemeVAriable]?: string;
+}&{
+  "color-scheme"?:string
 };
 export function getDaisyUiInlineCSSVariables(
   theme: DaisyUIThemeSearchParmsTypes,
 ): InlineCSSVaraibles {
   return {
+    "color-scheme": theme["--color-scheme"]?.value,
     "--p": theme.primary?.value,
     "--pc": theme["primary-content"]?.value,
     "--s": theme.secondary?.value,

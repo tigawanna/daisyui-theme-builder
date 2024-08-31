@@ -1,18 +1,19 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
-import { FileUp, Import } from "lucide-react";
+import { FileUp, Import, Loader, Moon, Sun } from "lucide-react";
 
 interface MainNavBarProps {}
 
 export function MainNavBar({}: MainNavBarProps) {
-  const { searchParams } = useSearchParamsTheme();
-  const { isLoading } = useRouterState();
+  const { searchParams,updateTheme } = useSearchParamsTheme();
+  const color_scheme = searchParams?.["--color-scheme"]?.value;
+
   // const isLoading=true
   // // console.log(" ========= isLoading ========= ", isLoading)
   return (
     <header className="flex w-full flex-col items-center justify-between">
-      <nav className="flex w-full items-center justify-end md:justify-between ">
+      <nav className="flex w-full items-center justify-end md:justify-between">
         <div className="hidden w-full items-center justify-center gap-2 text-sm md:flex">
           <Link
             search={searchParams}
@@ -29,6 +30,23 @@ export function MainNavBar({}: MainNavBarProps) {
             <h1 className="">twarkui</h1>
           </Link>
         </div>
+
+        <button
+          aria-lable="change color scheme"
+          className="btn btn-ghost btn-sm flex gap-2  brightness-150"
+        >
+          {color_scheme === "dark" ? (
+            <Moon
+              className=""
+              onClick={() => updateTheme("--color-scheme", "light")}
+            />
+          ) : (
+            <Sun
+              className=""
+              onClick={() => updateTheme("--color-scheme", "dark")}
+            />
+          )}
+        </button>
         {/* <ManualThemeSwitcher/> */}
         <DaisyuiThemesSelect />
         <div className="flex min-w-[20%] justify-end gap-3">
@@ -39,7 +57,7 @@ export function MainNavBar({}: MainNavBarProps) {
             >
               import <Import />
             </label>
-              <label
+            <label
               htmlFor="export-theme-drawer"
               className="btn drawer-button btn-sm flex gap-2"
             >
@@ -48,11 +66,6 @@ export function MainNavBar({}: MainNavBarProps) {
           </div>
         </div>
       </nav>
-      {isLoading ? (
-        <div className="skeleton h-1 w-full bg-accent" />
-      ) : (
-        <div className="h-1 w-full" />
-      )}
     </header>
   );
 }

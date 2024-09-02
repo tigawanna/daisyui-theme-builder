@@ -10,3 +10,11 @@ inspired by [daisy ui theme builder](https://themes.ionevolve.com/) but all the 
 - export theme
   ![alt text](image-1.png)
   [code on github](https://github.com/tigawanna/daisyui-theme-builder)
+
+
+
+
+
+
+
+

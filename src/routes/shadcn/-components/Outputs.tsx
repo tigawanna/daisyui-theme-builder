@@ -8,9 +8,16 @@ import { BreadcrumbDemo } from "./demos/BreadCumbsDemo";
 import { ButtonDemo } from "./demos/ButtonDemo";
 import { CardWithForm } from "./demos/CardDemo";
 import ChartsDemo from "./demos/ChartsDemo";
+import { ComboboxDemo } from "./demos/ComboboxDemo";
+import { DataTableDemo } from "./demos/DataTableDemo";
 
+const CommandDemo = lazy(() => import("./demos/CommandDemo"));
 const CarouselDemo = lazy(() => import("./CarouselDemo"));
 const CalendarDemo = lazy(() => import("./demos/CalenderDemo"));
+const ContextMenuDemo = lazy(() => import("./demos/ContextMenuDemo"));
+const DrawerDemo = lazy(() => import("./demos/DrawerDemo"));
+const DropdownMenuDemo = lazy(() => import("./demos/DropdownMenuDemo"));
+
 interface OutputsProps {}
 
 export function Outputs({}: OutputsProps) {
@@ -20,7 +27,7 @@ export function Outputs({}: OutputsProps) {
         <BreadcrumbDemo />
         <div className="flex w-full flex-wrap items-center justify-center gap-5 p-5">
           <AccordionDemo />
-              <CalendarDemo />
+          <CalendarDemo />
           {/* <Suspense fallback={<div className="w-full bg-base-200 skeleton min-h-[200px] justify-center items-center">Loading...</div>}>
           </Suspense> */}
         </div>
@@ -30,15 +37,94 @@ export function Outputs({}: OutputsProps) {
           <AlertDialogDemo />
           <ButtonDemo />
           <BadgeDemo />
+            <div className="flex w-fit flex-col items-center justify-center gap-1 md:max-w-[50%]">
+            <h1 className="text-xl">Combobox</h1>
+          <ComboboxDemo />
+          </div>
+          <div className="flex w-fit flex-col items-center justify-center gap-1 md:max-w-[50%]">
+            <h1 className="text-xl">Context Menu</h1>
+            <Suspense
+              fallback={
+                <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                  Loading...
+                </div>
+              }
+            >
+              <ContextMenuDemo />
+            </Suspense>
+          </div>
+
+          <div className="flex w-fit flex-col items-center justify-center gap-1 md:max-w-[50%]">
+            <h1 className="text-xl">Dropdown Menu</h1>
+            <Suspense
+              fallback={
+                <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                  Loading...
+                </div>
+              }
+            >
+              <DropdownMenuDemo />
+            </Suspense>
+          </div>
         </div>
         <div className="flex w-full flex-wrap items-center justify-center gap-6 p-5">
           <CardWithForm />
-          <Suspense fallback={<div className="w-full bg-base-200 skeleton min-h-[200px] flex justify-center items-center">Loading...</div>}>
-          <CarouselDemo />
+          <Suspense
+            fallback={
+              <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                Loading...
+              </div>
+            }
+          >
+            <CarouselDemo />
           </Suspense>
         </div>
         <div className="flex w-full flex-wrap items-center justify-center gap-6 p-5">
-          <ChartsDemo/>
+          <Suspense
+            fallback={
+              <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                Loading...
+              </div>
+            }
+          >
+            <CommandDemo />
+          </Suspense>
+          <div className="flex w-full flex-col items-center justify-center gap-1 md:max-w-[50%]">
+            <h1 className="text-xl">Chart</h1>
+            <Suspense
+              fallback={
+                <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                  Loading...
+                </div>
+              }
+            >
+              <ChartsDemo />
+            </Suspense>
+          </div>
+        </div>
+
+        <div className="flex w-full flex-col items-center justify-center gap-1 md:max-w-[50%]">
+          <h1 className="text-xl">Data Table</h1>
+          <Suspense
+            fallback={
+              <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                Loading...
+              </div>
+            }
+          >
+            <DataTableDemo />
+          </Suspense>
+        </div>
+        <div className="flex w-full flex-col items-center justify-center gap-6 p-5">
+          <Suspense
+            fallback={
+              <div className="skeleton flex min-h-[200px] w-full items-center justify-center bg-base-200">
+                Loading...
+              </div>
+            }
+          >
+            <DrawerDemo />
+          </Suspense>
         </div>
       </div>
     </div>

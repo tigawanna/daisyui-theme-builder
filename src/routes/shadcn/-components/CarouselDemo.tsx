@@ -11,7 +11,9 @@ import {
 
 export  default function CarouselDemo() {
   return (
-    <Carousel className="w-fit max-w-xs mx-8">
+    <div className="flex h-full w-fit flex-col items-center justify-center gap-2">
+      <h1 className="text-xl">Caroussel</h1>
+    <Carousel className="w-full max-w-xs mx-8">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
@@ -28,5 +30,6 @@ export  default function CarouselDemo() {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
+    </div>
   );
 }

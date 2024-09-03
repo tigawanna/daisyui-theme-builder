@@ -30,8 +30,13 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 });
 
 export function RootComponent() {
-  const { updateLockedTheme, searchParams, updateTheme,updateWholeTheme, navigate } =
-    useSearchParamsTheme();
+  const {
+    updateLockedTheme,
+    searchParams,
+    updateTheme,
+    updateWholeTheme,
+    navigate,
+  } = useSearchParamsTheme();
   const { status } = useRouterState();
   useEffect(() => {
     themeChange(false);
@@ -51,7 +56,7 @@ export function RootComponent() {
     navigate({
       search: default_data_theme,
     });
-  }, [searchParams?.["--theme-name"]?.value])
+  }, [searchParams?.["--theme-name"]?.value]);
 
   // useEffect(() => {
   //   hideSplashScreen();
@@ -66,8 +71,10 @@ export function RootComponent() {
   return (
     <div
       data-theme={searchParams?.["--theme-name"]?.value}
-      // @ts-expect-error
-      style={getDaisyUiInlineCSSVariables(searchParams)}
+      style={{
+        colorScheme: searchParams?.["--color-scheme"]?.value,
+        ...getDaisyUiInlineCSSVariables(searchParams),
+      }}
       className="drawer flex h-full w-full flex-col items-center justify-between bg-base-100 text-base-content"
     >
       <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />

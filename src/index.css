@@ -2,13 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
 
-
- 
-}
 
 @layer base {
+  :root{
+    --chart-1: theme(colors.primary);
+    --chart-2:theme(colors.secondary);
+    --color-desktop:theme(colors.warning);
+    --color-mobile:theme(colors.accent);
+    --color-chrome:theme(colors.error);
+    --color-safari:theme(colors.success);
+
+  }
   * {
     @apply border-border;
   }

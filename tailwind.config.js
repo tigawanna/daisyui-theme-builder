@@ -56,11 +56,12 @@ export default {
         extend: {
             colors: {
                 border: "oklch(var(--bc))",
-                input: "oklch(var(--bc))",
+                input: "oklch(var(--b1))",
                 ring: "oklch(var(--ac))",
-                background: "var(--b1)",
+                background: "oklch(var(--b1))",
                 foreground: "oklch(var(--bc))",
-
+                "chart-1": "oklch(var(--p))",
+                "chart-2":"oklch(var(--s))",
                 "primary-foreground":"oklch(var(--pc))",
                 "secondary-foreground": "oklch(var(--sc))",
                 "accent-foreground": "oklch(var(--ac))",
@@ -70,16 +71,16 @@ export default {
                     foreground: "oklch(var(--erc))",
                 },
                 muted: {
-                    DEFAULT: "oklch(var(--b2))",
+                    DEFAULT: "oklch(var(--b3))",
                     foreground: "oklch(var(--bc))",
                 },
 
                 popover: {
-                    DEFAULT: "oklch(var(--a))",
-                    foreground: "oklch(var(--ac))",
+                    DEFAULT: "oklch(var(--b1))",
+                    foreground: "oklch(var(--bc))",
                 },
                 card: {
-                    DEFAULT: "oklch(var(--b3))",
+                    DEFAULT: "oklch(var(--b2))",
                     foreground: "oklch(var(--bc))",
                 },
             },

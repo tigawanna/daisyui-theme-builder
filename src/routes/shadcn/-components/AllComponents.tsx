@@ -1,4 +1,4 @@
-import { AccordionDemo } from "./Accordion";
+import { AccordionDemo } from "./demos/AccordionDemo";
 import { Outputs } from "./Outputs";
 
 interface AllComponentsProps {
@@ -9,7 +9,7 @@ export function AllComponents({}:AllComponentsProps){
 return (
   <div className="flex h-full w-full flex-col items-center  justify-center gap-3">
     <Outputs />
-      <div className="flex h-full w-full flex-wrap items-center  justify-center gap-3">
+    {/* <div className="flex h-full w-full flex-wrap items-center  justify-center gap-3">
 
     <div className="bg-primary p-5 text-base-100">primary</div>
     <div className="bg-primary-content p-5 text-base-100">primary-content</div>
@@ -28,7 +28,7 @@ return (
     <div className="bg-accent p-5 ">content</div>
     <div className="bg-accent-content p-5 text-accent-content">accent content</div>
 
-  </div>
+  </div> */}
   </div>
 );
 }

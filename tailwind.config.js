@@ -1,5 +1,47 @@
 /** @type {import('tailwindcss').Config} */
 
+
+// "--p": "primary",          // primary color and its values
+// "--pc": "primary-content", // color of content within primary color
+
+// "--s": "secondary",        // secondary color and its values
+// "--sc": "secondary-content", // color of content within secondary color
+
+// "--n": "neutral",          // state color and its values
+// "--nc": "neutral-content", // color of content within state color
+
+// "--a": "accent",          // accent color and its values
+// "--ac": "accent-content", // color of content within accent color
+
+// "--b1": "base-100",              // base color, also called gray color
+// "--b2": "base-200",              // base color, also called gray color
+// "--b3": "base-300",              // base color, also called gray color
+// "--bc": "base-content",           // base color, also called gray color
+
+// "--in": "info",          // info color and its values
+// "--inc": "info-content", // color of content within info color
+
+// "--su": "success",          // success color and its values
+// "--suc": "success-content", // color of content within success color
+
+// "--wa": "warning",          // warning color and its values
+// "--wac": "warning-content", // color of content within warning color
+
+// "--er": "error",          // error color and its values
+// "--erc": "error-content", // color of content within error color
+
+// "--rounded-box": "1rem",          // border radius rounded-box utility class, used in card and other large boxes
+// "--rounded-btn": "0.5rem",        // border radius rounded-btn utility class, used in buttons and similar element
+// "--rounded-badge": "1.9rem",      // border radius rounded-badge utility class, used in badges and similar
+
+// "--animation-btn": "0.25s",       // duration of animation when you click on button
+// "--animation-input": "0.2s",      // duration of animation for inputs like checkbox, toggle, radio, etc
+
+// "--btn-focus-scale": "0.95",      // scale transform of button when you focus on it
+// "--border-btn": "1px",            // border width of buttons
+
+// "--tab-border": "1px",            // border width of tabs
+// "--tab-radius": "0.5rem",         // border radius of tab
 export default {
     darkMode: ["class"],
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -13,37 +55,38 @@ export default {
         },
         extend: {
             colors: {
-                border: "var(--border)",
-                input: "var(--input)",
-                ring: "var(--ring)",
-                background: "oklch(var(--b1))",
+                border: "oklch(var(--bc))",
+                input: "oklch(var(--bc))",
+                ring: "oklch(var(--ac))",
+                background: "var(--b1)",
                 foreground: "oklch(var(--bc))",
-                "primary-foreground":"var(--primary-foreground)",
-                "secondary-foreground": "var(--secondary-foreground)",
-                "accent-foreground": "var(--accent-foreground)",
+
+                "primary-foreground":"oklch(var(--pc))",
+                "secondary-foreground": "oklch(var(--sc))",
+                "accent-foreground": "oklch(var(--ac))",
 
                 destructive: {
-                    DEFAULT: "var(--destructive)",
-                    foreground: "var(--destructive-foreground)",
+                    DEFAULT: "oklch(var(--er))",
+                    foreground: "oklch(var(--erc))",
                 },
                 muted: {
-                    DEFAULT: "var(--muted)",
-                    foreground: "var(--muted-foreground)",
+                    DEFAULT: "oklch(var(--b2))",
+                    foreground: "oklch(var(--bc))",
                 },
 
                 popover: {
-                    DEFAULT: "var(--popover)",
-                    foreground: "var(--popover-foreground)",
+                    DEFAULT: "oklch(var(--a))",
+                    foreground: "oklch(var(--ac))",
                 },
                 card: {
-                    DEFAULT: "var(--card)",
-                    foreground: "var(--card-foreground)",
+                    DEFAULT: "oklch(var(--b3))",
+                    foreground: "oklch(var(--bc))",
                 },
             },
             borderRadius: {
-                lg: `var(--radius)`,
-                md: `calc(var(--radius) - 2px)`,
-                sm: "calc(var(--radius) - 4px)",
+                lg: `var(--rounded-box)`,
+                md: `calc(var(--rounded-box) - 2px)`,
+                sm: "calc(var(--rounded-box) - 4px)",
             },
             // fontFamily: {
             //   sans: ["var(--font-sans)", ...fontFamily.sans],

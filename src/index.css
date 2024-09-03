@@ -3,34 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: theme(colors.base.100);
-    --foreground: theme(colors.base.content);
 
-    --backeground-darker: theme(colors.base.300);
-    --muted: theme(colors.base-200);
-    --muted-foreground: theme(colors.base.content);
-
-    --primary-foreground: theme(colors.primary.content);
-    --secondary-foreground: theme(colors.secondary.content);
-    --accent-foreground: theme(colors.accent.content);
-
-    --card: theme(colors.base.300);
-    --card-foreground: theme(colors.base.content);
-
-    --popover: theme(colors.base.200);
-    --popover-foreground: theme(colors.base.content);
-
-    --destructive: theme(colors.error);
-    --destructive-foreground: theme(colors.error.content);
-
-    --border: theme(colors.base.300);
-    --input: theme(colors.base.content);
-
-    --ring: theme(colors.accent);
-
-    --radius: 0.5rem;
-  }
 
  
 }

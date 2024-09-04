@@ -15,8 +15,9 @@ export const getThemeVariable = (variable: string) => {
   return colorValues;
 };
 
-type InlineCSSVaraiblesTheme = Omit<DaisyUIThemeSearchParmsTypes, "theme_name">;
+type InlineCSSVaraiblesTheme = Omit<DaisyUIThemeSearchParmsTypes, "theme_name"|"edit">;
 type InlineCSSVaraiblesThemeVAriable =
+
   Required<InlineCSSVaraiblesTheme>[keyof InlineCSSVaraiblesTheme]["variable"];
 type InlineCSSVaraibles = {
   [key in InlineCSSVaraiblesThemeVAriable]?: string;

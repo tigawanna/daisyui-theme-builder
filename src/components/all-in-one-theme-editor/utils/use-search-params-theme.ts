@@ -56,6 +56,23 @@ export function useSearchParamsTheme() {
       },
     });
   }
+  // oklchString: string; // oklch color string to be coverted into hsl from the editor
+  // colorKey: string; // css variable key ;
+  function updateEditTheme(colorKey: string, oklchString: string,bgColor:string) {
+    navigate({
+      search: (prev) => {
+        return {
+          ...prev,
+          edit: {
+            oklchString,
+            colorKey,
+            bgColor
+          },
+        };
+      },
+    });
+    
+  }
   return {
     searchParams,
     navigate,
@@ -63,5 +80,6 @@ export function useSearchParamsTheme() {
     updateLockedTheme,
     updateThemeName,
     updateWholeTheme,
+    updateEditTheme,
   };
 }

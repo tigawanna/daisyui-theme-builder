@@ -21,6 +21,7 @@ import {
 } from "@/components/navigation/DaisyUiDrawers";
 import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
 import { Intro } from "./-components/Intro";
+import { EditThemeDrawer } from "@/components/all-in-one-theme-editor/EditThemeDrawer";
 
 export type DrawerIds = "main-page-drawer" | "daisyui-theme-editor-drawer";
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
@@ -125,7 +126,8 @@ export function RootComponent() {
         searchParams={searchParams}
         updateWholeTheme={updateWholeTheme}
       />
-
+      {/* edit theme drawer  */}
+      <EditThemeDrawer/>
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />
       <footer className="flex w-full items-center justify-between bg-base-200 p-2 px-4">

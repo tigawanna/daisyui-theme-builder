@@ -11,6 +11,9 @@ import {
 } from "./utils/daisyui-css-variables-helpers";
 import { GenericThemeState } from "./utils/types";
 import { Lock, Unlock } from "lucide-react";
+import { ShadcnColorpickerModal } from "./ShadcnColorpickerModal";
+import { ColorpickerNoModal } from "./ColorpickerNoModal";
+import { useSearchParamsTheme } from "./utils/use-search-params-theme";
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
   [key in T]: GenericThemeState;
@@ -34,7 +37,10 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   saveChanges,
   lockTheme,
 }: GenericColorCardProps<T>) {
-  const { bg, content } = getTailwindBg(theme?.name);
+
+  // const { bg, content } = getTailwindBg(theme?.name);
+  const [bgs, setBg] =useState(getTailwindBg(theme?.name));
+  const { searchParams,updateEditTheme } = useSearchParamsTheme();
   return (
     <div
       className={twMerge(
@@ -47,10 +53,11 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
           "flex h-full w-full flex-col items-center justify-center gap-2"
         }
       >
-        <ColorpickerModal
+        {/* <ShadcnColorpickerModal
+
           theme={theme}
           theme_key={theme_key}
-          bg_color={bg}
+          bg_color={bgs.bg}
           saveColor={(color_key, new_color) =>
             saveChanges(color_key, new_color)
           }
@@ -59,14 +66,50 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
           <div
             className={twMerge(
               "flex w-full flex-col items-center justify-between gap-0.5 rounded-lg p-1 text-sm",
-              bg,
-              content,
+              bgs.bg,
+              bgs.content,
             )}
           >
             <div className="line-clamp-1 text-sm">{theme?.name}</div>
             <div className="line-clamp-1 text-[9px]">{theme?.value}</div>
           </div>
-        </ColorpickerModal>
+        </ShadcnColorpickerModal> */}
+        {/* <ColorpickerNoModal
+            theme={theme}
+          theme_key={theme_key}
+          bg_color={bgs.bg}
+          saveColor={(color_key, new_color) =>
+            saveChanges(color_key, new_color)
+          }
+        >
+            <div
+            className={twMerge(
+              "flex w-full flex-col items-center justify-between gap-0.5 rounded-lg p-1 text-sm",
+              bgs.bg,
+              bgs.content,
+            )}
+          >
+            <div className="line-clamp-1 text-sm">{theme?.name}</div>
+            <div className="line-clamp-1 text-[9px]">{theme?.value}</div>
+          </div>
+        </ColorpickerNoModal> */}
+        <label
+          htmlFor="edit-theme-drawer"
+          aria-label="open sidebar"
+          className={twMerge(
+            "flex w-full flex-col items-center justify-between gap-0.5 rounded-lg p-1 text-sm",
+            bgs.bg,
+            bgs.content,
+          )}
+          onClick={() => {
+            updateEditTheme(theme_key, theme?.value??"",bgs.bg);
+          }}
+        >
+
+            <div className="line-clamp-1 text-sm">{theme?.name}</div>
+            <div className="line-clamp-1 text-[9px]">{theme?.value}</div>
+          </label>
+       
       </div>
       <div
         className={twMerge(

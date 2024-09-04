@@ -237,7 +237,13 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
     })
     .optional(),
 });
-
+export const editThemeSearchParamsSchema =z.object({
+  // oklchString: string; // oklch color string to be coverted into hsl from the editor
+  // colorKey: string; // css variable key ;
+  oklchString: z.string(),
+  colorKey: z.string(),
+  bgColor: z.string(),
+  })
 export const daisyUIThemeSearchParamsSchema = z
   .object({
     "--theme-name": z
@@ -256,6 +262,7 @@ export const daisyUIThemeSearchParamsSchema = z
         locked: z.boolean().optional(),
       })
       .optional(),
+      "edit": editThemeSearchParamsSchema.optional()
   })
   .merge(daisyUIThemeColorsSearchParamsSchema)
   .merge(daisyUIThemeCurvesSearchParamsSchema);

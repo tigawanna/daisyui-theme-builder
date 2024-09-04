@@ -14,12 +14,12 @@ export default defineConfig({
     TanStackRouterVite(),
     tsconfigPaths(),
 
-    // splashScreen({
-    //   splashBg: "#4D3119",
-    //   loaderBg: "#D2BA79",
-    //   loaderType: "dots",
-    //   logoSrc: "logo.svg",
-    // }),
+    splashScreen({
+      splashBg: "#4D3119",
+      loaderBg: "#D2BA79",
+      loaderType: "dots",
+      logoSrc: "logo.svg",
+    }),
     analyze({
       // highlight the modules with size > 40kb
       filter(moduleObject) {

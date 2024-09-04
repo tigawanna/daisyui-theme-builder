@@ -41,9 +41,7 @@ export function RootComponent() {
   const { status } = useRouterState();
 
   useEffect(() => {
-    if (import.meta.env.PROD) {
-      hideSplashScreen();
-    }
+    hideSplashScreen();
     themeChange(false);
     // 👆 false parameter is required for react project
     navigate({

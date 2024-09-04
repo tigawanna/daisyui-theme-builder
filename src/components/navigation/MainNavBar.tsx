@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 import { FileUp, Import, Loader, Moon, Sun } from "lucide-react";
@@ -9,8 +9,6 @@ export function MainNavBar({}: MainNavBarProps) {
   const { searchParams, updateTheme } = useSearchParamsTheme();
   const color_scheme = searchParams?.["--color-scheme"]?.value;
 
-  // const isLoading=true
-  // // console.log(" ========= isLoading ========= ", isLoading)
   return (
     <header className="flex w-full flex-col items-center justify-between">
       <nav className="flex w-full items-center justify-end md:justify-between">
@@ -33,7 +31,7 @@ export function MainNavBar({}: MainNavBarProps) {
 
         <button
           aria-lable="change color scheme"
-          className="btn btn-ghost btn-sm flex gap-2 brightness-150"
+          className="btn btn-ghost btn-sm bg-slate-900 text-slate-50 flex gap-2 brightness-150"
         >
           {color_scheme === "dark" ? (
             <Moon

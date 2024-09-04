@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AllDaisyUIComponents } from "@/components/daisyui/AllDaisyUI";
+import { Intro } from "./-components/Intro";
 
 export const Route = createFileRoute("/")({
   component: HomePage,

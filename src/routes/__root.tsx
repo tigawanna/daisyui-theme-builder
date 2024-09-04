@@ -20,6 +20,7 @@ import {
   MainDaisyUiDrawer,
 } from "@/components/navigation/DaisyUiDrawers";
 import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
+import { Intro } from "./-components/Intro";
 
 export type DrawerIds = "main-page-drawer" | "daisyui-theme-editor-drawer";
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
@@ -109,7 +110,7 @@ export function RootComponent() {
             <div className="h-1 w-full" />
           )}
         </div>
-
+          <Intro/>
         <Outlet />
       </div>
       {/* Page content here */}

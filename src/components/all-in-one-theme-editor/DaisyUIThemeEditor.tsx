@@ -13,6 +13,7 @@ export function DaisyUIThemeEditor({
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }) {
+
   const curves = {
     "--tab-border": theme?.["--tab-border"],
     "--tab-radius": theme?.["--tab-radius"],
@@ -23,6 +24,7 @@ export function DaisyUIThemeEditor({
     "--animation-btn": theme?.["--animation-btn"],
     "--animation-input": theme?.["--animation-input"],
   };
+
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-[5%]">

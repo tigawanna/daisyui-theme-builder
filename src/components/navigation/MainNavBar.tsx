@@ -30,7 +30,6 @@ export function MainNavBar({}: MainNavBarProps) {
         </div>
 
         <button
-          aria-lable="change color scheme"
           className="btn btn-ghost btn-sm bg-slate-900 text-slate-50 flex gap-2 brightness-150"
         >
           {color_scheme === "dark" ? (

@@ -67,6 +67,7 @@ export function hexToOklch(input: string) {
  */
 export function oklchToHSL(oklch: string): HSLColor {
   try {
+    if (!oklch || oklch === "") return { h: 0, s: 0, l: 0 };
     if (!oklch.startsWith("oklch(")) {
       oklch = `oklch(${oklch})`;
     }

@@ -7,10 +7,19 @@ import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import analyze from "rollup-plugin-analyzer";
 import { splashScreen } from "vite-plugin-splash-screen";
 
+const ReactCompilerConfig = {
+
+};
+
 // https://vitejs.dev/config/
 export default defineConfig({
+
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+      },
+    }),
     TanStackRouterVite(),
     tsconfigPaths(),
 

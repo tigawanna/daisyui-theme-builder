@@ -5,16 +5,10 @@ export const Route = createLazyFileRoute("/twarkui/")({
 });
 
 export function index() {
-  const searchParams = useSearch({
-    from: "__root__",
-  });
+
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center justify-center">
-      <p className="p-[6%]">{JSON.stringify(searchParams?.primary, null, 2)}</p>
-      <div>
-        {searchParams?.primary?.value}
-        {searchParams?.["primary-content"]?.value}
-      </div>
+      <h1 className="text-9xl font-bold">Coming soon</h1>
     </div>
   );
 }

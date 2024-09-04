@@ -23,7 +23,7 @@ export function useSearchParamsTheme() {
       search: (prev) => {
         return {
           ...prev,
-          ...theme
+          ...theme,
         };
       },
     });
@@ -33,12 +33,12 @@ export function useSearchParamsTheme() {
       search: (prev) => {
         return {
           ...prev,
-          "--theme-name":{
+          "--theme-name": {
             // ...prev["--theme-name"],
-            value:theme_name,
-            name:"theme-name",
-            variable:"data-theme"
-          }
+            value: theme_name,
+            name: "theme-name",
+            variable: "data-theme",
+          },
         };
       },
     });

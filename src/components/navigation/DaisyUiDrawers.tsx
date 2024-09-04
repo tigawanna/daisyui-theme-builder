@@ -27,7 +27,7 @@ export function MainDaisyUiDrawer({
         aria-label="close sidebar"
         className="drawer-overlay"
       ></label>
-      <ul className="menu min-h-full py-[20%]  md:py-3 w-[80%] bg-base-200 text-base-content @container md:w-[40%] md:p-4">
+      <ul className="menu min-h-full w-[80%] bg-base-200 py-[20%] text-base-content @container md:w-[40%] md:p-4 md:py-3">
         {/* Sidebar content here */}
         <div className="flex w-full md:justify-end">
           <button
@@ -40,7 +40,7 @@ export function MainDaisyUiDrawer({
         {/* links */}
         <div
           onClick={() => closeDrawer("main-page-drawer")}
-          className="flex  w-full flex-col justify-between gap-2 divide-y"
+          className="flex w-full flex-col justify-between gap-2 divide-y"
         >
           <Link
             search={searchParams}
@@ -135,7 +135,7 @@ interface ImportThemeDaisyUiDrawerProps {
 
 export function ImportThemeDaisyUiDrawer({
   searchParams,
-  updateWholeTheme
+  updateWholeTheme,
 }: ImportThemeDaisyUiDrawerProps) {
   return (
     <div className="drawer drawer-end sticky top-[12%] z-20">
@@ -160,7 +160,10 @@ export function ImportThemeDaisyUiDrawer({
             <X />
           </label>
           {/* Sidebar content here */}
-          <ImportTheme theme={searchParams} updateWholeTheme={updateWholeTheme}/>
+          <ImportTheme
+            theme={searchParams}
+            updateWholeTheme={updateWholeTheme}
+          />
         </ul>
       </div>
     </div>

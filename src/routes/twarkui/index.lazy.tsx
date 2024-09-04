@@ -10,7 +10,7 @@ export function index() {
   });
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center justify-center">
-      <p className="p-[6%] ">{JSON.stringify(searchParams?.primary, null, 2)}</p>
+      <p className="p-[6%]">{JSON.stringify(searchParams?.primary, null, 2)}</p>
       <div>
         {searchParams?.primary?.value}
         {searchParams?.["primary-content"]?.value}

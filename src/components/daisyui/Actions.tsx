@@ -92,8 +92,6 @@ export function Actions({}: ActionsProps) {
           <div className="badge badge-ghost">ghost</div>
         </div>
       </div>
-
-
     </div>
   );
 }

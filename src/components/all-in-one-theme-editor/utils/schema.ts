@@ -228,7 +228,7 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
       locked: z.boolean().optional(),
     })
     .optional(),
- "--tab-radius": z
+  "--tab-radius": z
     .object({
       name: z.literal("tab-radius"),
       variable: z.literal("--tab-radius"),
@@ -240,20 +240,22 @@ export const daisyUIThemeCurvesSearchParamsSchema = z.object({
 
 export const daisyUIThemeSearchParamsSchema = z
   .object({
-    "--theme-name": z.object({
-      name: z.literal("theme-name"),
-      variable: z.literal("data-theme"),
-      value: z.string(),
-      locked: z.boolean().optional(),
-
-    }).optional(),
-    "--color-scheme": z.object({
-      name: z.literal("color-scheme"),
-      variable: z.literal("color-scheme"),
-      value: z.string(),
-      locked: z.boolean().optional(),
-
-    }).optional()
+    "--theme-name": z
+      .object({
+        name: z.literal("theme-name"),
+        variable: z.literal("data-theme"),
+        value: z.string(),
+        locked: z.boolean().optional(),
+      })
+      .optional(),
+    "--color-scheme": z
+      .object({
+        name: z.literal("color-scheme"),
+        variable: z.literal("color-scheme"),
+        value: z.string(),
+        locked: z.boolean().optional(),
+      })
+      .optional(),
   })
   .merge(daisyUIThemeColorsSearchParamsSchema)
   .merge(daisyUIThemeCurvesSearchParamsSchema);

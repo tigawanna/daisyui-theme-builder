@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
@@ -38,18 +38,18 @@ export function RootComponent() {
     navigate,
   } = useSearchParamsTheme();
   const { status } = useRouterState();
+
   useEffect(() => {
+    if (import.meta.env.PROD) {
+      hideSplashScreen();
+    }
     themeChange(false);
     // 👆 false parameter is required for react project
-  }, []);
-  useEffect(() => {
     navigate({
       search: defaultThemes({ theme: searchParams }),
     });
-    // if (!isThemeNotNull(searchParams)) {
-    // }
   }, []);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const default_data_theme = defaultThemes({
       theme: { ...searchParams },
     });
@@ -57,10 +57,6 @@ export function RootComponent() {
       search: default_data_theme,
     });
   }, [searchParams?.["--theme-name"]?.value]);
-
-  // useEffect(() => {
-  //   hideSplashScreen();
-  // }, []);
 
   function closeDrawer(drawerId: DrawerIds) {
     const drawer = document.getElementById(drawerId) as HTMLInputElement;

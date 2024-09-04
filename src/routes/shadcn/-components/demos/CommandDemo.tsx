@@ -21,7 +21,7 @@ import {
 export default function CommandDemo() {
   return (
     <div className="flex h-full w-fit flex-col items-center justify-center gap-2">
-        <h1 className="text-xl">Command</h1>
+      <h1 className="text-xl">Command</h1>
       <Command className="w-fit rounded-lg border shadow-md">
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>

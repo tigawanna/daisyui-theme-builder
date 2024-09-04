@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { daisyUIThemeSearchParamsSchema, DaisyUIThemeSearchParmsTypes } from "./utils/schema";
+import {
+  daisyUIThemeSearchParamsSchema,
+  DaisyUIThemeSearchParmsTypes,
+} from "./utils/schema";
 import { importThemes } from "./utils/theme-default-values";
 
 interface ImportThemeProps {
@@ -34,27 +37,27 @@ export function ImportTheme({ theme, updateWholeTheme }: ImportThemeProps) {
         "--rounded-btn": "1.9rem",
         "--tab-border": "2px",
         "--tab-radius": "0.7rem"
-  `;  
+  `;
   const [input, setInput] = useState("");
 
-;
-
   return (
-    <div className="flex h-screen w-full flex-col gap-2 md:items-center justify-center">
+    <div className="flex h-screen w-full flex-col justify-center gap-2 md:items-center">
       <textarea
         placeholder={samplePlaceholder}
         className="textarea textarea-bordered h-[80%] min-h-[70vh] w-full p-6"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button onClick={() => {
-       const imported_theme = importThemes(input);
-       console.log(imported_theme);
-        updateWholeTheme(imported_theme)
-        }} className="btn btn-wide btn-sm btn-primary">
+      <button
+        onClick={() => {
+          const imported_theme = importThemes(input);
+          console.log(imported_theme);
+          updateWholeTheme(imported_theme);
+        }}
+        className="btn btn-primary btn-sm btn-wide"
+      >
         import
       </button>
     </div>
   );
 }
-

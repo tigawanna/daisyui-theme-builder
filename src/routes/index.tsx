@@ -8,8 +8,8 @@ export const Route = createFileRoute("/")({
 interface HomePageProps {}
 
 export function HomePage({}: HomePageProps) {
-return (
-    <div className="flex h-full min-h-screen w-full flex-col items-center gap-7 ">
+  return (
+    <div className="flex h-full min-h-screen w-full flex-col items-center gap-7">
       <AllDaisyUIComponents />
     </div>
   );

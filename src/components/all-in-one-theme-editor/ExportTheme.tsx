@@ -8,10 +8,11 @@ interface ExportThemeProps {
 }
 
 export function ExportTheme({ theme }: ExportThemeProps) {
-  const [wrapInBraces,setWrapInBraces] = useState(false)
+  const [wrapInBraces, setWrapInBraces] = useState(false);
   const colors_to_export = [
-    theme?.["--color-scheme"]?.value ? `"color-scheme":"${theme?.["--color-scheme"]?.value}"` 
-    : undefined,
+    theme?.["--color-scheme"]?.value
+      ? `"color-scheme":"${theme?.["--color-scheme"]?.value}"`
+      : undefined,
     theme?.primary?.value
       ? `"primary":"${oklchToHexString(theme?.primary?.value)}"`
       : undefined,
@@ -137,13 +138,14 @@ export function ExportTheme({ theme }: ExportThemeProps) {
             className="checkbox-primary checkbox border-4 border-accent"
             checked={wrapInBraces}
             onChange={(e) => {
-                            setWrapInBraces(e.target.checked);
-              if(e.target.checked){
-                setExportFormatedString(`{ \n "custom_theme": {\n ${colors_to_export.join(",\n")} \n}\n}`)
-              }else{
-                setExportFormatedString(` ${colors_to_export.join(",\n")}`)
+              setWrapInBraces(e.target.checked);
+              if (e.target.checked) {
+                setExportFormatedString(
+                  `{ \n "custom_theme": {\n ${colors_to_export.join(",\n")} \n}\n}`,
+                );
+              } else {
+                setExportFormatedString(` ${colors_to_export.join(",\n")}`);
               }
-
             }}
           />
           Wrap in braces
@@ -155,7 +157,3 @@ export function ExportTheme({ theme }: ExportThemeProps) {
     </div>
   );
 }
-
-
-
-

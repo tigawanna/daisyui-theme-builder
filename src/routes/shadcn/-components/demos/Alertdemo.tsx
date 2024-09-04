@@ -1,5 +1,9 @@
 import { Terminal } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/shadcn/ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/shadcn/ui/alert";
 
 export function AlertDemo() {
   return (

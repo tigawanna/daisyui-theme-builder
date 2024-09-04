@@ -2,7 +2,7 @@ interface DaisyUIFormProps {}
 
 export function DaisyUIForm({}: DaisyUIFormProps) {
   return (
-    <form className="flex w-[90%] md:w-[60%] flex-col items-center justify-center gap-3 bg-base-200 p-[5%]">
+    <form className="flex w-[90%] flex-col items-center justify-center gap-3 bg-base-200 p-[5%] md:w-[60%]">
       <h1 className="text-3xl font-bold">form</h1>
       {/* inputs */}
       <div className="flex w-full flex-col gap-2">
@@ -25,10 +25,10 @@ export function DaisyUIForm({}: DaisyUIFormProps) {
           <span className="badge badge-info">Optional</span>
         </label>
         <label className="input input-bordered">
-            <input
-              type="file"
-              className="file-input file-input-bordered file-input-primary w-full max-w-xs"
-            />
+          <input
+            type="file"
+            className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+          />
         </label>
       </div>
       {/* clickable inputs */}
@@ -37,7 +37,7 @@ export function DaisyUIForm({}: DaisyUIFormProps) {
         <div className="flex flex-col items-center justify-center rounded-lg bg-base-100 p-4">
           <h1 className="text-sm">checkbox</h1>
           <div className="flex w-full items-center justify-center gap-2">
-          <input
+            <input
               type="checkbox"
               defaultChecked
               className="checkbox-primary checkbox checkbox-sm"
@@ -103,7 +103,7 @@ export function DaisyUIForm({}: DaisyUIFormProps) {
               <input
                 type="radio"
                 name="rating-10"
-                className="bg-green-500 mask mask-half-1 mask-star-2 bg-primary"
+                className="mask mask-half-1 mask-star-2 bg-green-500 bg-primary"
                 defaultChecked
               />
             </div>
@@ -120,32 +120,31 @@ export function DaisyUIForm({}: DaisyUIFormProps) {
           </div>
         </div>
       </div>
-        {/* range */}
-        <div className="w-full flex flex-col gap-2 justify-center items-center">
-          <h1 className="text-sm">range</h1>
-          <input
-            type="range"
-            min={0}
-            max="100"
-            value="40"
-            className="range range-accent range-xs"
-          />
-          <input
-            type="range"
-            min={0}
-            max="100"
-            value="50"
-            className="range range-primary range-sm"
-          />
-          <input
-            type="range"
-            min={0}
-            max="100"
-            value="60"
-            className="range range-secondary range-md"
-          />
-        </div>
-
+      {/* range */}
+      <div className="flex w-full flex-col items-center justify-center gap-2">
+        <h1 className="text-sm">range</h1>
+        <input
+          type="range"
+          min={0}
+          max="100"
+          value="40"
+          className="range range-accent range-xs"
+        />
+        <input
+          type="range"
+          min={0}
+          max="100"
+          value="50"
+          className="range range-primary range-sm"
+        />
+        <input
+          type="range"
+          min={0}
+          max="100"
+          value="60"
+          className="range range-secondary range-md"
+        />
+      </div>
     </form>
   );
 }

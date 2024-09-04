@@ -6,7 +6,7 @@ import { FileUp, Import, Loader, Moon, Sun } from "lucide-react";
 interface MainNavBarProps {}
 
 export function MainNavBar({}: MainNavBarProps) {
-  const { searchParams,updateTheme } = useSearchParamsTheme();
+  const { searchParams, updateTheme } = useSearchParamsTheme();
   const color_scheme = searchParams?.["--color-scheme"]?.value;
 
   // const isLoading=true
@@ -33,7 +33,7 @@ export function MainNavBar({}: MainNavBarProps) {
 
         <button
           aria-lable="change color scheme"
-          className="btn btn-ghost btn-sm flex gap-2  brightness-150"
+          className="btn btn-ghost btn-sm flex gap-2 brightness-150"
         >
           {color_scheme === "dark" ? (
             <Moon

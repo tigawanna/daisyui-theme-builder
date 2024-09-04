@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Button } from "@/components/shadcn/ui/button"
+import * as React from "react";
+import { Button } from "@/components/shadcn/ui/button";
 import {
   Card,
   CardContent,
@@ -7,19 +7,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/shadcn/ui/card"
-import { Input } from "@/components/shadcn/ui/input"
-import { Label } from "@/components/shadcn/ui/label"
+} from "@/components/shadcn/ui/card";
+import { Input } from "@/components/shadcn/ui/input";
+import { Label } from "@/components/shadcn/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/shadcn/ui/select"
-import { SliderDemo } from "./Sliderdemo"
+} from "@/components/shadcn/ui/select";
+import { SliderDemo } from "./Sliderdemo";
+import { Checkbox } from "@/components/shadcn/ui/checkbox";
 
-export function CardWithForm() {
+export default function CardWithForm() {
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -47,9 +48,18 @@ export function CardWithForm() {
                 </SelectContent>
               </Select>
             </div>
-          <div className="w-full p-2">
-          <SliderDemo className="w-full"/>
-          </div>
+            <div className="w-full p-2">
+              <SliderDemo className="w-full" />
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="terms" />
+              <label
+                htmlFor="terms"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Accept terms and conditions
+              </label>
+            </div>
           </div>
         </form>
       </CardContent>
@@ -58,5 +68,5 @@ export function CardWithForm() {
         <Button>Deploy</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

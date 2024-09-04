@@ -34,10 +34,10 @@ export function loadThemeName() {
   return current_data_theme ?? "light";
 }
 export function loadColorScheme() {
-  const color_scheme = getComputedStyle(document.documentElement).getPropertyValue(
-    "color-scheme",
-  );
-  return color_scheme ?? undefined
+  const color_scheme = getComputedStyle(
+    document.documentElement,
+  ).getPropertyValue("color-scheme");
+  return color_scheme ?? undefined;
 }
 
 function loadFromSearchParamsIfLocked(theme?: {
@@ -61,11 +61,11 @@ export function defaultThemes({
   theme?: DaisyUIThemeSearchParmsTypes;
 }): DaisyUIThemeSearchParmsTypes {
   return {
-    "--color-scheme":{
+    "--color-scheme": {
       name: "color-scheme",
       variable: "color-scheme",
       value: loadFromSearchParamsIfLocked(theme?.["--color-scheme"]),
-      locked: theme?.["--color-scheme"]?.locked ?? false
+      locked: theme?.["--color-scheme"]?.locked ?? false,
     },
     accent: {
       name: "accent",
@@ -267,8 +267,7 @@ export function defaultThemes({
     "--theme-name": {
       name: "theme-name",
       variable: "data-theme",
-      value:
-        theme?.["--theme-name"]?.value ?? loadThemeName() ?? "",
+      value: theme?.["--theme-name"]?.value ?? loadThemeName() ?? "",
       locked: theme?.["--theme-name"]?.locked ?? false,
     },
     // "--color-scheme": {
@@ -285,38 +284,39 @@ export function defaultThemes({
   };
 }
 
-
-export function importThemes(imported_text:string) {
-  const imported_theme = defaultThemes({})
-  type AllThemeKeys = keyof typeof imported_theme
-  if(imported_text==="") return imported_theme
+export function importThemes(imported_text: string) {
+  const imported_theme = defaultThemes({});
+  type AllThemeKeys = keyof typeof imported_theme;
+  if (imported_text === "") return imported_theme;
   imported_text.split("\n").forEach((line) => {
-    const [key, value] = line?.split(":")
-    if (key&&value){
-  const trimmednewValue = value?.trim()  
-    let newThemeValue = trimmednewValue.endsWith(",")?trimmednewValue.slice(1,-2):trimmednewValue.slice(1,-1)
-    const theme_key = key?.trim().split('"')[1]
-    // @ts-expect-error
-    if (imported_theme?.[theme_key]?.hasOwnProperty("value")) {
-      const oldThemeObject =
-        imported_theme[theme_key as Exclude<AllThemeKeys, "theme_name">];
-      // const newThemeValue = oldThemeObject?.value
-    console.log("====newThemeValue before ===", newThemeValue);
-      if (theme_key !== "--") {
-        if (newThemeValue.startsWith("#")) {
-          newThemeValue = hexToOklch(newThemeValue);
+    const [key, value] = line?.split(":");
+    if (key && value) {
+      const trimmednewValue = value?.trim();
+      let newThemeValue = trimmednewValue.endsWith(",")
+        ? trimmednewValue.slice(1, -2)
+        : trimmednewValue.slice(1, -1);
+      const theme_key = key?.trim().split('"')[1];
+      // @ts-expect-error
+      if (imported_theme?.[theme_key]?.hasOwnProperty("value")) {
+        const oldThemeObject =
+          imported_theme[theme_key as Exclude<AllThemeKeys, "theme_name">];
+        // const newThemeValue = oldThemeObject?.value
+        console.log("====newThemeValue before ===", newThemeValue);
+        if (theme_key !== "--") {
+          if (newThemeValue.startsWith("#")) {
+            newThemeValue = hexToOklch(newThemeValue);
+          }
+          console.log("===== after newThemeValue ======", newThemeValue);
+          // @ts-expect-error
+          imported_theme[theme_key] = {
+            ...oldThemeObject,
+            value: newThemeValue,
+          };
         }
-        console.log("===== after newThemeValue ======", newThemeValue);
-        // @ts-expect-error
-        imported_theme[theme_key] = {
-          ...oldThemeObject,
-          value: newThemeValue,
-        };
       }
     }
-  }
-  })
-return imported_theme
+  });
+  return imported_theme;
 }
 
 export function useUpdateTheme() {
@@ -343,4 +343,3 @@ export function useThemeWithDefaults() {
 
   return themes;
 }
-

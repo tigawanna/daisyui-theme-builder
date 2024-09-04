@@ -38,7 +38,7 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
   return (
     <div
       className={twMerge(
-        "relative flex h-full w-full flex-col items-center cursor-pointer justify-center gap-1 hover:animate-in hover:scale-110",
+        "relative flex h-full w-full cursor-pointer flex-col items-center justify-center gap-1 hover:scale-110 hover:animate-in",
         className,
       )}
     >

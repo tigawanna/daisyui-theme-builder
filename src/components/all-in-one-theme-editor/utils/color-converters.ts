@@ -79,7 +79,8 @@ export function oklchToHSL(oklch: string): HSLColor {
     };
   } catch (error: any) {
     console.error(
-      " ⚠️ ====  oklch parse error in oklchToHSL ====",error.message,
+      " ⚠️ ====  oklch parse error in oklchToHSL ====",
+      error.message,
     );
     return {
       h: 0,

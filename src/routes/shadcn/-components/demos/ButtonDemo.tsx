@@ -1,9 +1,9 @@
-import { Button } from "@/components/shadcn/ui/button"
+import { Button } from "@/components/shadcn/ui/button";
 
 export function ButtonDemo() {
   return (
     <div className="flex w-full flex-wrap items-center justify-center gap-1">
-      <div className="w-full text-center text-xl  p-2">Buttons</div>
+      <div className="w-full p-2 text-center text-xl">Buttons</div>
       <Button variant="default">Default Button</Button>
       <Button variant={"secondary"}>Secondary Button</Button>
       <Button variant="destructive">Destructive Button</Button>
@@ -13,4 +13,3 @@ export function ButtonDemo() {
     </div>
   );
 }
-

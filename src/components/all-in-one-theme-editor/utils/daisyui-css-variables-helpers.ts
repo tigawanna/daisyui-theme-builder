@@ -4,12 +4,6 @@ export const getColorValueFromTheme = (variable: string) => {
   const colorValues = getComputedStyle(
     document.documentElement,
   ).getPropertyValue(variable);
-  // let oklch_string = colorValues?.trim().split(" ");
-  // if(oklch_string[2]?.split(".")?.[0]?.length>2){
-  //   oklch_string[2] = (Number.parseFloat(oklch_string[2])/10).toFixed(2)
-  //   const oklch = oklch_string.join(" ")
-  //   console.log("--var >>>> ",variable,"colorValues >>> ", colorValues,"oklch >>> " ,oklch);
-  // }
   return colorValues;
 };
 
@@ -17,20 +11,7 @@ export const getThemeVariable = (variable: string) => {
   const colorValues = getComputedStyle(
     document.documentElement,
   ).getPropertyValue(variable);
-  // let oklch_string = colorValues?.trim().split(" ");
-  // if (oklch_string[2]?.split(".")?.[0]?.length > 2) {
-  //   oklch_string[2] = (Number.parseFloat(oklch_string[2]) / 10).toFixed(2);
-  //   const newColorValue = oklch_string.join(" ");
-  //   console.log(
-  //     "--var >>>> ",
-  //     variable,
-  //     "colorValues >>> ",
-  //     colorValues,
-  //     "newColorValue >>> ",
-  //     newColorValue,
-  //   );
-  //   return newColorValue;
-  // }
+
   return colorValues;
 };
 

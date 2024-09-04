@@ -124,14 +124,14 @@ export function DaisyUIBaseCurvesThemeCard({
     value: string;
     theme: GenericThemeState;
   }) {
-    const new_curves = {
-      ...theme_group,
-      [theme_key]: {
-        ...theme,
-        [value_key]: value,
-      },
-    };
-    document.documentElement.style.setProperty(css_varaiable_key, value);
+    // const new_curves = {
+    //   ...theme_group,
+    //   [theme_key]: {
+    //     ...theme,
+    //     [value_key]: value,
+    //   },
+    // };
+    // document.documentElement.style.setProperty(css_varaiable_key, value);
     saveChanges(theme_key, value);
   }
 

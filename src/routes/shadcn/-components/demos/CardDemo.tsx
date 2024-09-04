@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/shadcn/ui/select"
+import { SliderDemo } from "./Sliderdemo"
 
 export function CardWithForm() {
   return (
@@ -46,6 +47,9 @@ export function CardWithForm() {
                 </SelectContent>
               </Select>
             </div>
+          <div className="w-full p-2">
+          <SliderDemo className="w-full"/>
+          </div>
           </div>
         </form>
       </CardContent>

@@ -10,6 +10,7 @@ import {
   Plus,
   PlusCircle,
   Settings,
+  Settings2,
   User,
   UserPlus,
   Users,
@@ -35,7 +36,7 @@ export default function DropdownMenuDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+      <Settings2/>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

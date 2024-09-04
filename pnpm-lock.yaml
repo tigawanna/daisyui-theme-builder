@@ -213,9 +213,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
-      daisify-shadcn:
-        specifier: link:/home/dennis/Desktop/code/colors/daisify-shadcn
-        version: link:../daisify-shadcn
       daisyui:
         specifier: ^4.12.10
         version: 4.12.10(postcss@8.4.39)

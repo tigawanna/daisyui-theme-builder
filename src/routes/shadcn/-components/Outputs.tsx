@@ -16,7 +16,7 @@ const CarouselDemo = lazy(() => import("./CarouselDemo"));
 const CalendarDemo = lazy(() => import("./demos/CalenderDemo"));
 const ContextMenuDemo = lazy(() => import("./demos/ContextMenuDemo"));
 const DrawerDemo = lazy(() => import("./demos/DrawerDemo"));
-const DropdownMenuDemo = lazy(() => import("./demos/DropdownMenuDemo"));
+
 
 interface OutputsProps {}
 
@@ -24,15 +24,14 @@ export function Outputs({}: OutputsProps) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <div className="flex w-full flex-col items-center justify-center gap-5 p-5">
-        <BreadcrumbDemo />
+ 
         <div className="flex w-full flex-wrap items-center justify-center gap-5 p-5">
           <AccordionDemo />
           <CalendarDemo />
-          {/* <Suspense fallback={<div className="w-full bg-base-200 skeleton min-h-[200px] justify-center items-center">Loading...</div>}>
-          </Suspense> */}
+
         </div>
         <div className="flex w-full flex-wrap items-center justify-center gap-5 p-5">
-          <AvatarDemo />
+
           <AlertDemo />
           <AlertDialogDemo />
           <ButtonDemo />
@@ -63,7 +62,8 @@ export function Outputs({}: OutputsProps) {
                 </div>
               }
             >
-              <DropdownMenuDemo />
+              <>uwu</>
+       
             </Suspense>
           </div>
         </div>

@@ -32,7 +32,7 @@ export default defineConfig({
     analyze({
       // highlight the modules with size > 40kb
       filter(moduleObject) {
-        return moduleObject.size > 5000;
+        return moduleObject.size > 6000;
       },
     }),
   ],

@@ -22,7 +22,7 @@ import {
 import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
 import { Intro } from "./-components/Intro";
 
-export type DrawerIds = "main-page-drawer" | "daisyui-theme-editor-drawer";
+
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
   validateSearch: (input) => {
@@ -30,7 +30,7 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   },
 });
 
-export function RootComponent() {
+function RootComponent() {
   const {
     updateLockedTheme,
     searchParams,

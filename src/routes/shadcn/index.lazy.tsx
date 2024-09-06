@@ -5,7 +5,7 @@ export const Route = createLazyFileRoute("/shadcn/")({
   component: index,
 });
 
-export function index() {
+function index() {
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center justify-center">
       <AllComponents />

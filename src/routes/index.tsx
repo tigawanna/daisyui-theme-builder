@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AllDaisyUIComponents } from "@/components/daisyui/AllDaisyUI";
-import { Intro } from "./-components/Intro";
+
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
 
 interface HomePageProps {}
 
-export function HomePage({}: HomePageProps) {
+function HomePage({}: HomePageProps) {
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center gap-7">
       <AllDaisyUIComponents />

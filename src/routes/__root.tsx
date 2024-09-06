@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-router";
 import type { RouterCntextTypes } from "@/main";
 import { MainNavBar } from "@/components/navigation/MainNavBar";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { themeChange } from "theme-change";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
@@ -48,7 +48,9 @@ function RootComponent() {
     navigate({
       search: defaultThemes({ theme: searchParams }),
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
   useEffect(() => {
     const default_data_theme = defaultThemes({
       theme: { ...searchParams },
@@ -58,12 +60,13 @@ function RootComponent() {
     });
   }, [navigate, searchParams]);
 
-  function closeDrawer(drawerId: DrawerIds) {
+  const closeDrawer = useCallback((drawerId: DrawerIds) => {
     const drawer = document.getElementById(drawerId) as HTMLInputElement;
     if (drawer) {
       drawer.checked = false;
     }
-  }
+  }, []);
+  
   return (
     <div
       data-theme={searchParams?.["--theme-name"]?.value}

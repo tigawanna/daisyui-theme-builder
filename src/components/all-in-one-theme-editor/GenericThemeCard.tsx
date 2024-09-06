@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useTransition } from "react";
+import { useCallback, useState, useTransition,memo, useMemo } from "react";
 import {
   DaisyUIColorSearchParmsTypes,
   DaisyUICurvesSearchParmsTypes,
@@ -27,15 +27,18 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }
-
-export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
+export const GenericColorCard = memo(<T extends BaseDaisyUiThemeKeysWithoutBase>({
   theme_key,
   theme,
   className,
   saveChanges,
   lockTheme,
-}: GenericColorCardProps<T>) {
+}: GenericColorCardProps<T>) => {
+
   const { bg, content } = getTailwindBg(theme?.name);
+  const localSaveChanges = useCallback((color_key: string, new_color: string) => {
+    saveChanges(color_key, new_color);
+  }, [saveChanges]);
   return (
     <div
       className={twMerge(
@@ -52,9 +55,7 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
           theme={theme}
           theme_key={theme_key}
           bg_color={bg}
-          saveColor={(color_key, new_color) =>
-            saveChanges(color_key, new_color)
-          }
+          saveColor={localSaveChanges}
           // colorKey={main.variable} oklchString={main.value}
         >
           <div
@@ -92,7 +93,9 @@ export function GenericColorCard<T extends BaseDaisyUiThemeKeysWithoutBase>({
       </div>
     </div>
   );
-}
+});
+
+
 
 type ThemeCurves = DaisyUICurvesSearchParmsTypes;
 type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
@@ -104,36 +107,46 @@ interface DaisyUIBaseCurvesThemeCardProps {
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }
-export function DaisyUIBaseCurvesThemeCard({
+
+
+
+export const DaisyUIBaseCurvesThemeCard = memo(({
   theme_group,
   saveChanges,
   lockTheme,
-}: DaisyUIBaseCurvesThemeCardProps) {
-  const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
-    theme_group as any,
-  );
+}: DaisyUIBaseCurvesThemeCardProps) => {
+  const curves = useMemo(() => {
+    return Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
+      theme_group as any,
+    );
+
+  }, [theme_group]);
 
 
-  return (
-    <div className="flex w-full flex-col items-center justify-center gap-1">
-      <h1 className="">curves</h1>
-      <ul className="flex w-full flex-wrap items-center justify-center">
-        {curves.map(([key, theme]) => {
-          if (!theme) return null;
-          return (
-            <GenericThemeCurveCard
-              key={key}
-              theme_key={key}
-              row={theme as GenericThemeState}
-              saveChanges={saveChanges}
-              lockTheme={lockTheme}
-            />
-          );
-        })}
-      </ul>
-    </div>
-  );
+   return (
+     <div className="flex w-full flex-col items-center justify-center gap-1">
+       <h1 className="">curves</h1>
+       <ul className="flex w-full flex-wrap items-center justify-center">
+         {curves.map(([key, theme]) => {
+           if (!theme) return null;
+           return (
+             <GenericThemeCurveCard
+               key={key}
+               theme_key={key}
+               row={theme as GenericThemeState}
+               saveChanges={saveChanges}
+               lockTheme={lockTheme}
+             />
+           );
+         })}
+       </ul>
+     </div>
+   ); 
 }
+)
+
+
+
 
 interface GenericThemeCurveCardProps {
   theme_key: string;
@@ -142,13 +155,14 @@ interface GenericThemeCurveCardProps {
   lockTheme: (item_key: string, new_item: boolean) => void;
 }
 
-export function GenericThemeCurveCard({
-  theme_key,
-  row,
-  saveChanges,
-  lockTheme,
-}: GenericThemeCurveCardProps) {
-  const [input, setInput] = useState(row?.value);
+export const GenericThemeCurveCard = memo(
+  ({
+    theme_key,
+    row,
+    saveChanges,
+    lockTheme,
+  }: GenericThemeCurveCardProps) => {
+      const [input, setInput] = useState(row?.value);
   const [, startTransition] = useTransition();
   return (
     <div
@@ -191,4 +205,6 @@ export function GenericThemeCurveCard({
       </div>
     </div>
   );
-}
+  }
+);
+

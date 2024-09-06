@@ -6,10 +6,10 @@ export const Route = createFileRoute("/twarkui/")({
 
 function index() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center bg-base-200">
-      <div className="background-animate flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-tr from-primary via-transparent to-accent bg-clip-text text-7xl text-transparent">
+    <div className="flex h-full w-full min-h-screen flex-col items-center justify-center bg-gradient-to-tr from-secondary-content via-accent-content to-primary-content ">
+      <div className="background-animate flex h-fit w-full flex-col items-center justify-center bg-gradient-to-tr from-primary  to-secondary bg-clip-text text-7xl text-transparent">
         <h1 className="text-4xl font-bold">tailwind + ARK ui</h1>
-        <h1 className="text-9xl font-bold">Coming soon mama mia</h1>
+        <h1 className="text-9xl font-bold">Coming soon</h1>
       </div>
     </div>
   );

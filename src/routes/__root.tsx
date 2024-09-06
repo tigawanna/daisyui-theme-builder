@@ -50,7 +50,6 @@ function RootComponent() {
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
   useEffect(() => {
     const default_data_theme = defaultThemes({
       theme: { ...searchParams },
@@ -58,15 +57,18 @@ function RootComponent() {
     navigate({
       search: default_data_theme,
     });
-  }, [navigate, searchParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams?.["--theme-name"]?.value]);
 
-  const closeDrawer = useCallback((drawerId: DrawerIds) => {
-    const drawer = document.getElementById(drawerId) as HTMLInputElement;
-    if (drawer) {
-      drawer.checked = false;
-    }
-  }, []);
-  
+  const closeDrawer = useCallback(
+    (drawerId: DrawerIds) => {
+      const drawer = document.getElementById(drawerId) as HTMLInputElement;
+      if (drawer) {
+        drawer.checked = false;
+      }
+    },
+    [/* dependencies */],
+  );
   return (
     <div
       data-theme={searchParams?.["--theme-name"]?.value}

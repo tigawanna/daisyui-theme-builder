@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  useState } from "react";
 import {
-  daisyUIThemeSearchParamsSchema,
   DaisyUIThemeSearchParmsTypes,
 } from "./utils/schema";
 import { importThemes } from "./utils/theme-default-values";
 
 interface ImportThemeProps {
   theme: DaisyUIThemeSearchParmsTypes;
-  updateWholeTheme: (theme: Record<string, any>) => void;
+  updateWholeTheme: (theme: Record<string, string>) => void;
 }
 
-export function ImportTheme({ theme, updateWholeTheme }: ImportThemeProps) {
+export function ImportTheme({ updateWholeTheme }: ImportThemeProps) {
   const samplePlaceholder = `
         "primary": "#ffd900",
         "primary-content": "#4c4528",
@@ -51,10 +51,11 @@ export function ImportTheme({ theme, updateWholeTheme }: ImportThemeProps) {
       <button
         onClick={() => {
           const imported_theme = importThemes(input);
-          console.log(imported_theme);
-          updateWholeTheme(imported_theme);
+          if(imported_theme){
+            updateWholeTheme(imported_theme as any);
+          }
         }}
-        className="btn btn-primary btn-sm btn-wide"
+        className="btn btn-primary btn-sm btn-wide p-1"
       >
         import
       </button>

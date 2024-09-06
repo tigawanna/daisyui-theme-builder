@@ -6,9 +6,9 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-interface HomePageProps {}
 
-function HomePage({}: HomePageProps) {
+
+function HomePage() {
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center gap-7">
       <AllDaisyUIComponents />

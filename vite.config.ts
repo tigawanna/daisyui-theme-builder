@@ -1,3 +1,4 @@
+import MillionLint from '@million/lint';
 /// <reference types="vitest" />
 
 import { defineConfig } from "vite";
@@ -8,30 +9,29 @@ import analyze from "rollup-plugin-analyzer";
 import { splashScreen } from "vite-plugin-splash-screen";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    TanStackRouterVite(),
-    tsconfigPaths(),
+const _plugins = [react(), TanStackRouterVite(), tsconfigPaths()
 
-    // splashScreen({
-    //   splashBg: "#4D3119",
-    //   loaderBg: "#D2BA79",
-    //   loaderType: "dots",
-    //   logoSrc: "logo.svg",
-    // }),
-    // analyze({
-    //   // highlight the modules with size > 40kb
-    //   filter(moduleObject) {
-    //     return moduleObject.size > 5000;
-    //   },
-    // }),
-  ],
+// splashScreen({
+//   splashBg: "#4D3119",
+//   loaderBg: "#D2BA79",
+//   loaderType: "dots",
+//   logoSrc: "logo.svg",
+// }),
+// analyze({
+//   // highlight the modules with size > 40kb
+//   filter(moduleObject) {
+//     return moduleObject.size > 5000;
+//   },
+// }),
+];
+_plugins.unshift(MillionLint.vite())
+export default defineConfig({
+  plugins: _plugins,
   server: {
     host: true,
-    port: 5000,
+    port: 5000
   },
   test: {
-    globals: true,
-  },
+    globals: true
+  }
 });

@@ -1,6 +1,5 @@
-interface DaisyUIFormProps {}
 
-export function DaisyUIForm({}: DaisyUIFormProps) {
+export function DaisyUIForm() {
   return (
     <form className="flex w-[90%] flex-col items-center justify-center gap-3 bg-base-200 p-[5%] md:w-[60%]">
       <h1 className="text-3xl font-bold">form</h1>
@@ -129,12 +128,14 @@ export function DaisyUIForm({}: DaisyUIFormProps) {
           max="100"
           value="40"
           className="range range-accent range-xs"
+          onChange={() => {}}
         />
         <input
           type="range"
           min={0}
           max="100"
           value="50"
+          onChange={() => {}}
           className="range range-primary range-sm"
         />
         <input
@@ -142,6 +143,7 @@ export function DaisyUIForm({}: DaisyUIFormProps) {
           min={0}
           max="100"
           value="60"
+          onChange={() => {}}
           className="range range-secondary range-md"
         />
       </div>

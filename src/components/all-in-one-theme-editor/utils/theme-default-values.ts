@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { GenericThemeState } from "./types";
 import { useState } from "react";
@@ -289,29 +291,28 @@ export function importThemes(imported_text: string) {
   type AllThemeKeys = keyof typeof imported_theme;
   if (imported_text === "") return imported_theme;
   imported_text.split("\n").forEach((line) => {
-    const [key, value] = line?.split(":");
+    const [key, value] = line.split(":");
     if (key && value) {
       const trimmednewValue = value?.trim();
       let newThemeValue = trimmednewValue.endsWith(",")
         ? trimmednewValue.slice(1, -2)
         : trimmednewValue.slice(1, -1);
-      const theme_key = key?.trim().split('"')[1];
-      // @ts-expect-error
-      if (imported_theme?.[theme_key]?.hasOwnProperty("value")) {
+      const theme_key = key?.trim().split('"')[1] as keyof typeof imported_theme;
+      // eslint-disable-next-line no-prototype-builtins
+      if (imported_theme[theme_key]&&imported_theme[theme_key].hasOwnProperty("value")) {
         const oldThemeObject =
           imported_theme[theme_key as Exclude<AllThemeKeys, "theme_name">];
-        // const newThemeValue = oldThemeObject?.value
-        console.log("====newThemeValue before ===", newThemeValue);
+        // @ts-expect-error
         if (theme_key !== "--") {
           if (newThemeValue.startsWith("#")) {
             newThemeValue = hexToOklch(newThemeValue);
           }
-          console.log("===== after newThemeValue ======", newThemeValue);
-          // @ts-expect-error
-          imported_theme[theme_key] = {
-            ...oldThemeObject,
-            value: newThemeValue,
-          };
+ 
+         imported_theme[theme_key] = {
+           ...oldThemeObject,
+           // @ts-expect-error
+           value: newThemeValue,
+         };
         }
       }
     }

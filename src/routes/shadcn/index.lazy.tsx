@@ -1,4 +1,4 @@
-import { createLazyFileRoute, Link } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { AllComponents } from "./-components/AllComponents";
 import { Toaster } from "@/components/shadcn/ui/sonner";
 export const Route = createLazyFileRoute("/shadcn/")({

@@ -1,6 +1,5 @@
-interface DaisyUIDisplayComponentsProps {}
 
-export function DaisyUIDisplayComponents({}: DaisyUIDisplayComponentsProps) {
+export function DaisyUIDisplayComponents() {
   return (
     <div className="flex h-full w-full flex-wrap items-center justify-center gap-2 divide-x divide-y p-[5%]">
       {/* steps */}

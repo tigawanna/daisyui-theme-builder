@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useTransition } from "react";
 import {
   DaisyUIColorSearchParmsTypes,
@@ -111,88 +112,83 @@ export function DaisyUIBaseCurvesThemeCard({
   const curves = Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
     theme_group as any,
   );
-  function handleVariableChange({
-    theme_key,
-    value_key,
-    css_varaiable_key,
-    value,
-    theme,
-  }: {
-    theme_key: string;
-    css_varaiable_key: string;
-    value_key: string;
-    value: string;
-    theme: GenericThemeState;
-  }) {
-    // const new_curves = {
-    //   ...theme_group,
-    //   [theme_key]: {
-    //     ...theme,
-    //     [value_key]: value,
-    //   },
-    // };
-    // document.documentElement.style.setProperty(css_varaiable_key, value);
-    saveChanges(theme_key, value);
-  }
+
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-1">
       <h1 className="">curves</h1>
       <ul className="flex w-full flex-wrap items-center justify-center">
         {curves.map(([key, theme]) => {
-          const row = theme as GenericThemeState;
-          const [input, setInput] = useState(row?.value);
-          const [, startTransition] = useTransition();
           if (!theme) return null;
           return (
-            <div
-              key={key + row.variable}
-              className="flex w-[48%] flex-col rounded-lg @md:w-1/3 @lg:w-[24%]"
-            >
-              <h2 className="text-sm font-bold">{key.replace(/_/g, " ")}</h2>
-              <div className="flex gap-1">
-                <input
-                  className="input input-sm flex w-full flex-col justify-center rounded-lg"
-                  value={input}
-                  onChange={(e) => {
-                    setInput(e.target.value);
-                    startTransition(() => {
-                      handleVariableChange({
-                        css_varaiable_key: row.variable,
-                        theme_key: key,
-                        value_key: "value",
-                        value: e.target.value,
-                        theme: row,
-                      });
-                    });
-                  }}
-                />
-                <div
-                  className={twMerge(
-                    `right-[1%] flex flex-col items-center justify-center gap-2`,
-                  )}
-                >
-                  {row?.locked ? (
-                    <div className="rounded-lg bg-error-content p-1">
-                      <Lock
-                        className="size-4 text-error"
-                        onClick={() => lockTheme(key, false)}
-                      />
-                    </div>
-                  ) : (
-                    <div className="rounded-lg bg-error-content p-1">
-                      <Unlock
-                        className="size-4 bg-success-content text-success"
-                        onClick={() => lockTheme(key, true)}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+            <GenericThemeCurveCard
+              key={key}
+              theme_key={key}
+              row={theme as GenericThemeState}
+              saveChanges={saveChanges}
+              lockTheme={lockTheme}
+            />
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+interface GenericThemeCurveCardProps {
+  theme_key: string;
+  row: GenericThemeState;
+  saveChanges: (item_key: string, new_item: string) => void;
+  lockTheme: (item_key: string, new_item: boolean) => void;
+}
+
+export function GenericThemeCurveCard({
+  theme_key,
+  row,
+  saveChanges,
+  lockTheme,
+}: GenericThemeCurveCardProps) {
+  const [input, setInput] = useState(row?.value);
+  const [, startTransition] = useTransition();
+  return (
+    <div
+      key={theme_key + row.variable}
+      className="flex w-[48%] flex-col rounded-lg @md:w-1/3 @lg:w-[24%]"
+    >
+      <h2 className="text-sm font-bold">{theme_key.replace(/_/g, " ")}</h2>
+      <div className="flex gap-1">
+        <input
+          className="input input-sm flex w-full flex-col justify-center rounded-lg"
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            startTransition(() => {
+              saveChanges(theme_key, e.target.value);
+            });
+          }}
+        />
+        <div
+          className={twMerge(
+            `right-[1%] flex flex-col items-center justify-center gap-2`,
+          )}
+        >
+          {row?.locked ? (
+            <div className="rounded-lg bg-error-content p-1">
+              <Lock
+                className="size-4 text-error"
+                onClick={() => lockTheme(theme_key, false)}
+              />
+            </div>
+          ) : (
+            <div className="rounded-lg bg-error-content p-1">
+              <Unlock
+                className="size-4 bg-success-content text-success"
+                onClick={() => lockTheme(theme_key, true)}
+              />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

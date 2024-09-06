@@ -1,11 +1,9 @@
 import { Info, X } from "lucide-react";
 import { useState } from "react";
 
-interface IntroProps {
 
-}
 
-export function Intro({}:IntroProps){
+export function Intro(){
 const [open,setOpen] = useState(true)
 if(!open) return null    
 return (

@@ -6,7 +6,7 @@ import { BadgeDemo } from "./demos/BadgeDemo";
 import { ButtonDemo } from "./demos/ButtonDemo";
 import ChartsDemo from "./demos/ChartsDemo";
 import { ComboboxDemo } from "./demos/ComboboxDemo";
-import { DataTableDemo } from "./demos/DataTableDemo";
+import { DataTableDemo } from "./demos/data-table/DataTableDemo";
 import { SonnerDemo } from "./demos/Sonnerdemo";
 import { SkeletonDemo } from "./demos/SkeletonDemo";
 
@@ -18,9 +18,9 @@ const DrawerDemo = lazy(() => import("./demos/DrawerDemo"));
 const TabsDemo = lazy(() => import("./demos/TabsDemo"));
 const CardWithForm = lazy(() => import("./demos/CardDemo"));
 
-interface OutputsProps {}
 
-export function Outputs({}: OutputsProps) {
+
+export function Outputs() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <div className="flex w-full flex-col items-center justify-center gap-5 p-5">

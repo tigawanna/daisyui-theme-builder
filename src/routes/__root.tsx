@@ -21,6 +21,7 @@ import {
 } from "@/components/navigation/DaisyUiDrawers";
 import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
 import { Intro } from "./-components/Intro";
+import { DrawerIds } from "./-components/type";
 
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
@@ -55,7 +56,7 @@ function RootComponent() {
     navigate({
       search: default_data_theme,
     });
-  }, [searchParams?.["--theme-name"]?.value]);
+  }, [navigate, searchParams]);
 
   function closeDrawer(drawerId: DrawerIds) {
     const drawer = document.getElementById(drawerId) as HTMLInputElement;

@@ -1,6 +1,6 @@
-interface ActionsProps {}
 
-export function Actions({}: ActionsProps) {
+
+export function Actions() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-5 divide-y p-[5%]">
       {/* drop down */}

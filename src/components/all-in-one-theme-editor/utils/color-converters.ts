@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import chroma from "chroma-js";
 import { HSLColor } from "react-color";
 

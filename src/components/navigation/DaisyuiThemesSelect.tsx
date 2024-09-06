@@ -48,13 +48,13 @@ export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
       data-choose-theme
       className="select select-primary select-sm"
       onChange={(e) => onThemeChange(e.target.value)}
+      defaultValue={searchParams?.["--theme-name"]?.value}
     >
       <option value="dark">Default</option>
       {items.map((item) => (
         <option
           value={item}
           key={item}
-          selected={item === searchParams?.["--theme-name"]?.value}
         >
           {item}
         </option>

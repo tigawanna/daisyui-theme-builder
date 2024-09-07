@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import {
-
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -13,7 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/shadcn/ui/button";
 import {
   DropdownMenu,
@@ -64,8 +63,6 @@ const data: Payment[] = [
     email: "carmella@hotmail.com",
   },
 ];
-
-
 
 export type Payment = {
   id: string;

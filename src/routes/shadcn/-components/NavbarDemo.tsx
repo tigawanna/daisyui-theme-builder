@@ -9,15 +9,15 @@ export function NavbarDemo() {
     <nav className="flex h-10 w-full items-center justify-between gap-3 bg-primary/10 p-2">
       <h1 className="text-xl font-bold">shadcn</h1>
       <BreadcrumbDemo />
-        <Suspense
-          fallback={
-            <div className="skeleton h-8 w-full items-center justify-center bg-base-200">
-              Loading...
-            </div>
-          }
-        >
-          <NavigationMenuDemo />
-        </Suspense>
+      <Suspense
+        fallback={
+          <div className="skeleton h-8 w-full items-center justify-center bg-base-200">
+            Loading...
+          </div>
+        }
+      >
+        <NavigationMenuDemo />
+      </Suspense>
       <nav className="flex w-fit items-center justify-center gap-2">
         <AvatarDemo />
         <Suspense

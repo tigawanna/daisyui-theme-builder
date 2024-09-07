@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  useState } from "react";
-import {
-  DaisyUIThemeSearchParmsTypes,
-} from "./utils/schema";
+import { useState } from "react";
+import { DaisyUIThemeSearchParmsTypes } from "./utils/schema";
 import { importThemes } from "./utils/theme-default-values";
 
 interface ImportThemeProps {
@@ -51,7 +49,7 @@ export function ImportTheme({ updateWholeTheme }: ImportThemeProps) {
       <button
         onClick={() => {
           const imported_theme = importThemes(input);
-          if(imported_theme){
+          if (imported_theme) {
             updateWholeTheme(imported_theme as any);
           }
         }}

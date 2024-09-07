@@ -27,7 +27,7 @@ export function getDaisyUiInlineCSSVariables(
   theme: DaisyUIThemeSearchParmsTypes,
 ): InlineCSSVaraibles {
   return {
-    "colorScheme": theme["--color-scheme"]?.value,
+    colorScheme: theme["--color-scheme"]?.value,
     "--p": theme.primary?.value,
     "--pc": theme["primary-content"]?.value,
     "--s": theme.secondary?.value,

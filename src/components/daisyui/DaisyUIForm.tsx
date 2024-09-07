@@ -1,4 +1,3 @@
-
 export function DaisyUIForm() {
   return (
     <form className="flex w-[90%] flex-col items-center justify-center gap-3 bg-base-200 p-[5%] md:w-[60%]">

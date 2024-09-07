@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import {  createRouter } from "@tanstack/react-router";
+import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { Loader } from "lucide-react";
 import { App } from "./App";
@@ -47,7 +47,6 @@ declare module "@tanstack/react-router" {
     router: typeof router;
   }
 }
-
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const rootElement = document.getElementById("root")!;

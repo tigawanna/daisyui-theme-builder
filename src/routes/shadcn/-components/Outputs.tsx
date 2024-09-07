@@ -18,9 +18,6 @@ const DrawerDemo = lazy(() => import("./demos/DrawerDemo"));
 const TabsDemo = lazy(() => import("./demos/TabsDemo"));
 const CardWithForm = lazy(() => import("./demos/CardDemo"));
 
-
-
-
 export function Outputs() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
@@ -41,7 +38,7 @@ export function Outputs() {
             <h1 className="text-xl">Alert dialog</h1>
             <AlertDialogDemo />
           </div>
- 
+
           <div className="flex w-fit min-w-[25%] flex-col items-center justify-center gap-1 md:max-w-[50%]">
             <h1 className="text-xl">Combobox</h1>
             <ComboboxDemo />

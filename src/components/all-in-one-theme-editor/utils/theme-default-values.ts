@@ -297,9 +297,14 @@ export function importThemes(imported_text: string) {
       let newThemeValue = trimmednewValue.endsWith(",")
         ? trimmednewValue.slice(1, -2)
         : trimmednewValue.slice(1, -1);
-      const theme_key = key?.trim().split('"')[1] as keyof typeof imported_theme;
+      const theme_key = key
+        ?.trim()
+        .split('"')[1] as keyof typeof imported_theme;
       // eslint-disable-next-line no-prototype-builtins
-      if (imported_theme[theme_key]&&imported_theme[theme_key].hasOwnProperty("value")) {
+      if (
+        imported_theme[theme_key] &&
+        imported_theme[theme_key].hasOwnProperty("value")
+      ) {
         const oldThemeObject =
           imported_theme[theme_key as Exclude<AllThemeKeys, "theme_name">];
         // @ts-expect-error
@@ -307,12 +312,12 @@ export function importThemes(imported_text: string) {
           if (newThemeValue.startsWith("#")) {
             newThemeValue = hexToOklch(newThemeValue);
           }
- 
-         imported_theme[theme_key] = {
-           ...oldThemeObject,
-           // @ts-expect-error
-           value: newThemeValue,
-         };
+
+          imported_theme[theme_key] = {
+            ...oldThemeObject,
+            // @ts-expect-error
+            value: newThemeValue,
+          };
         }
       }
     }

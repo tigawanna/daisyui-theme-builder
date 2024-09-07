@@ -29,9 +29,7 @@ export function MainNavBar({}: MainNavBarProps) {
           </Link>
         </div>
 
-        <button
-          className="btn btn-ghost btn-sm bg-slate-900 text-slate-50 flex gap-2 brightness-150"
-        >
+        <button className="btn btn-ghost btn-sm flex gap-2 bg-slate-900 text-slate-50 brightness-150">
           {color_scheme === "dark" ? (
             <Moon
               className=""

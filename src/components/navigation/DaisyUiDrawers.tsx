@@ -7,7 +7,9 @@ import { ImportTheme } from "../all-in-one-theme-editor/ImprtTheme";
 import { DrawerIds } from "@/routes/-components/type";
 import { lazy, Suspense } from "react";
 
-const  DaisyUIThemeEditor = lazy(() => import("../all-in-one-theme-editor/DaisyUIThemeEditor"));
+const DaisyUIThemeEditor = lazy(
+  () => import("../all-in-one-theme-editor/DaisyUIThemeEditor"),
+);
 
 interface MainDaisyUiDrawerProps {
   searchParams: DaisyUIThemeSearchParmsTypes;
@@ -81,16 +83,16 @@ export function MainDaisyUiDrawer({
             export <FileUp />
           </label>
         </div>
-        <Suspense fallback={<div className="w-full min-h-[60vh] skeleton"/>}>
-        <DaisyUIThemeEditor
-          theme={searchParams}
-          saveChanges={(items_key, new_items) => {
-            updateTheme(items_key as any, new_items);
-          }}
-          lockTheme={(items_key, new_items) => {
-            updateLockedTheme(items_key as any, new_items);
-          }}
-        />
+        <Suspense fallback={<div className="skeleton min-h-[60vh] w-full" />}>
+          <DaisyUIThemeEditor
+            theme={searchParams}
+            saveChanges={(items_key, new_items) => {
+              updateTheme(items_key as any, new_items);
+            }}
+            lockTheme={(items_key, new_items) => {
+              updateLockedTheme(items_key as any, new_items);
+            }}
+          />
         </Suspense>
       </ul>
     </div>

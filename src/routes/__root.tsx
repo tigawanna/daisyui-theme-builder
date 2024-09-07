@@ -23,7 +23,6 @@ import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
 import { Intro } from "./-components/Intro";
 import { DrawerIds } from "./-components/type";
 
-
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
   validateSearch: (input) => {
@@ -48,7 +47,7 @@ function RootComponent() {
     navigate({
       search: defaultThemes({ theme: searchParams }),
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     const default_data_theme = defaultThemes({
@@ -57,7 +56,7 @@ function RootComponent() {
     navigate({
       search: default_data_theme,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams?.["--theme-name"]?.value]);
 
   const closeDrawer = useCallback(
@@ -67,7 +66,9 @@ function RootComponent() {
         drawer.checked = false;
       }
     },
-    [/* dependencies */],
+    [
+      /* dependencies */
+    ],
   );
   return (
     <div
@@ -114,7 +115,7 @@ function RootComponent() {
             <div className="h-1 w-full" />
           )}
         </div>
-          <Intro/>
+        <Intro />
         <Outlet />
       </div>
       {/* Page content here */}

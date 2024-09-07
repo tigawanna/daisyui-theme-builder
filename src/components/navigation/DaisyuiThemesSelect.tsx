@@ -1,7 +1,5 @@
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 
-
-
 export function DaisyuiThemesSelect() {
   const items = [
     "light",
@@ -52,10 +50,7 @@ export function DaisyuiThemesSelect() {
     >
       <option value="dark">Default</option>
       {items.map((item) => (
-        <option
-          value={item}
-          key={item}
-        >
+        <option value={item} key={item}>
           {item}
         </option>
       ))}

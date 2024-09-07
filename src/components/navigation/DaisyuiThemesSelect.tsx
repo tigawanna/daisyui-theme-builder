@@ -1,4 +1,4 @@
-import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
+import { useDaisyUITheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 
 export function DaisyuiThemesSelect() {
   const items = [
@@ -36,7 +36,7 @@ export function DaisyuiThemesSelect() {
     "nord",
     "sunset",
   ];
-  const { searchParams, updateThemeName } = useSearchParamsTheme();
+  const { searchParams, updateThemeName } = useDaisyUITheme();
   function onThemeChange(theme_name: string) {
     updateThemeName(theme_name);
   }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, useState, useTransition, memo, useMemo } from "react";
+import { useState, useTransition, memo, useMemo, useCallback } from "react";
 import {
   DaisyUIColorSearchParmsTypes,
   DaisyUICurvesSearchParmsTypes,
@@ -12,6 +12,7 @@ import {
 } from "./utils/daisyui-css-variables-helpers";
 import { GenericThemeState } from "./utils/types";
 import { Lock, Unlock } from "lucide-react";
+import { useDaisyUITheme } from "./utils/use-search-params-theme";
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
   [key in T]: GenericThemeState;
@@ -24,24 +25,25 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   theme_key: T;
   theme: DaisyUIColorSearchParmsTypes[T];
   className?: string;
-  saveChanges: (item_key: string, new_item: string) => void;
-  lockTheme: (item_key: string, new_item: boolean) => void;
 }
 export const GenericColorCard = memo(
   <T extends BaseDaisyUiThemeKeysWithoutBase>({
     theme_key,
     theme,
     className,
-    saveChanges,
-    lockTheme,
   }: GenericColorCardProps<T>) => {
-    const { bg, content } = getTailwindBg(theme?.name);
-    const localSaveChanges = useCallback(
-      (color_key: string, new_color: string) => {
-        saveChanges(color_key, new_color);
-      },
-      [saveChanges],
-    );
+
+    const {  updateLockedTheme } = useDaisyUITheme();
+  const {bg,content} = useMemo(() => getTailwindBg(theme?.name), [theme?.name]);
+const handleLockClick = useCallback(
+  () => updateLockedTheme(theme_key, true),
+  [theme_key, updateLockedTheme],
+);
+const handleUnlockClick = useCallback(
+  () => updateLockedTheme(theme_key, false),
+  [theme_key, updateLockedTheme],
+);
+
     return (
       <div
         className={twMerge(
@@ -58,8 +60,6 @@ export const GenericColorCard = memo(
             theme={theme}
             theme_key={theme_key}
             bg_color={bg}
-            saveColor={localSaveChanges}
-            // colorKey={main.variable} oklchString={main.value}
           >
             <div
               className={twMerge(
@@ -82,14 +82,14 @@ export const GenericColorCard = memo(
             <div className="rounded-lg bg-error-content p-1">
               <Lock
                 className="size-3 text-error"
-                onClick={() => lockTheme(theme_key, false)}
+                onClick={handleUnlockClick}
               />
             </div>
           ) : (
             <div className="rounded-lg bg-error-content p-1">
               <Unlock
                 className="size-3 bg-success-content text-success"
-                onClick={() => lockTheme(theme_key, true)}
+                onClick={handleLockClick}
               />
             </div>
           )}
@@ -105,16 +105,12 @@ type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
 interface DaisyUIBaseCurvesThemeCardProps {
   theme_group: {
     [key in ThemeCurveKeys]?: ThemeCurves[key];
-  };
-  saveChanges: (item_key: string, new_item: string) => void;
-  lockTheme: (item_key: string, new_item: boolean) => void;
+  }
 }
 
 export const DaisyUIBaseCurvesThemeCard = memo(
   ({
     theme_group,
-    saveChanges,
-    lockTheme,
   }: DaisyUIBaseCurvesThemeCardProps) => {
     const curves = useMemo(() => {
       return Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
@@ -133,8 +129,7 @@ export const DaisyUIBaseCurvesThemeCard = memo(
                 key={key}
                 theme_key={key}
                 row={theme as GenericThemeState}
-                saveChanges={saveChanges}
-                lockTheme={lockTheme}
+      
               />
             );
           })}
@@ -147,12 +142,27 @@ export const DaisyUIBaseCurvesThemeCard = memo(
 interface GenericThemeCurveCardProps {
   theme_key: string;
   row: GenericThemeState;
-  saveChanges: (item_key: string, new_item: string) => void;
-  lockTheme: (item_key: string, new_item: boolean) => void;
+
 }
 
 export const GenericThemeCurveCard = memo(
-  ({ theme_key, row, saveChanges, lockTheme }: GenericThemeCurveCardProps) => {
+  ({ theme_key, row,  }: GenericThemeCurveCardProps) => {
+    const {updateTheme,updateLockedTheme} = useDaisyUITheme()
+
+   const updateChages = useCallback(
+     ( new_items: string) =>
+       updateTheme(theme_key, new_items),
+     [updateTheme, theme_key],
+   ) 
+
+const handleLockClick = useCallback(
+  () => updateLockedTheme(theme_key, true),
+  [theme_key, updateLockedTheme],
+);
+const handleUnlockClick = useCallback(
+  () => updateLockedTheme(theme_key, false),
+  [theme_key, updateLockedTheme],
+);
     const [input, setInput] = useState(row?.value);
     const [, startTransition] = useTransition();
     return (
@@ -168,7 +178,7 @@ export const GenericThemeCurveCard = memo(
             onChange={(e) => {
               setInput(e.target.value);
               startTransition(() => {
-                saveChanges(theme_key, e.target.value);
+                updateChages(e.target.value);
               });
             }}
           />
@@ -181,14 +191,14 @@ export const GenericThemeCurveCard = memo(
               <div className="rounded-lg bg-error-content p-1">
                 <Lock
                   className="size-4 text-error"
-                  onClick={() => lockTheme(theme_key, false)}
+                  onClick={handleUnlockClick}
                 />
               </div>
             ) : (
               <div className="rounded-lg bg-error-content p-1">
                 <Unlock
                   className="size-4 bg-success-content text-success"
-                  onClick={() => lockTheme(theme_key, true)}
+                  onClick={handleLockClick}
                 />
               </div>
             )}

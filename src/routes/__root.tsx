@@ -12,7 +12,7 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { getDaisyUiInlineCSSVariables } from "@/components/all-in-one-theme-editor/utils/daisyui-css-variables-helpers";
 import { defaultThemes } from "@/components/all-in-one-theme-editor/utils/theme-default-values";
-import { useSearchParamsTheme } from "@/components/all-in-one-theme-editor/utils/use-search-params-theme";
+import { useDaisyUITheme } from "@/components/all-in-one-theme-editor/utils/use-search-params-theme";
 import { daisyUIThemeSearchParamsSchema } from "@/components/all-in-one-theme-editor/utils/schema";
 import {
   ExportThemeDaisyUiDrawer,
@@ -37,7 +37,7 @@ function RootComponent() {
     updateTheme,
     updateWholeTheme,
     navigate,
-  } = useSearchParamsTheme();
+  } = useDaisyUITheme();
   const { status } = useRouterState();
 
   useEffect(() => {

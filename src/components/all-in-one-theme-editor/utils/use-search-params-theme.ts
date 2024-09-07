@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useSearch } from "@tanstack/react-router";
 
-export function useSearchParamsTheme() {
+export function useDaisyUITheme() {
   const searchParams = useSearch({
     from: "__root__",
   });

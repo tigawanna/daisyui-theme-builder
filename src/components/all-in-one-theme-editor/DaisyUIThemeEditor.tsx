@@ -1,4 +1,5 @@
-import { useCallback, useMemo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useMemo } from "react";
 import {
   DaisyUIBaseCurvesThemeCard,
   GenericColorCard,
@@ -7,26 +8,124 @@ import { DaisyUIThemeSearchParmsTypes } from "./utils/schema";
 
 export default function DaisyUIThemeEditor({
   theme,
-  saveChanges,
-  lockTheme,
+
 }: {
   theme: DaisyUIThemeSearchParmsTypes;
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }) {
-  const localSaveChanges = useCallback(
-    (color_key: string, new_color: string) => {
-      saveChanges(color_key, new_color);
-    },
-    [saveChanges],
+
+
+
+  const primaryTheme = useMemo(
+    () => theme?.["primary"],
+    [theme?.["primary"]],
   );
-  const localLockTheme = useCallback(
-    (item_key: string, new_item: boolean) => {
-      lockTheme(item_key, new_item);
-    },
-    [lockTheme],
+  const primaryContentTheme = useMemo(
+    () => theme?.["primary-content"],
+    [theme?.["primary-content"],],
   );
-  const localTheme = useMemo(() => theme, [theme]);
+  const secondaryTheme = useMemo(
+    () => theme?.["secondary"],
+    [theme?.["secondary"]],
+  );
+  const secondaryContentTheme = useMemo(
+    () => theme?.["secondary-content"],
+    [theme?.["secondary-content"],],
+  );
+  const accentTheme = useMemo(
+    () => theme?.["accent"],
+    [theme?.["accent"]],
+  );
+  const accentContentTheme = useMemo(
+    () => theme?.["accent-content"],
+    [theme?.["accent-content"],],
+  );
+  const successTheme = useMemo(
+    () => theme?.["success"],
+    [theme?.["success"]],
+  );
+  const successContentTheme = useMemo(
+    () => theme?.["success-content"],
+    [theme?.["success-content"],],
+  );
+  const neutralTheme = useMemo(
+    () => theme?.["neutral"],
+    [theme?.["neutral"]],
+  );
+  const neutralContentTheme = useMemo(
+    () => theme?.["neutral-content"],
+    [theme?.["neutral-content"],],
+  );
+  const base100Theme = useMemo(
+    () => theme?.["base-100"],
+    [theme?.["base-100"]],
+  );
+  const base200Theme = useMemo(
+    () => theme?.["base-200"],
+    [theme?.["base-200"]],
+  );
+  const base300Theme = useMemo(
+    () => theme?.["base-300"],
+    [theme?.["base-300"]],
+  );
+  const baseContentTheme = useMemo(
+    () => theme?.["base-content"],
+    [theme?.["base-content"],],
+  );
+  const infoTheme = useMemo(
+    () => theme?.["info"],
+    [theme?.["info"]],
+  );
+  const infoContentTheme = useMemo(
+    () => theme?.["info-content"],
+    [theme?.["info-content"],],
+  );
+  const warningTheme = useMemo(
+    () => theme?.["warning"],
+    [theme?.["warning"]],
+  );
+  const warningContentTheme = useMemo(
+    () => theme?.["warning-content"],
+    [theme?.["warning-content"],],
+  );
+  const errorTheme = useMemo(
+    () => theme?.["error"],
+    [theme?.["error"]],
+  );
+  const errorContentTheme = useMemo(
+    () => theme?.["error-content"],
+    [theme?.["error-content"],],
+  );
+
+  // const tabBorder = useMemo(
+  //   () => localTheme?.["--tab-border"],
+  //   [theme?.["--tab-border"]],
+  // );
+  // const tabRadius = useMemo(
+  //   () => theme?.["--tab-radius"],
+  //   [theme?.["--tab-radius"]],
+  // );
+  // const btnFocusScale = useMemo(
+  //   () => theme?.["--btn-focus-scale"],
+  //   [theme?.["--btn-focus-scale"]],
+  // );
+  // const borderBtn = useMemo(
+  //   () => theme?.["--border-btn"],
+  //   [theme?.["--border-btn"]],
+  // );
+  // const roundedBox = useMemo(
+  //   () => theme?.["--rounded-box"],
+  //   [theme?.["--rounded-box"]],
+  // );
+  // const roundedBadge = useMemo(
+  //   () => theme?.["--rounded-badge"],
+  //   [theme?.["--rounded-badge"]],
+  // );
+  // const animationBtn = useMemo(
+  //   () => theme?.["--animation-btn"],
+  //   [theme?.["--animation-btn"]],
+  // );
 
   const curves = useMemo(
     () => ({
@@ -48,61 +147,52 @@ export default function DaisyUIThemeEditor({
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Primary</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
             theme_key="primary"
-            theme={localTheme?.primary}
+            theme={primaryTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="primary-content"
-            theme={localTheme?.["primary-content"]}
+            theme={primaryContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Secondary</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="secondary"
-            theme={localTheme?.secondary}
+            theme={secondaryTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="secondary-content"
-            theme={localTheme?.["secondary-content"]}
+            theme={secondaryContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Accent</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="accent"
-            theme={localTheme?.accent}
+            theme={accentTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="accent-content"
-            theme={localTheme?.["accent-content"]}
+            theme={accentContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Neutral</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="neutral"
-            theme={localTheme?.neutral}
+            theme={neutralTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="neutral-content"
-            theme={localTheme?.["neutral-content"]}
+            theme={neutralContentTheme}
           />
         </div>
       </div>
@@ -110,32 +200,28 @@ export default function DaisyUIThemeEditor({
         <h3>Base</h3>
         <div className="flex w-full flex-wrap items-center justify-center gap-2 p-2">
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             className="w-[48%] @md:w-[30%] @lg:w-[24%]"
             theme_key="base-100"
-            theme={localTheme?.["base-100"]}
+            theme={base100Theme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%]"
             theme_key="base-200"
-            theme={localTheme?.["base-200"]}
+            theme={base200Theme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%]"
             theme_key="base-300"
-            theme={localTheme?.["base-300"]}
+            theme={base300Theme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%]"
             theme_key="base-content"
-            theme={localTheme?.["base-content"]}
+            theme={baseContentTheme}
           />
         </div>
       </div>
@@ -143,61 +229,53 @@ export default function DaisyUIThemeEditor({
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Info</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="info"
-            theme={localTheme?.info}
+            theme={infoTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="info-content"
-            theme={localTheme?.["info-content"]}
+            theme={infoContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Success</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="success"
-            theme={localTheme?.success}
+            theme={successTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="success-content"
-            theme={localTheme?.["success-content"]}
+            theme={successContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Warning</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="warning"
-            theme={localTheme?.warning}
+            theme={warningTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="warning-content"
-            theme={localTheme?.["warning-content"]}
+            theme={warningContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Error</h3>
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="error"
-            theme={localTheme?.error}
+            theme={errorTheme}
           />
           <GenericColorCard
-            lockTheme={localLockTheme}
-            saveChanges={localSaveChanges}
+ 
             theme_key="error-content"
-            theme={localTheme?.["error-content"]}
+            theme={errorContentTheme}
           />
         </div>
       </div>
@@ -205,8 +283,6 @@ export default function DaisyUIThemeEditor({
         {curves && (
           <DaisyUIBaseCurvesThemeCard
             theme_group={curves}
-            saveChanges={localSaveChanges}
-            lockTheme={localLockTheme}
           />
         )}
       </div>

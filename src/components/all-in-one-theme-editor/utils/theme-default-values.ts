@@ -303,7 +303,7 @@ export function importThemes(imported_text: string) {
       // eslint-disable-next-line no-prototype-builtins
       if (
         imported_theme[theme_key] &&
-        imported_theme[theme_key].hasOwnProperty("value")
+        Object.prototype.hasOwnProperty.call(imported_theme[theme_key], "value")
       ) {
         const oldThemeObject =
           imported_theme[theme_key as Exclude<AllThemeKeys, "theme_name">];

@@ -102,47 +102,46 @@ const handleUnlockClick = useCallback(
 type ThemeCurves = DaisyUICurvesSearchParmsTypes;
 type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
 
-interface DaisyUIBaseCurvesThemeCardProps {
-  theme_group: {
-    [key in ThemeCurveKeys]?: ThemeCurves[key];
-  }
-}
+// interface DaisyUIBaseCurvesThemeCardProps {
+//   theme_group: {
+//     [key in ThemeCurveKeys]?: ThemeCurves[key];
+//   }
+// }
 
-export const DaisyUIBaseCurvesThemeCard = memo(
-  ({
-    theme_group,
-  }: DaisyUIBaseCurvesThemeCardProps) => {
-    const curves = useMemo(() => {
-      return Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
-        theme_group as any,
-      );
-    }, [theme_group]);
+// export const DaisyUIBaseCurvesThemeCard = memo(
+//   ({
+//     theme_group,
+//   }: DaisyUIBaseCurvesThemeCardProps) => {
+//     const curves = useMemo(() => {
+//       return Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
+//         theme_group as any,
+//       );
+//     }, [theme_group]);
 
-    return (
-      <div className="flex w-full flex-col items-center justify-center gap-1">
-        <h1 className="">curves</h1>
-        <ul className="flex w-full flex-wrap items-center justify-center">
-          {curves.map(([key, theme]) => {
-            if (!theme) return null;
-            return (
-              <GenericThemeCurveCard
-                key={key}
-                theme_key={key}
-                row={theme as GenericThemeState}
+//     return (
+//       <div className="flex w-full flex-col items-center justify-center gap-1">
+//         <h1 className="">curves</h1>
+//         <ul className="flex w-full flex-wrap items-center justify-center">
+//           {curves.map(([key, theme]) => {
+//             if (!theme) return null;
+//             return (
+//               <GenericThemeCurveCard
+//                 key={key}
+//                 theme_key={key as any}
+//                 row={theme as GenericThemeState}
       
-              />
-            );
-          })}
-        </ul>
-      </div>
-    );
-  },
-);
+//               />
+//             );
+//           })}
+//         </ul>
+//       </div>
+//     );
+//   },
+// );
 
 interface GenericThemeCurveCardProps {
-  theme_key: string;
+  theme_key: ThemeCurveKeys;
   row: GenericThemeState;
-
 }
 
 export const GenericThemeCurveCard = memo(
@@ -163,11 +162,20 @@ const handleUnlockClick = useCallback(
   () => updateLockedTheme(theme_key, false),
   [theme_key, updateLockedTheme],
 );
-    const [input, setInput] = useState(row?.value);
-    const [, startTransition] = useTransition();
+
+const [input, setInput] = useState(row?.value);
+const [, startTransition] = useTransition();
+const handleUpdateCurves = useCallback(
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+    startTransition(() => {
+      updateChages(e.target.value);
+    });
+  },
+  [updateChages],
+);
     return (
       <div
-        key={theme_key + row.variable}
         className="flex w-[48%] flex-col rounded-lg @md:w-1/3 @lg:w-[24%]"
       >
         <h2 className="text-sm font-bold">{theme_key.replace(/_/g, " ")}</h2>
@@ -175,12 +183,7 @@ const handleUnlockClick = useCallback(
           <input
             className="input input-sm flex w-full flex-col justify-center rounded-lg"
             value={input}
-            onChange={(e) => {
-              setInput(e.target.value);
-              startTransition(() => {
-                updateChages(e.target.value);
-              });
-            }}
+            onChange={handleUpdateCurves}
           />
           <div
             className={twMerge(

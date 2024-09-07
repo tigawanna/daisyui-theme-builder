@@ -1,29 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo } from "react";
-import {
-  GenericColorCard,
-  GenericThemeCurveCard,
-} from "./GenericThemeCard";
+import { GenericColorCard, GenericThemeCurveCard } from "./GenericThemeCard";
 import { DaisyUIThemeSearchParmsTypes } from "./utils/schema";
 
 export default function DaisyUIThemeEditor({
   theme,
-
 }: {
   theme: DaisyUIThemeSearchParmsTypes;
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }) {
-
-
-// block
-  const primaryTheme = useMemo(
-    () => theme?.["primary"],
-    [theme?.["primary"]],
-  );
+  // block
+  const primaryTheme = useMemo(() => theme?.["primary"], [theme?.["primary"]]);
   const primaryContentTheme = useMemo(
     () => theme?.["primary-content"],
-    [theme?.["primary-content"],],
+    [theme?.["primary-content"]],
   );
   const secondaryTheme = useMemo(
     () => theme?.["secondary"],
@@ -31,31 +22,22 @@ export default function DaisyUIThemeEditor({
   );
   const secondaryContentTheme = useMemo(
     () => theme?.["secondary-content"],
-    [theme?.["secondary-content"],],
+    [theme?.["secondary-content"]],
   );
-  const accentTheme = useMemo(
-    () => theme?.["accent"],
-    [theme?.["accent"]],
-  );
+  const accentTheme = useMemo(() => theme?.["accent"], [theme?.["accent"]]);
   const accentContentTheme = useMemo(
     () => theme?.["accent-content"],
-    [theme?.["accent-content"],],
+    [theme?.["accent-content"]],
   );
-  const successTheme = useMemo(
-    () => theme?.["success"],
-    [theme?.["success"]],
-  );
+  const successTheme = useMemo(() => theme?.["success"], [theme?.["success"]]);
   const successContentTheme = useMemo(
     () => theme?.["success-content"],
-    [theme?.["success-content"],],
+    [theme?.["success-content"]],
   );
-  const neutralTheme = useMemo(
-    () => theme?.["neutral"],
-    [theme?.["neutral"]],
-  );
+  const neutralTheme = useMemo(() => theme?.["neutral"], [theme?.["neutral"]]);
   const neutralContentTheme = useMemo(
     () => theme?.["neutral-content"],
-    [theme?.["neutral-content"],],
+    [theme?.["neutral-content"]],
   );
   const base100Theme = useMemo(
     () => theme?.["base-100"],
@@ -71,43 +53,34 @@ export default function DaisyUIThemeEditor({
   );
   const baseContentTheme = useMemo(
     () => theme?.["base-content"],
-    [theme?.["base-content"],],
+    [theme?.["base-content"]],
   );
-  const infoTheme = useMemo(
-    () => theme?.["info"],
-    [theme?.["info"]],
-  );
+  const infoTheme = useMemo(() => theme?.["info"], [theme?.["info"]]);
   const infoContentTheme = useMemo(
     () => theme?.["info-content"],
-    [theme?.["info-content"],],
+    [theme?.["info-content"]],
   );
-  const warningTheme = useMemo(
-    () => theme?.["warning"],
-    [theme?.["warning"]],
-  );
+  const warningTheme = useMemo(() => theme?.["warning"], [theme?.["warning"]]);
   const warningContentTheme = useMemo(
     () => theme?.["warning-content"],
-    [theme?.["warning-content"],],
+    [theme?.["warning-content"]],
   );
-  const errorTheme = useMemo(
-    () => theme?.["error"],
-    [theme?.["error"]],
-  );
+  const errorTheme = useMemo(() => theme?.["error"], [theme?.["error"]]);
   const errorContentTheme = useMemo(
     () => theme?.["error-content"],
-    [theme?.["error-content"],],
+    [theme?.["error-content"]],
   );
 
   // endblock
-  
-//  tab
+
+  //  tab
   const tabRadius = useMemo(
     () => theme?.["--tab-radius"],
     [theme?.["--tab-radius"]],
   );
   const tabBorder = useMemo(
-        () => theme?.["--tab-border"],
-        [theme?.["--tab-border"]],
+    () => theme?.["--tab-border"],
+    [theme?.["--tab-border"]],
   );
   //  btn
   const btnFocusState = useMemo(
@@ -115,10 +88,10 @@ export default function DaisyUIThemeEditor({
     [theme?.["--btn-focus-scale"]],
   );
   const borderBtn = useMemo(
-        () => theme?.["--border-btn"],
-        [theme?.["--border-btn"]],
+    () => theme?.["--border-btn"],
+    [theme?.["--border-btn"]],
   );
-//  rpunded
+  //  rpunded
   const roundedBox = useMemo(
     () => theme?.["--rounded-box"],
     [theme?.["--rounded-box"]],
@@ -140,10 +113,6 @@ export default function DaisyUIThemeEditor({
     () => theme?.["--animation-input"],
     [theme?.["--animation-input"]],
   );
-
-
-
-
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-[5%]">
@@ -284,10 +253,7 @@ export default function DaisyUIThemeEditor({
           <GenericThemeCurveCard theme_key="--tab-border" row={tabBorder} />
         )}
         {tabRadius && (
-          <GenericThemeCurveCard
-            theme_key="--tab-radius"
-            row={tabRadius}
-          />
+          <GenericThemeCurveCard theme_key="--tab-radius" row={tabRadius} />
         )}
       </div>
     </div>

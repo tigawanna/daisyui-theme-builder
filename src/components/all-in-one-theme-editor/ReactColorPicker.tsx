@@ -12,14 +12,13 @@ import { useDaisyUITheme } from "./utils/use-search-params-theme";
 interface ReactColorPickerProps {
   oklchString: string; // oklch color string to be coverted into hsl from the editor
   colorKey: string; // css variable key ;
-
 }
 
 export function ReactColorPicker({
   oklchString,
   colorKey,
 }: ReactColorPickerProps) {
-    const { updateTheme } = useDaisyUITheme();
+  const { updateTheme } = useDaisyUITheme();
   const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString));
   const oklch_string = reactColorHSLToOKLCH(color);
   const [oklch, setOklch] = useState(oklch_string);

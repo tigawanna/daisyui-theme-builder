@@ -32,17 +32,19 @@ export const GenericColorCard = memo(
     theme,
     className,
   }: GenericColorCardProps<T>) => {
-
-    const {  updateLockedTheme } = useDaisyUITheme();
-  const {bg,content} = useMemo(() => getTailwindBg(theme?.name), [theme?.name]);
-const handleLockClick = useCallback(
-  () => updateLockedTheme(theme_key, true),
-  [theme_key, updateLockedTheme],
-);
-const handleUnlockClick = useCallback(
-  () => updateLockedTheme(theme_key, false),
-  [theme_key, updateLockedTheme],
-);
+    const { updateLockedTheme } = useDaisyUITheme();
+    const { bg, content } = useMemo(
+      () => getTailwindBg(theme?.name),
+      [theme?.name],
+    );
+    const handleLockClick = useCallback(
+      () => updateLockedTheme(theme_key, true),
+      [theme_key, updateLockedTheme],
+    );
+    const handleUnlockClick = useCallback(
+      () => updateLockedTheme(theme_key, false),
+      [theme_key, updateLockedTheme],
+    );
 
     return (
       <div
@@ -56,11 +58,7 @@ const handleUnlockClick = useCallback(
             "flex h-full w-full flex-col items-center justify-center gap-2"
           }
         >
-          <ColorpickerModal
-            theme={theme}
-            theme_key={theme_key}
-            bg_color={bg}
-          >
+          <ColorpickerModal theme={theme} theme_key={theme_key} bg_color={bg}>
             <div
               className={twMerge(
                 "flex w-full flex-col items-center justify-between gap-0.5 rounded-lg p-1 text-sm",
@@ -80,10 +78,7 @@ const handleUnlockClick = useCallback(
         >
           {theme?.locked ? (
             <div className="rounded-lg bg-error-content p-1">
-              <Lock
-                className="size-3 text-error"
-                onClick={handleUnlockClick}
-              />
+              <Lock className="size-3 text-error" onClick={handleUnlockClick} />
             </div>
           ) : (
             <div className="rounded-lg bg-error-content p-1">
@@ -129,7 +124,7 @@ type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
 //                 key={key}
 //                 theme_key={key as any}
 //                 row={theme as GenericThemeState}
-      
+
 //               />
 //             );
 //           })}
@@ -145,39 +140,36 @@ interface GenericThemeCurveCardProps {
 }
 
 export const GenericThemeCurveCard = memo(
-  ({ theme_key, row,  }: GenericThemeCurveCardProps) => {
-    const {updateTheme,updateLockedTheme} = useDaisyUITheme()
+  ({ theme_key, row }: GenericThemeCurveCardProps) => {
+    const { updateTheme, updateLockedTheme } = useDaisyUITheme();
 
-   const updateChages = useCallback(
-     ( new_items: string) =>
-       updateTheme(theme_key, new_items),
-     [updateTheme, theme_key],
-   ) 
+    const updateChages = useCallback(
+      (new_items: string) => updateTheme(theme_key, new_items),
+      [updateTheme, theme_key],
+    );
 
-const handleLockClick = useCallback(
-  () => updateLockedTheme(theme_key, true),
-  [theme_key, updateLockedTheme],
-);
-const handleUnlockClick = useCallback(
-  () => updateLockedTheme(theme_key, false),
-  [theme_key, updateLockedTheme],
-);
+    const handleLockClick = useCallback(
+      () => updateLockedTheme(theme_key, true),
+      [theme_key, updateLockedTheme],
+    );
+    const handleUnlockClick = useCallback(
+      () => updateLockedTheme(theme_key, false),
+      [theme_key, updateLockedTheme],
+    );
 
-const [input, setInput] = useState(row?.value);
-const [, startTransition] = useTransition();
-const handleUpdateCurves = useCallback(
-  (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-    startTransition(() => {
-      updateChages(e.target.value);
-    });
-  },
-  [updateChages],
-);
+    const [input, setInput] = useState(row?.value);
+    const [, startTransition] = useTransition();
+    const handleUpdateCurves = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
+        startTransition(() => {
+          updateChages(e.target.value);
+        });
+      },
+      [updateChages],
+    );
     return (
-      <div
-        className="flex w-[48%] flex-col rounded-lg @md:w-1/3 @lg:w-[24%]"
-      >
+      <div className="flex w-[48%] flex-col rounded-lg @md:w-1/3 @lg:w-[24%]">
         <h2 className="text-sm font-bold">{theme_key.replace(/_/g, " ")}</h2>
         <div className="flex gap-1">
           <input

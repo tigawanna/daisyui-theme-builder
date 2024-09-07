@@ -5,7 +5,7 @@ import {
 } from "./GenericThemeCard";
 import { DaisyUIThemeSearchParmsTypes } from "./utils/schema";
 
-export function DaisyUIThemeEditor({
+export default function DaisyUIThemeEditor({
   theme,
   saveChanges,
   lockTheme,
@@ -14,10 +14,12 @@ export function DaisyUIThemeEditor({
   saveChanges: (item_key: string, new_item: string) => void;
   lockTheme: (item_key: string, new_item: boolean) => void;
 }) {
-
-  const localSaveChanges = useCallback((color_key: string, new_color: string) => {
-    saveChanges(color_key, new_color);
-  }, [saveChanges]);
+  const localSaveChanges = useCallback(
+    (color_key: string, new_color: string) => {
+      saveChanges(color_key, new_color);
+    },
+    [saveChanges],
+  );
   const localLockTheme = useCallback(
     (item_key: string, new_item: boolean) => {
       lockTheme(item_key, new_item);
@@ -26,10 +28,8 @@ export function DaisyUIThemeEditor({
   );
   const localTheme = useMemo(() => theme, [theme]);
 
-
-
-
-    const curves = useMemo(() => ({
+  const curves = useMemo(
+    () => ({
       "--tab-border": theme?.["--tab-border"],
       "--tab-radius": theme?.["--tab-radius"],
       "--btn-focus-scale": theme?.["--btn-focus-scale"],
@@ -38,9 +38,9 @@ export function DaisyUIThemeEditor({
       "--rounded-badge": theme?.["--rounded-badge"],
       "--animation-btn": theme?.["--animation-btn"],
       "--animation-input": theme?.["--animation-input"],
-    }), [theme]); // Memoize the curves object using the theme as the dependency array
-  
-
+    }),
+    [theme],
+  ); // Memoize the curves object using the theme as the dependency array
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-[5%]">

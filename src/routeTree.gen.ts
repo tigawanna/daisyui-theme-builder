@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as TwarkuiIndexImport } from './routes/twarkui/index'
 
@@ -22,6 +23,11 @@ const ShadcnIndexLazyImport = createFileRoute('/shadcn/')()
 const ShadcnChartsLazyImport = createFileRoute('/shadcn/charts')()
 
 // Create/Update Routes
+
+const AboutRoute = AboutImport.update({
+  path: '/about',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -54,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
     '/shadcn/charts': {
       id: '/shadcn/charts'
       path: '/shadcn/charts'
@@ -82,6 +95,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  AboutRoute,
   ShadcnChartsLazyRoute,
   TwarkuiIndexRoute,
   ShadcnIndexLazyRoute,
@@ -96,6 +110,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/about",
         "/shadcn/charts",
         "/twarkui/",
         "/shadcn/"
@@ -103,6 +118,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/about": {
+      "filePath": "about.tsx"
     },
     "/shadcn/charts": {
       "filePath": "shadcn/charts.lazy.tsx"

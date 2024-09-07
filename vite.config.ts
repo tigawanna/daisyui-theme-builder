@@ -13,8 +13,7 @@ const _plugins = [react(), TanStackRouterVite(), tsconfigPaths(),
 analyze({
     // highlight the modules with size > 40kb
     filter(moduleObject) {
-      console.log("====== module object  ==== ",moduleObject);
-      return moduleObject.size > 50000;
+      return moduleObject.size > 40000;
     },
   }),
 // splashScreen({

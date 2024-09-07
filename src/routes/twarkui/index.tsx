@@ -11,9 +11,7 @@ function index() {
       <div className="background-animate flex h-fit w-full flex-col items-center justify-center bg-gradient-to-tr from-primary to-secondary bg-clip-text text-7xl text-transparent">
         <h1 className="text-4xl font-bold">tailwind + ARK ui</h1>
         <h1 className="text-9xl font-bold">Coming soon</h1>
-        <div className="flex w-fit min-w-[25%] flex-col items-center justify-center gap-1 md:max-w-[50%]">
-          <h1 className="text-xl">Combobox</h1>
-        </div>
+
       </div>
     </div>
   );

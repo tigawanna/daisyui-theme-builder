@@ -21,13 +21,13 @@ type InlineCSSVaraiblesThemeVAriable =
 type InlineCSSVaraibles = {
   [key in InlineCSSVaraiblesThemeVAriable]?: string;
 } & {
-  "color-scheme"?: string;
+  colorScheme?: string;
 };
 export function getDaisyUiInlineCSSVariables(
   theme: DaisyUIThemeSearchParmsTypes,
 ): InlineCSSVaraibles {
   return {
-    "color-scheme": theme["--color-scheme"]?.value,
+    "colorScheme": theme["--color-scheme"]?.value,
     "--p": theme.primary?.value,
     "--pc": theme["primary-content"]?.value,
     "--s": theme.secondary?.value,

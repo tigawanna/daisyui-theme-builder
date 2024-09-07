@@ -1,11 +1,11 @@
-import { DrawerIds } from "@/routes/__root";
-import { Link, Outlet } from "@tanstack/react-router";
-import { MainNavBar } from "./MainNavBar";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Link } from "@tanstack/react-router";
 import { DaisyUIThemeSearchParmsTypes } from "../all-in-one-theme-editor/utils/schema";
-import { FileUp, Import, Save, X } from "lucide-react";
+import { FileUp, Import, X } from "lucide-react";
 import { DaisyUIThemeEditor } from "../all-in-one-theme-editor/DaisyUIThemeEditor";
 import { ExportTheme } from "../all-in-one-theme-editor/ExportTheme";
 import { ImportTheme } from "../all-in-one-theme-editor/ImprtTheme";
+import { DrawerIds } from "@/routes/-components/type";
 
 interface MainDaisyUiDrawerProps {
   searchParams: DaisyUIThemeSearchParmsTypes;

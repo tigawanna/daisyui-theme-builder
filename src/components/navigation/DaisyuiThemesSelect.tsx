@@ -1,8 +1,8 @@
 import { useSearchParamsTheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
 
-interface DaisyuiThemesSelectProps {}
 
-export function DaisyuiThemesSelect({}: DaisyuiThemesSelectProps) {
+
+export function DaisyuiThemesSelect() {
   const items = [
     "light",
     "dark",

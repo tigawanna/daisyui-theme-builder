@@ -1,27 +1,27 @@
-import MillionLint from '@million/lint';
 /// <reference types="vitest" />
 
+import MillionLint from '@million/lint';
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import analyze from "rollup-plugin-analyzer";
-import { splashScreen } from "vite-plugin-splash-screen";
+// import { splashScreen } from "vite-plugin-splash-screen";
 
 // https://vitejs.dev/config/
-const _plugins = [react(), TanStackRouterVite(), tsconfigPaths()
-
+const _plugins = [react(), TanStackRouterVite(), tsconfigPaths(),
+analyze({
+    // highlight the modules with size > 40kb
+    filter(moduleObject) {
+      console.log("====== module object  ==== ",moduleObject);
+      return moduleObject.size > 50000;
+    },
+  }),
 // splashScreen({
 //   splashBg: "#4D3119",
 //   loaderBg: "#D2BA79",
 //   loaderType: "dots",
 //   logoSrc: "logo.svg",
-// }),
-// analyze({
-//   // highlight the modules with size > 40kb
-//   filter(moduleObject) {
-//     return moduleObject.size > 5000;
-//   },
 // }),
 ];
 _plugins.unshift(MillionLint.vite())

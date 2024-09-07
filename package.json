@@ -59,16 +59,16 @@
     "react-hook-form": "^7.53.0",
     "react-resizable-panels": "^2.1.2",
     "recharts": "^2.12.7",
-    "rollup-plugin-analyzer": "^4.0.0",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwind-variants": "^0.2.1",
     "theme-change": "^2.5.0",
-    "tsx": "^4.17.0",
     "vaul": "^0.9.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "tsx": "^4.17.0",
+    "rollup-plugin-analyzer": "^4.0.0",
     "@park-ui/tailwind-plugin": "^0.20.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tanstack/react-table": "^8.20.5",

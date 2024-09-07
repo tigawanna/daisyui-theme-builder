@@ -6,9 +6,9 @@ import { BadgeDemo } from "./demos/BadgeDemo";
 import { ButtonDemo } from "./demos/ButtonDemo";
 import ChartsDemo from "./demos/ChartsDemo";
 import { ComboboxDemo } from "./demos/ComboboxDemo";
-import { DataTableDemo } from "./demos/data-table/DataTableDemo";
 import { SonnerDemo } from "./demos/Sonnerdemo";
 import { SkeletonDemo } from "./demos/SkeletonDemo";
+import { DataTableDemo } from "./demos/data-table/DataTableDemo";
 
 const CommandDemo = lazy(() => import("./demos/CommandDemo"));
 const CarouselDemo = lazy(() => import("./CarouselDemo"));
@@ -40,6 +40,7 @@ export function Outputs() {
             <h1 className="text-xl">Alert dialog</h1>
             <AlertDialogDemo />
           </div>
+ 
           <div className="flex w-fit min-w-[25%] flex-col items-center justify-center gap-1 md:max-w-[50%]">
             <h1 className="text-xl">Combobox</h1>
             <ComboboxDemo />

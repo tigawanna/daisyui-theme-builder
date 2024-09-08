@@ -31,11 +31,7 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 });
 
 function RootComponent() {
-  const {
-    searchParams,
-    updateWholeTheme,
-    navigate,
-  } = useDaisyUITheme();
+  const { searchParams, updateWholeTheme, navigate } = useDaisyUITheme();
   const { status } = useRouterState();
 
   useEffect(() => {
@@ -71,10 +67,7 @@ function RootComponent() {
   return (
     <div
       data-theme={searchParams?.["--theme-name"]?.value}
-      style={{
-        colorScheme: searchParams?.["--color-scheme"]?.value,
-        ...getDaisyUiInlineCSSVariables(searchParams),
-      }}
+      style={getDaisyUiInlineCSSVariables(searchParams)}
       className="drawer flex h-full w-full flex-col items-center justify-between bg-base-100 text-base-content"
     >
       <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />
@@ -150,42 +143,3 @@ function RootComponent() {
     </div>
   );
 }
-
-// <div className="drawer sticky top-[10%] z-20">
-//   <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-//   <div className="drawer-content">
-//     {/* Page content here */}
-//     <label
-//       htmlFor="my-drawer"
-//       className="drawer-button absolute left-2 top-5 flex gap-2"
-//     >
-//       <Palette className="ml-4" /> remix
-//     </label>
-//   </div>
-//   <div className="drawer-side z-20">
-//     <label
-//       htmlFor="my-drawer"
-//       aria-label="close sidebar"
-//       className="drawer-overlay"
-//     />
-//     <ul className="menu min-h-full w-[70%] bg-base-200 text-base-content @container md:w-[40%] md:p-4">
-//       <label
-//         htmlFor="my-drawer"
-//         aria-label="close sidebar"
-//         className="drawer-overlay sticky top-4"
-//       >
-//         <X />
-//       </label>
-//       {/* Sidebar content here */}
-//       <DaisyUIThemeEditor
-//         theme={searchParams}
-//         saveChanges={(items_key, new_items) => {
-//           updateTheme(items_key as any, new_items);
-//         }}
-//         lockTheme={(items_key, new_items) => {
-//           updateLockedTheme(items_key as any, new_items);
-//         }}
-//       />
-//     </ul>
-//   </div>
-// </div>

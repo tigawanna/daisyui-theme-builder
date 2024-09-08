@@ -23,7 +23,10 @@ analyze({
 //   logoSrc: "logo.svg",
 // }),
 ];
-_plugins.unshift(MillionLint.vite())
+if(process.env.MILLION_LINT) {
+  _plugins.unshift(MillionLint.vite())
+  
+}
 export default defineConfig({
   plugins: _plugins,
   server: {

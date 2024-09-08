@@ -1,9 +1,16 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/shadcn/ui/accordion";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/park/ui/accordion";
+export function AccordionDemo(){
 
-export function AccordionDemo() {
-  return (
-    <Accordion type="single" collapsible className="w-fit min-w-[40%]">
+return (
+  <div className="flex h-full w-full flex-col items-center justify-center">
+    <h1 className="w-full p-2 text-center text-xl">Accordion</h1>
+    <Accordion  collapsible className="w-[80%] min-w-[40%]">
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
         <AccordionContent>
@@ -25,5 +32,6 @@ export function AccordionDemo() {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  );
+  </div>
+);
 }

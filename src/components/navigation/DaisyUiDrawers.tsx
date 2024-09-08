@@ -50,19 +50,13 @@ export function MainDaisyUiDrawer({
           >
             UI
           </Link>
-          <Link
-            search={searchParams}
-            to="/"
-            className="btn btn-link"
-          >
-            daisyui
-          </Link>
-          <Link
-            search={searchParams}
-            to="/shadcn"
-            className="btn btn-link"
-          >
+
+          <Link search={searchParams} to="/shadcn" className="btn btn-link">
             shadcn
+          </Link>
+
+          <Link search={searchParams} to="/twarkui" className="btn btn-link">
+            twark
           </Link>
         </div>
         <div className="flex items-center justify-center gap-2">

@@ -14,15 +14,12 @@ const DaisyUIThemeEditor = lazy(
 interface MainDaisyUiDrawerProps {
   searchParams: DaisyUIThemeSearchParmsTypes;
   closeDrawer: (drawerId: DrawerIds) => void;
-  updateLockedTheme: (items_key: string, is_locked: boolean) => void;
-  updateTheme: (items_key: string, new_items: string) => void;
+
 }
 
 export function MainDaisyUiDrawer({
   searchParams,
   closeDrawer,
-  updateLockedTheme,
-  updateTheme,
 }: MainDaisyUiDrawerProps) {
   return (
     <div className="drawer-side z-20">
@@ -86,12 +83,6 @@ export function MainDaisyUiDrawer({
         <Suspense fallback={<div className="skeleton min-h-[60vh] w-full" />}>
           <DaisyUIThemeEditor
             theme={searchParams}
-            saveChanges={(items_key, new_items) => {
-              updateTheme(items_key as any, new_items);
-            }}
-            lockTheme={(items_key, new_items) => {
-              updateLockedTheme(items_key as any, new_items);
-            }}
           />
         </Suspense>
       </ul>

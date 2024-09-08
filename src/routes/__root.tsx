@@ -32,9 +32,7 @@ export const Route = createRootRouteWithContext<RouterCntextTypes>()({
 
 function RootComponent() {
   const {
-    updateLockedTheme,
     searchParams,
-    updateTheme,
     updateWholeTheme,
     navigate,
   } = useDaisyUITheme();
@@ -122,8 +120,6 @@ function RootComponent() {
       <MainDaisyUiDrawer
         closeDrawer={closeDrawer}
         searchParams={searchParams}
-        updateLockedTheme={updateLockedTheme}
-        updateTheme={updateTheme}
       />
       {/* export theme drawer */}
       <ExportThemeDaisyUiDrawer searchParams={searchParams} />

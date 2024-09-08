@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { DaisyuiThemesSelect } from "./DaisyuiThemesSelect";
 import { useDaisyUITheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
-import { FileUp, Import, Loader, Moon, Sun } from "lucide-react";
+import { FileUp, Import, Moon, Sun } from "lucide-react";
 
-interface MainNavBarProps {}
 
-export function MainNavBar({}: MainNavBarProps) {
+
+export function MainNavBar() {
   const { searchParams, updateTheme } = useDaisyUITheme();
   const color_scheme = searchParams?.["--color-scheme"]?.value;
 

@@ -52,17 +52,17 @@ export function MainDaisyUiDrawer({
           </Link>
           <Link
             search={searchParams}
-            to="/shadcn"
-            className="bg-base-100/70 p-1 hover:bg-base-100/20"
+            to="/"
+            className="btn btn-link"
           >
-            shadcn
+            daisyui
           </Link>
           <Link
             search={searchParams}
-            to="/twarkui"
-            className="bg-base-100/70 p-1 hover:bg-base-100/20"
+            to="/shadcn"
+            className="btn btn-link"
           >
-            twarkui
+            shadcn
           </Link>
         </div>
         <div className="flex items-center justify-center gap-2">
@@ -81,9 +81,7 @@ export function MainDaisyUiDrawer({
           </label>
         </div>
         <Suspense fallback={<div className="skeleton min-h-[60vh] w-full" />}>
-          <DaisyUIThemeEditor
-            theme={searchParams}
-          />
+          <DaisyUIThemeEditor theme={searchParams} />
         </Suspense>
       </ul>
     </div>

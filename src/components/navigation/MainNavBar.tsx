@@ -13,19 +13,11 @@ export function MainNavBar() {
     <header className="flex w-full flex-col items-center justify-between">
       <nav className="flex w-full items-center justify-end md:justify-between">
         <div className="hidden w-full items-center justify-center gap-2 text-sm md:flex">
-          <Link
-            search={searchParams}
-            to="/shadcn"
-            className="badge border border-accent hover:badge-accent"
-          >
-            <h1 className="">shadcn</h1>
+          <Link search={searchParams} to="/" className="btn btn-sm btn-link">
+            daisyui
           </Link>
-          <Link
-            search={searchParams}
-            to="/twarkui"
-            className="badge border border-accent hover:badge-accent"
-          >
-            <h1 className="">twarkui</h1>
+          <Link search={searchParams} to="/shadcn" className="btn btn-sm  btn-link">
+            shadcn
           </Link>
         </div>
 

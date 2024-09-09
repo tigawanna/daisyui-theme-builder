@@ -3,9 +3,7 @@ import { useMemo } from "react";
 import { GenericColorCard, GenericThemeCurveCard } from "./GenericThemeCard";
 import { DaisyUIThemeSearchParmsTypes } from "./utils/schema";
 
-export default function DaisyUIThemeEditor({theme}: {
-  theme: DaisyUIThemeSearchParmsTypes;
-}) {
+export default function DaisyUIThemeEditor({theme}: {theme: DaisyUIThemeSearchParmsTypes;}) {
   // block
   const primaryTheme = useMemo(() => theme?.["primary"], [theme?.["primary"]]);
   const primaryContentTheme = useMemo(

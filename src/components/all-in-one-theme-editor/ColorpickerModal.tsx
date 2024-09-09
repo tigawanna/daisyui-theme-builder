@@ -21,6 +21,7 @@ export const ColorpickerModal = memo(
 
     className = "",
   }: ColorpickerModalProps<T>) => {
+
     if (!theme) return null;
     const current_modal = document.getElementById(
       `my_color_picker_modal-${theme_key}`,

@@ -58,7 +58,7 @@ export const GenericColorCard = memo(
             "flex h-full w-full flex-col items-center justify-center gap-2"
           }
         >
-          <ColorpickerModal theme={theme} theme_key={theme_key} bg_color={bg}>
+          <ColorpickerModal key={theme_key} theme={theme} theme_key={theme_key} bg_color={bg}>
             <div
               className={twMerge(
                 "flex w-full flex-col items-center justify-between gap-0.5 rounded-lg p-1 text-sm",
@@ -97,42 +97,7 @@ export const GenericColorCard = memo(
 type ThemeCurves = DaisyUICurvesSearchParmsTypes;
 type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
 
-// interface DaisyUIBaseCurvesThemeCardProps {
-//   theme_group: {
-//     [key in ThemeCurveKeys]?: ThemeCurves[key];
-//   }
-// }
 
-// export const DaisyUIBaseCurvesThemeCard = memo(
-//   ({
-//     theme_group,
-//   }: DaisyUIBaseCurvesThemeCardProps) => {
-//     const curves = useMemo(() => {
-//       return Object.entries<DaisyUIBaseCurvesThemeCardProps["theme_group"]>(
-//         theme_group as any,
-//       );
-//     }, [theme_group]);
-
-//     return (
-//       <div className="flex w-full flex-col items-center justify-center gap-1">
-//         <h1 className="">curves</h1>
-//         <ul className="flex w-full flex-wrap items-center justify-center">
-//           {curves.map(([key, theme]) => {
-//             if (!theme) return null;
-//             return (
-//               <GenericThemeCurveCard
-//                 key={key}
-//                 theme_key={key as any}
-//                 row={theme as GenericThemeState}
-
-//               />
-//             );
-//           })}
-//         </ul>
-//       </div>
-//     );
-//   },
-// );
 
 interface GenericThemeCurveCardProps {
   theme_key: ThemeCurveKeys;

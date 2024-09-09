@@ -22,6 +22,10 @@ import {
 import { hideSplashScreen } from "vite-plugin-splash-screen/runtime";
 import { Intro } from "./-components/Intro";
 import { DrawerIds } from "./-components/type";
+import { DaisyUiDevtools } from "@/components/navigation/DaisyUiDevtools";
+
+
+
 
 export const Route = createRootRouteWithContext<RouterCntextTypes>()({
   component: RootComponent,
@@ -68,7 +72,7 @@ function RootComponent() {
     <div
       data-theme={searchParams?.["--theme-name"]?.value}
       style={getDaisyUiInlineCSSVariables(searchParams)}
-      className="drawer flex h-full w-full flex-col items-center justify-between bg-base-100 text-base-content"
+      className="drawer flex h-full w-full flex-col items-center  justify-between bg-base-100 text-base-content"
     >
       <input id="main-page-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex w-full flex-col">
@@ -121,9 +125,11 @@ function RootComponent() {
         searchParams={searchParams}
         updateWholeTheme={updateWholeTheme}
       />
-
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />
+      <DaisyUiDevtools />
+      {/* <DaisyUIThemeEditor theme={searchParams} /> */}
+
       <footer className="flex w-full items-center justify-between bg-base-200 p-2 px-4">
         <a
           className="link-hover link"

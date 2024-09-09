@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from "react";
 import DaisyUIThemeEditor from "../all-in-one-theme-editor/DaisyUIThemeEditor";
 import { defaultThemes } from "../all-in-one-theme-editor/utils/theme-default-values";
@@ -21,7 +20,7 @@ export function DaisyUiDevtools({
   iconClassname="",
 }: DaisyUiDevtoolsProps) {
   const [searchParams] = useState(defaultThemes({})); 
-//   @ts-expect-error 
+
   if(process.env.NODE_ENV !== "development"){
     return
  }

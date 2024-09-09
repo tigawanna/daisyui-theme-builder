@@ -1,4 +1,5 @@
 import { BaseDaisyUiThemeKeys } from "./daisyui-css-variables-helpers";
+import { DaisyUIThemeSearchParmsTypes } from "./schema";
 
 export type BaseDaisyUiThemeKeysWithoutBase = Exclude<
   BaseDaisyUiThemeKeys,
@@ -42,3 +43,6 @@ export type AllPOssibleThemeKeys =
   | "base-200"
   | "base-300"
   | "base-content";
+
+  export type DaisyUIThemeSearchParmsTypesVariables =
+    Required<DaisyUIThemeSearchParmsTypes>[keyof DaisyUIThemeSearchParmsTypes]["variable"]

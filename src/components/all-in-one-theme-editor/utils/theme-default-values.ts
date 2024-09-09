@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { useNavigate, useSearch } from "@tanstack/react-router";
-import type { GenericThemeState } from "./types";
+import type { DaisyUIThemeSearchParmsTypesVariables, GenericThemeState } from "./types";
 import { useState } from "react";
 import {
   getColorValueFromTheme,
@@ -42,13 +42,15 @@ export function loadColorScheme() {
   return color_scheme ?? undefined;
 }
 
-function loadFromSearchParamsIfLocked(theme?: {
+function loadFromSearchParamsIfLocked(
+  css_variable:DaisyUIThemeSearchParmsTypesVariables,
+  theme?: {
   name: string;
   value: string;
   variable: string;
   locked?: boolean | undefined;
 }) {
-  if (!theme) return "";
+  if (!theme) return getColorValueFromTheme(css_variable);
   const { value, variable, locked } = theme;
   if (!locked) {
     const value_from_css_ariable = getColorValueFromTheme(variable);
@@ -66,138 +68,135 @@ export function defaultThemes({
     "--color-scheme": {
       name: "color-scheme",
       variable: "color-scheme",
-      value: loadFromSearchParamsIfLocked(theme?.["--color-scheme"]),
+      value: loadFromSearchParamsIfLocked("color-scheme",theme?.["--color-scheme"]),
       locked: theme?.["--color-scheme"]?.locked ?? false,
     },
     accent: {
       name: "accent",
       variable: "--a",
-      value: loadFromSearchParamsIfLocked(theme?.accent),
+      value: loadFromSearchParamsIfLocked("--a",theme?.accent),
       locked: theme?.accent?.locked ?? false,
     },
     "accent-content": {
       name: "accent-content",
       variable: "--ac",
-      value: loadFromSearchParamsIfLocked(theme?.["accent-content"]),
+      value: loadFromSearchParamsIfLocked("--ac",theme?.["accent-content"]),
       locked: theme?.["accent-content"]?.locked ?? false,
     },
 
     "base-100": {
       name: "base-100",
       variable: "--b1",
-      value: loadFromSearchParamsIfLocked(theme?.["base-100"]),
+      value: loadFromSearchParamsIfLocked("--b1",theme?.["base-100"]),
       locked: theme?.["base-100"]?.locked ?? false,
     },
     "base-200": {
       name: "base-200",
       variable: "--b2",
-      value: loadFromSearchParamsIfLocked(theme?.["base-200"]),
+      value: loadFromSearchParamsIfLocked("--b2",theme?.["base-200"]),
       locked: theme?.["base-200"]?.locked ?? false,
     },
     "base-300": {
       name: "base-300",
       variable: "--b3",
-      value: loadFromSearchParamsIfLocked(theme?.["base-300"]),
+      value: loadFromSearchParamsIfLocked("--b3",theme?.["base-300"]),
       locked: theme?.["base-300"]?.locked ?? false,
     },
     "base-content": {
       name: "base-content",
       variable: "--bc",
-      value:
-        theme?.["base-content"]?.value ??
-        getColorValueFromTheme("--bc") ??
-        "#1f2937",
+     value: loadFromSearchParamsIfLocked("--bc",theme?.["base-content"]),
       locked: theme?.["base-content"]?.locked ?? false,
     },
 
     error: {
       name: "error",
       variable: "--er",
-      value: loadFromSearchParamsIfLocked(theme?.error),
+      value: loadFromSearchParamsIfLocked("--er",theme?.error),
       locked: theme?.error?.locked ?? false,
     },
     "error-content": {
       name: "error-content",
       variable: "--erc",
-      value: loadFromSearchParamsIfLocked(theme?.["error-content"]),
+      value: loadFromSearchParamsIfLocked("--erc",theme?.["error-content"]),
       locked: theme?.["error-content"]?.locked ?? false,
     },
 
     info: {
       name: "info",
       variable: "--in",
-      value: loadFromSearchParamsIfLocked(theme?.info),
+      value: loadFromSearchParamsIfLocked("--in",theme?.info),
       locked: theme?.info?.locked ?? false,
     },
     "info-content": {
       name: "info-content",
       variable: "--inc",
-      value: loadFromSearchParamsIfLocked(theme?.["info-content"]),
+      value: loadFromSearchParamsIfLocked("--inc",theme?.["info-content"]),
       locked: theme?.["info-content"]?.locked ?? false,
     },
 
     neutral: {
       name: "neutral",
       variable: "--n",
-      value: loadFromSearchParamsIfLocked(theme?.neutral),
+      value: loadFromSearchParamsIfLocked("--n",theme?.neutral),
       locked: theme?.neutral?.locked ?? false,
     },
     "neutral-content": {
       name: "neutral-content",
       variable: "--nc",
-      value: loadFromSearchParamsIfLocked(theme?.["neutral-content"]),
+      value: loadFromSearchParamsIfLocked("--nc",theme?.["neutral-content"]),
       locked: theme?.["neutral-content"]?.locked ?? false,
     },
 
     primary: {
       name: "primary",
       variable: "--p",
-      value: loadFromSearchParamsIfLocked(theme?.primary),
+      value: loadFromSearchParamsIfLocked("--p",theme?.primary),
       locked: theme?.primary?.locked ?? false,
     },
     "primary-content": {
       name: "primary-content",
       variable: "--pc",
-      value: loadFromSearchParamsIfLocked(theme?.["primary-content"]),
+      value: loadFromSearchParamsIfLocked("--pc",theme?.["primary-content"]),
       locked: theme?.["primary-content"]?.locked ?? false,
     },
 
     success: {
       name: "success",
       variable: "--su",
-      value: loadFromSearchParamsIfLocked(theme?.success),
+      value: loadFromSearchParamsIfLocked("--su",theme?.success),
       locked: theme?.success?.locked ?? false,
     },
     "success-content": {
       name: "success-content",
       variable: "--suc",
-      value: loadFromSearchParamsIfLocked(theme?.["success-content"]),
+      value: loadFromSearchParamsIfLocked("--suc",theme?.["success-content"]),
       locked: theme?.["success-content"]?.locked ?? false,
     },
 
     secondary: {
       name: "secondary",
       variable: "--s",
-      value: loadFromSearchParamsIfLocked(theme?.secondary),
+      value: loadFromSearchParamsIfLocked("--s",theme?.secondary),
       locked: theme?.secondary?.locked ?? false,
     },
     "secondary-content": {
       name: "secondary-content",
       variable: "--sc",
-      value: loadFromSearchParamsIfLocked(theme?.["secondary-content"]),
+      value: loadFromSearchParamsIfLocked("--sc",theme?.["secondary-content"]),
       locked: theme?.["secondary-content"]?.locked ?? false,
     },
 
     warning: {
       name: "warning",
       variable: "--wa",
-      value: loadFromSearchParamsIfLocked(theme?.warning),
+      value: loadFromSearchParamsIfLocked("--wa",theme?.warning),
       locked: theme?.warning?.locked ?? false,
     },
     "warning-content": {
       name: "warning-content",
       variable: "--wac",
-      value: loadFromSearchParamsIfLocked(theme?.["warning-content"]),
+      value: loadFromSearchParamsIfLocked("--wac",theme?.["warning-content"]),
       locked: theme?.["warning-content"]?.locked ?? false,
     },
 

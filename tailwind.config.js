@@ -115,7 +115,12 @@ export default {
           to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
         },
       },
-
+      // translate: var(--x) var(--y) 0;
+      translate: {
+        "toaster-var": "var(--x) var(--y) 0",
+        "toaster-x": "var(--x)",
+        "toaster-y": "var(--y)",
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

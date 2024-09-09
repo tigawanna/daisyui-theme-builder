@@ -1,5 +1,6 @@
-import { toast } from "sonner";
 import { Button } from "@/components/shadcn/ui/button";
+import { toast } from "sonner";
+
 
 export function SonnerDemo() {
   return (

@@ -1,5 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { TwarkUIPageComponent } from './-components/TwarkUIPageComponent';
+import { ToasterContainer } from "./-components/groups/ToasterDemo";
 
 
 export const Route = createLazyFileRoute('/twarkui/')({
@@ -8,8 +9,9 @@ export const Route = createLazyFileRoute('/twarkui/')({
 
 export function Index(){
 return (
- <div className='w-full h-full min-h-screen  flex flex-col items-center justify-center'>
-  <TwarkUIPageComponent/>
- </div>
+  <div className="flex h-full min-h-screen w-full flex-col items-center justify-center">
+    <TwarkUIPageComponent />
+    <ToasterContainer />
+  </div>
 );
 }

@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { ReactColorPicker } from "./ReactColorPicker";
 import { DaisyUIColorSearchParmsTypes } from "./utils/schema";
-import { memo } from "react";
+import { memo, useEffect, useRef } from "react";
 
 type BaseDaisyUiThemeKeysWithoutBase = keyof DaisyUIColorSearchParmsTypes;
 interface ColorpickerModalProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
@@ -18,18 +18,28 @@ export const ColorpickerModal = memo(
     bg_color,
     theme_key,
     theme,
-
     className = "",
   }: ColorpickerModalProps<T>) => {
 
+    const modalRef = useRef<HTMLDialogElement|null>(null);
+    useEffect(() => {
+      const current_modal = document.getElementById(
+        `my_color_picker_modal-${theme_key}`,
+      ) as HTMLDialogElement;
+      modalRef.current = current_modal;
+    },[theme_key])
     if (!theme) return null;
-    const current_modal = document.getElementById(
-      `my_color_picker_modal-${theme_key}`,
-    ) as HTMLDialogElement;
+  
     return (
       <div className={twMerge("w-full items-center", className)}>
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <div className="" onClick={() => current_modal?.showModal()}>
+        <div
+          className=""
+          ref={modalRef as unknown as React.LegacyRef<HTMLDivElement> | undefined}
+          onClick={() => {
+            modalRef.current?.showModal();
+          }}
+        >
           {children}
         </div>
         <dialog
@@ -37,7 +47,8 @@ export const ColorpickerModal = memo(
           className="modal w-full"
         >
           <div className={twMerge("modal-box min-w-fit", bg_color)}>
-            <ReactColorPicker oklchString={theme?.value} colorKey={theme_key} />
+  
+            <ReactColorPicker themeName={theme.name} oklchString={theme?.value} colorKey={theme_key} />
           </div>
           <form method="dialog" className="modal-backdrop">
             <button>close</button>

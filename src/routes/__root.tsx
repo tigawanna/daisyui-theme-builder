@@ -127,7 +127,7 @@ function RootComponent() {
       />
       <TailwindIndicator />
       <TanStackRouterDevtools position="bottom-left" />
-      <DaisyUiDevtools />
+      <DaisyUiDevtools position="start" iconClassname="size-6 "/>
       {/* <DaisyUIThemeEditor theme={searchParams} /> */}
 
       <footer className="flex w-full items-center justify-between bg-base-200 p-2 px-4">

@@ -12,11 +12,13 @@ import { useDaisyUITheme } from "./utils/use-search-params-theme";
 interface ReactColorPickerProps {
   oklchString: string; // oklch color string to be coverted into hsl from the editor
   colorKey: string; // css variable key ;
+  themeName: string;
 }
 
 export function ReactColorPicker({
   oklchString,
   colorKey,
+  themeName
 }: ReactColorPickerProps) {
   const { updateTheme } = useDaisyUITheme();
   const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString));
@@ -32,9 +34,10 @@ export function ReactColorPicker({
   }
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center bg-base-100 rounded-lg">
+        <h3 className="text-lg font-bold">{themeName}</h3>
         {oklch && (
-          <span className="rounded-lg bg-base-100 p-1 px-2 text-base-content">{`oklch${oklch})`}</span>
+          <span className="rounded-lg p-1 px-2 text-base-content">{`oklch${oklch})`}</span>
         )}
       </div>
       <div className="flex max-h-[70vh] w-full items-center justify-center gap-2 overflow-y-scroll rounded p-2">

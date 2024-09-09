@@ -26,12 +26,14 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   theme: DaisyUIColorSearchParmsTypes[T];
   className?: string;
 }
+
 export const GenericColorCard = memo(
   <T extends BaseDaisyUiThemeKeysWithoutBase>({
     theme_key,
     theme,
     className,
   }: GenericColorCardProps<T>) => {
+
     const { updateLockedTheme } = useDaisyUITheme();
     const { bg, content } = useMemo(
       () => getTailwindBg(theme?.name),

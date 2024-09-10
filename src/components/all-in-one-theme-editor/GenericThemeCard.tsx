@@ -12,7 +12,7 @@ import {
 } from "./utils/daisyui-css-variables-helpers";
 import { GenericThemeState } from "./utils/types";
 import { Lock, Unlock } from "lucide-react";
-import { useDaisyUITheme } from "./utils/use-search-params-theme";
+
 
 export type BGandContentObject<T extends BaseDaisyUiThemeKeys> = {
   [key in T]: GenericThemeState;
@@ -25,6 +25,8 @@ interface GenericColorCardProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   theme_key: T;
   theme: DaisyUIColorSearchParmsTypes[T];
   className?: string;
+  updateTheme: (items_key: string, new_items: string) => void;
+  updateLockedTheme: (items_key: string, is_locked: boolean) => void;
 }
 
 export const GenericColorCard = memo(
@@ -32,9 +34,11 @@ export const GenericColorCard = memo(
     theme_key,
     theme,
     className,
+    updateTheme,
+    updateLockedTheme
   }: GenericColorCardProps<T>) => {
 
-    const { updateLockedTheme } = useDaisyUITheme();
+
     const { bg, content } = useMemo(
       () => getTailwindBg(theme?.name),
       [theme?.name],
@@ -47,7 +51,12 @@ export const GenericColorCard = memo(
       () => updateLockedTheme(theme_key, false),
       [theme_key, updateLockedTheme],
     );
-
+    const updateThemeCallback = useCallback((items_key: string, new_items: string) => {
+        updateTheme(items_key, new_items);
+      },
+      [updateTheme]
+      
+    )
     return (
       <div
         className={twMerge(
@@ -60,7 +69,7 @@ export const GenericColorCard = memo(
             "flex h-full w-full flex-col items-center justify-center gap-2"
           }
         >
-          <ColorpickerModal key={theme_key} theme={theme} theme_key={theme_key} bg_color={bg}>
+          <ColorpickerModal updateTheme={updateThemeCallback} key={theme_key} theme={theme} theme_key={theme_key} bg_color={bg}>
             <div
               className={twMerge(
                 "flex w-full flex-col items-center justify-between gap-0.5 rounded-lg p-1 text-sm",
@@ -104,11 +113,13 @@ type ThemeCurveKeys = ThemeCurves extends undefined ? never : keyof ThemeCurves;
 interface GenericThemeCurveCardProps {
   theme_key: ThemeCurveKeys;
   row: GenericThemeState;
+  updateTheme: (items_key: string, new_items: string) => void;
+  updateLockedTheme: (items_key: string, is_locked: boolean) => void;
 }
 
 export const GenericThemeCurveCard = memo(
-  ({ theme_key, row }: GenericThemeCurveCardProps) => {
-    const { updateTheme, updateLockedTheme } = useDaisyUITheme();
+  ({ theme_key, row,updateTheme,updateLockedTheme }: GenericThemeCurveCardProps) => {
+
 
     const updateChages = useCallback(
       (new_items: string) => updateTheme(theme_key, new_items),

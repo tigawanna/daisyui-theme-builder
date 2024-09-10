@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { ReactColorPicker } from "./ReactColorPicker";
 import { DaisyUIColorSearchParmsTypes } from "./utils/schema";
-import { memo, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef } from "react";
 
 type BaseDaisyUiThemeKeysWithoutBase = keyof DaisyUIColorSearchParmsTypes;
 interface ColorpickerModalProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
@@ -10,6 +10,7 @@ interface ColorpickerModalProps<T extends BaseDaisyUiThemeKeysWithoutBase> {
   bg_color: string;
   children: React.ReactNode;
   className?: string;
+  updateTheme: (items_key: string, new_items: string) => void;
 }
 
 export const ColorpickerModal = memo(
@@ -19,6 +20,7 @@ export const ColorpickerModal = memo(
     theme_key,
     theme,
     className = "",
+    updateTheme,
   }: ColorpickerModalProps<T>) => {
 
     const modalRef = useRef<HTMLDialogElement|null>(null);
@@ -28,14 +30,19 @@ export const ColorpickerModal = memo(
       ) as HTMLDialogElement;
       modalRef.current = current_modal;
     },[theme_key])
+    
+    const updateThemeCallback = useCallback((items_key: string, new_items: string)=>{
+      updateTheme(items_key, new_items)
+    },[updateTheme])
     if (!theme) return null;
-  
     return (
       <div className={twMerge("w-full items-center", className)}>
         {/* Open the modal using document.getElementById('ID').showModal() method */}
         <div
           className=""
-          ref={modalRef as unknown as React.LegacyRef<HTMLDivElement> | undefined}
+          ref={
+            modalRef as unknown as React.LegacyRef<HTMLDivElement> | undefined
+          }
           onClick={() => {
             modalRef.current?.showModal();
           }}
@@ -47,8 +54,12 @@ export const ColorpickerModal = memo(
           className="modal w-full"
         >
           <div className={twMerge("modal-box min-w-fit", bg_color)}>
-  
-            <ReactColorPicker themeName={theme.name} oklchString={theme?.value} colorKey={theme_key} />
+            <ReactColorPicker
+              themeName={theme.name}
+              oklchString={theme?.value}
+              colorKey={theme_key}
+              updateTheme={updateThemeCallback}
+            />
           </div>
           <form method="dialog" className="modal-backdrop">
             <button>close</button>

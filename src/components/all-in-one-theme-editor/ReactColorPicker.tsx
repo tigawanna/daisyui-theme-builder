@@ -7,20 +7,22 @@ import {
   SliderPicker,
   SwatchesPicker,
 } from "react-color";
-import { useDaisyUITheme } from "./utils/use-search-params-theme";
+
 
 interface ReactColorPickerProps {
   oklchString: string; // oklch color string to be coverted into hsl from the editor
   colorKey: string; // css variable key ;
   themeName: string;
+  updateTheme: (items_key: string, new_items: string) => void;
 }
 
 export function ReactColorPicker({
   oklchString,
   colorKey,
-  themeName
+  themeName,
+  updateTheme
 }: ReactColorPickerProps) {
-  const { updateTheme } = useDaisyUITheme();
+
   const [color, setColor] = useState<HSLColor>(oklchToHSL(oklchString));
   const oklch_string = reactColorHSLToOKLCH(color);
   const [oklch, setOklch] = useState(oklch_string);

@@ -116,7 +116,6 @@ function RootComponent() {
       {/* Page content here */}
       <MainDaisyUiDrawer
         closeDrawer={closeDrawer}
-        searchParams={searchParams}
       />
       {/* export theme drawer */}
       <ExportThemeDaisyUiDrawer searchParams={searchParams} />

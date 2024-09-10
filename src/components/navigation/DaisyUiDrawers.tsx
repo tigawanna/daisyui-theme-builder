@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "@tanstack/react-router";
-import { DaisyUIThemeSearchParmsTypes } from "../all-in-one-theme-editor/utils/schema";
 import { FileUp, Import, X } from "lucide-react";
 import { ExportTheme } from "../all-in-one-theme-editor/ExportTheme";
 import { ImportTheme } from "../all-in-one-theme-editor/ImprtTheme";
 import { DrawerIds } from "@/routes/-components/type";
 import { lazy, Suspense } from "react";
+import { useDaisyUITheme } from "../all-in-one-theme-editor/utils/use-search-params-theme";
+import { DaisyUIThemeSearchParmsTypes } from "../all-in-one-theme-editor/utils/schema";
 
 const DaisyUIThemeEditor = lazy(
   () => import("../all-in-one-theme-editor/DaisyUIThemeEditor"),
 );
 
 interface MainDaisyUiDrawerProps {
-  searchParams: DaisyUIThemeSearchParmsTypes;
   closeDrawer: (drawerId: DrawerIds) => void;
 
 }
 
 export function MainDaisyUiDrawer({
-  searchParams,
   closeDrawer,
 }: MainDaisyUiDrawerProps) {
+  const {searchParams,updateThemeName,updateTheme} = useDaisyUITheme()
   return (
     <div className="drawer-side z-20">
       <label
@@ -75,7 +75,7 @@ export function MainDaisyUiDrawer({
           </label>
         </div>
         <Suspense fallback={<div className="skeleton min-h-[60vh] w-full" />}>
-          <DaisyUIThemeEditor theme={searchParams} />
+          <DaisyUIThemeEditor theme={searchParams} updateTheme={updateTheme} updateLockedTheme={updateThemeName} />
         </Suspense>
       </ul>
     </div>

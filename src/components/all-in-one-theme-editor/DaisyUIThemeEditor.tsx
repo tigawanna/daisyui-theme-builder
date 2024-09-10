@@ -1,9 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { GenericColorCard, GenericThemeCurveCard } from "./GenericThemeCard";
 import { DaisyUIThemeSearchParmsTypes } from "./utils/schema";
 
-export default function DaisyUIThemeEditor({theme}: {theme: DaisyUIThemeSearchParmsTypes;}) {
+
+export default function DaisyUIThemeEditor({
+  theme,
+  updateTheme,
+  updateLockedTheme
+}: {
+  theme: DaisyUIThemeSearchParmsTypes;
+  updateTheme: (items_key: string, new_items: string) => void;
+  updateLockedTheme: (items_key: string, is_locked: boolean) => void;
+}) {
   // block
   const primaryTheme = useMemo(() => theme?.["primary"], [theme?.["primary"]]);
   const primaryContentTheme = useMemo(
@@ -108,37 +117,82 @@ export default function DaisyUIThemeEditor({theme}: {theme: DaisyUIThemeSearchPa
     [theme?.["--animation-input"]],
   );
 
+
+  const updateThemeCallback = useCallback(
+    (items_key: string, new_items: string) => {
+      updateTheme(items_key, new_items);
+    },
+    [updateTheme],
+  );
+  const updateLockedThemeCallback = useCallback(
+    (items_key: string, is_locked: boolean) => {
+      updateLockedTheme(items_key, is_locked);
+    },
+    [updateLockedTheme],
+  );
+
+
+
   return (
+
     <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-[5%]">
       <div className="flex h-full w-full flex-wrap items-center justify-center gap-2 p-2">
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Primary</h3>
-          <GenericColorCard theme_key="primary" theme={primaryTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="primary"
+            theme={primaryTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="primary-content"
             theme={primaryContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Secondary</h3>
-          <GenericColorCard theme_key="secondary" theme={secondaryTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="secondary"
+            theme={secondaryTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="secondary-content"
             theme={secondaryContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Accent</h3>
-          <GenericColorCard theme_key="accent" theme={accentTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="accent"
+            theme={accentTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="accent-content"
             theme={accentContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Neutral</h3>
-          <GenericColorCard theme_key="neutral" theme={neutralTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="neutral"
+            theme={neutralTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="neutral-content"
             theme={neutralContentTheme}
           />
@@ -148,21 +202,29 @@ export default function DaisyUIThemeEditor({theme}: {theme: DaisyUIThemeSearchPa
         <h3>Base</h3>
         <div className="flex w-full flex-wrap items-center justify-center gap-2 p-2">
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             className="w-[48%] @md:w-[30%] @lg:w-[24%]"
             theme_key="base-100"
             theme={base100Theme}
           />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%]"
             theme_key="base-200"
             theme={base200Theme}
           />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%]"
             theme_key="base-300"
             theme={base300Theme}
           />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             className="w-[48%] gap-1 @md:w-[23%] @lg:w-[40%]"
             theme_key="base-content"
             theme={baseContentTheme}
@@ -172,29 +234,60 @@ export default function DaisyUIThemeEditor({theme}: {theme: DaisyUIThemeSearchPa
       <div className="flex h-full w-full flex-wrap items-center justify-center gap-2 p-2">
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Info</h3>
-          <GenericColorCard theme_key="info" theme={infoTheme} />
-          <GenericColorCard theme_key="info-content" theme={infoContentTheme} />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="info"
+            theme={infoTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="info-content"
+            theme={infoContentTheme}
+          />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Success</h3>
-          <GenericColorCard theme_key="success" theme={successTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="success"
+            theme={successTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="success-content"
             theme={successContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Warning</h3>
-          <GenericColorCard theme_key="warning" theme={warningTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="warning"
+            theme={warningTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="warning-content"
             theme={warningContentTheme}
           />
         </div>
         <div className="flex h-full w-[48%] flex-col items-center justify-center gap-1 @md:w-[23%] @lg:w-[40%]">
           <h3>Error</h3>
-          <GenericColorCard theme_key="error" theme={errorTheme} />
           <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="error"
+            theme={errorTheme}
+          />
+          <GenericColorCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="error-content"
             theme={errorContentTheme}
           />
@@ -210,46 +303,81 @@ export default function DaisyUIThemeEditor({theme}: {theme: DaisyUIThemeSearchPa
         {/* animation */}
         {animationBtn && (
           <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="--animation-btn"
             row={animationBtn}
           />
         )}
         {animationInput && (
           <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="--animation-input"
             row={animationInput}
           />
         )}
         {/* rounded */}
         {roundedBox && (
-          <GenericThemeCurveCard theme_key="--rounded-box" row={roundedBox} />
+          <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="--rounded-box"
+            row={roundedBox}
+          />
         )}
         {roundedBtn && (
-          <GenericThemeCurveCard theme_key="--rounded-btn" row={roundedBtn} />
+          <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="--rounded-btn"
+            row={roundedBtn}
+          />
         )}
         {roundedBadge && (
           <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="--rounded-badge"
             row={roundedBadge}
           />
         )}
         {/* btn */}
         {borderBtn && (
-          <GenericThemeCurveCard theme_key="--border-btn" row={borderBtn} />
+          <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="--border-btn"
+            row={borderBtn}
+          />
         )}
         {btnFocusState && (
           <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
             theme_key="--btn-focus-scale"
             row={btnFocusState}
           />
         )}
         {tabBorder && (
-          <GenericThemeCurveCard theme_key="--tab-border" row={tabBorder} />
+          <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="--tab-border"
+            row={tabBorder}
+          />
         )}
         {tabRadius && (
-          <GenericThemeCurveCard theme_key="--tab-radius" row={tabRadius} />
+          <GenericThemeCurveCard
+            updateTheme={updateThemeCallback}
+            updateLockedTheme={updateLockedThemeCallback}
+            theme_key="--tab-radius"
+            row={tabRadius}
+          />
         )}
       </div>
     </div>
+
+
   );
 }
